@@ -1,8 +1,27 @@
+@import './fonts.css';
+
+:root {
+  --color-primary: #58667E;
+  --color-blue: #446DFF;
+  --color-blue-2: #0047b0;
+  --color-neutral-gray-1: #A6B0C3;
+  --color-neutral-gray-2: #58667E;
+  --color-neutral-gray-3: #747373;
+  --color-black-1: #11142D;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Inter-Medium', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 16px;
+  color: var(--color-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter-Bold', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 

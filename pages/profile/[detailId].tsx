@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useRouter } from "next/dist/client/router";
-import Link from 'next/link';
 
 export interface DetailPageProps {
 }
