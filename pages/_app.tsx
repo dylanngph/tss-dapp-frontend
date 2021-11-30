@@ -1,12 +1,10 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Footer from "components/display/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Component {...pageProps} />
-      <Footer />
     </div>
   );
 }

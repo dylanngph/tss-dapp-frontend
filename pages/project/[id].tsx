@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import Footer from "components/display/Footer";
 import HeaderDetail from 'components/display/HeaderDetail';
 import BoxProjectDetail from 'components/custom/ProjectDetail';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function ProjectDetail() {
   return (
@@ -15,6 +18,8 @@ export default function ProjectDetail() {
         <HeaderDetail/>
         <BoxProjectDetail project={project_detail}/>
       </main>
+
+      <Footer />
 
     </div>
   )
