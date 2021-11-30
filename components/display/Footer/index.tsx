@@ -10,20 +10,20 @@ export interface FooterProps {
 export default function Footer (props: FooterProps) {
   return (
     <WrapperNav>
-      <Container maxWidth="lg" style={{padding: '70px 0'}}>
-        <Grid container >
-          <Grid item container sm={4} style={{padding: '0 35px'}}>
+      <Container>
+        <Grid container spacing={4} mt={0} pt={7} pb={7}>
+          <Grid item container lg={4} sm={12}>
             <Box sx={{ width: 150, height: 71,}}>
               <a href="">
                 <Image src="/assets/images/logo-tss-footer.png" alt="Logo TSS Footer" width={150} height={71}/>
               </a>
             </Box>
           </Grid>
-          <Grid item container direction="column" sm={4} style={{padding: '0 35px'}}>
+          <Grid item container direction="column" lg={4} sm={6}>
             <h4>Về chúng tôi</h4>
             <p>TRUNG TÂM QUẢN LÝ TÀI SẢN SỐ - Digital Asset Management Center - gọi tắt TSS là đơn vị tiên phong tại Việt Nam được Nhà nước công nhận tư cách pháp nhân để làm nhiệm vụ thúc đẩy, tổ chức các hoạt động số hóa, quản lý tài sản số trong các hoạt động kinh tế theo định hướng KINH TẾ SỐ của Chính phủ, nhằm phát triển nền kinh tế tri thức tại Việt Nam.</p>
           </Grid>
-          <Grid item container direction="column" sm={4} style={{padding: '0 35px'}}>
+          <Grid item container direction="column" lg={4} sm={6}>
             <h4>Trụ sở chính</h4>
             <p>124 Huỳnh Tấn Phát, Phường Tân Thuận Tây, Quận 7, Thành phố Hồ Chí Minh.</p>
             <Grid container style={{marginTop: '20px'}}>

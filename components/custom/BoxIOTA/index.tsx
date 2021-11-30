@@ -2,16 +2,17 @@ import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export default function BoxIOTA ({item}) {
   return (
-    <Grid item container xs={4}>
+    <Grid item container md={4}>
       <BoxWrapper>
         <Grid container>
-          <Grid item container xs={4}>
-            <Box sx={{ width: 87, height: 87,}}><Image src={"/assets/images/" + item.img} alt="IOTA nft" width={87} height={87}/></Box>
+          <Grid item style={{ width: '99px' }}>
+            <img src={"/assets/images/" + item.img} alt="IOTA nft" />
           </Grid>
-          <Grid item container direction="column" xs={8}>
+          <Grid item style={{ width: 'calc(100% - 99px)' }} container direction="column">
             <BoxSubTitle>{item.subtitle}</BoxSubTitle>
             <BoxTitle>{item.title}</BoxTitle>
             <BoxDes>{item.description}</BoxDes>
@@ -27,8 +28,11 @@ const BoxWrapper = styled.div`
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   background: #FFFFFF;
-  margin: 0px 12px;
+  margin: 0px 12px 20px;
   padding: 24px;
+  @media screen and ${device.tabletL} {
+    margin: 0px 12px;
+  }
 `;
 
 const BoxSubTitle = styled.h5`

@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export interface ProcessNFTSection {
 }
@@ -15,7 +16,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
         <TitleSection>Quy trình cấp NFT</TitleSection>
         <DesSection>Cùng chung tay tạo nên một cộng đồng blockchain Việt Nam minh bạch.</DesSection>
         <Grid container style={{ paddingTop: '60px' }}>
-          <Grid item container md={3}>
+          <Grid item container justifyContent="center" md={3}>
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
                 <Image src="/assets/icons/ico-document.svg" alt="ico-document" width={64} height={64}/>
@@ -24,10 +25,10 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
               <BoxBg></BoxBg>
             </Box>
           </Grid>
-          <Grid item container justifyContent="center" md={1.5}>
+          <GridBoxArrow item container justifyContent="center" md={1.5}>
             <Image src="/assets/icons/ico-arrow-right.svg" alt="arrow-right" width={100} height={30}/>
-          </Grid>
-          <Grid item container md={3}>
+          </GridBoxArrow>
+          <Grid item container justifyContent="center" md={3}>
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
                 <Image src="/assets/icons/ico-judge.svg" alt="ico-judge" width={64} height={64}/>
@@ -36,10 +37,10 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
               <BoxBg></BoxBg>
             </Box>
           </Grid>
-          <Grid item container justifyContent="center" md={1.5}>
+          <GridBoxArrow item container justifyContent="center" md={1.5}>
             <Image src="/assets/icons/ico-arrow-right.svg" alt="arrow-right" width={100} height={30}/>
-          </Grid>
-          <Grid item container md={3}>
+          </GridBoxArrow>
+          <Grid item container justifyContent="center" md={3}>
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
                 <Image src="/assets/icons/ico-bubble.svg" alt="ico-bubble" width={64} height={64}/>
@@ -59,9 +60,12 @@ const WrapperSection = styled.div`
   background-image: url('/assets/images/bg-process-nft.png');
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 175px 0 80px;
+  padding: 50px 0;
   min-height: 676px;
   text-align: center;
+  @media screen and ${device.tabletL} {
+    padding: 175px 0 80px;
+  }
 `;
 
 const TitleSection = styled.h3`
@@ -69,6 +73,7 @@ const TitleSection = styled.h3`
   line-height: 44px;
   color: var(--color-black-1);
   margin-bottom: 20px;
+  margin-top: 0;
 `;
 
 const DesSection = styled.p`
@@ -109,4 +114,15 @@ const BoxBg = styled.div`
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   z-index: 1;
+`;
+
+const GridBoxArrow = styled(Grid)`
+  transform: rotate(90deg);
+  height: 100px;
+  margin-bottom: 10px;
+  @media screen and ${device.tabletL} {
+    transform: none;
+    height: inherit;
+    margin-bottom: 0;
+  }
 `;

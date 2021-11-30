@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import ProjectItem from 'components/custom/ProjectItem';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export interface ListProjectSection {
 }
@@ -96,8 +97,11 @@ export default function ListProjectSection (props: ListProjectSection) {
 }
 
 const WrapperSection = styled.div`
-  margin: 0 0 90px;
+  margin: 0 0 20px;
   padding-top: 50px;
+  @media screen and ${device.tabletL} {
+    margin: 0 0 90px;
+  }
 `;
 
 const WrapperTable = styled.table`

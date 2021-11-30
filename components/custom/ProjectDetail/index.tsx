@@ -11,21 +11,128 @@ import styled from 'styled-components';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Button from '@mui/material/Button';
 import Slider from "react-slick";
+import 'chart.js/auto';
 import { Doughnut } from "react-chartjs-2";
+import Modal from '@mui/material/Modal';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableFooter from '@mui/material/TableFooter';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { device } from 'styles/media-device';
+
+function createData(index, cate, ratio, price, quantity, vesting) {
+  return { index, cate, ratio, price, quantity, vesting };
+};
+
+const rows = [
+  createData(1, 'Public sale', 3, 10000, 560000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(2, 'Private sale', 12, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(3, 'Staking reward', 14, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(4, 'Community & marketing', 27, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(5, 'Team & Advisors', 3, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(6, 'Lab reservers', 5, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(7, 'Play to earn reward', 31, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+  createData(8, 'DEX liquidity', 5, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
+];
 
 export default function ProjectDetail ({project}) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   var settings = {
     dots: true,
     arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        }
+      },
+    ]
+  };
+  var settingsTeam = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        }
+      },
+    ]
+  };
+  const data = {
+    labels: [
+      "Public sale",
+      "Private sale",
+      "Staking reward",
+      "Community & marketing",
+      "Team & Advisors",
+      "Lab reservers",
+      "Play to earn reward",
+      "DEX liquidity",
+    ],
+    datasets: [
+      {
+        backgroundColor: [
+          "#483168",
+          "#00B919",
+          "#685BF4",
+          "#344DA3",
+          "#15DAAE",
+          "#AB5BF4",
+          "#11B3D3",
+          "#2424F4",
+        ],
+        data: [3, 12, 14, 27, 3, 5, 31, 5]
+      }
+    ]
+  };
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        labels: {
+          font: {
+            family: "'Inter-Regular'"
+          }
+        }
+      }
+    }
   };
   return (
     <Container>
       <Grid container justifyContent="space-between" pt={4} pb={4}>
-        <Grid item container alignItems="center" xs={6}>
+        <Grid item container alignItems="center" sm={6}>
           <Box sx={{ width: 40, height: 40, marginRight: '16px' }}>
             <Image src={`/assets/images/${project.img_logo_path}`} alt={project.name} width={40} height={40}/>
           </Box>
@@ -35,7 +142,7 @@ export default function ProjectDetail ({project}) {
             Chứng nhận: 10/13/2020
           </BoxCertified>
         </Grid>
-        <Grid item container justifyContent="flex-end" xs={6}>
+        <Grid item container justifyContent="flex-end" sm={6}>
           <BoxButton>
             <Box sx={{ width: 24, height: 24, marginRight: '10px', backgroundImage: 'url("/assets/icons/ico-paperclip.svg")' }}/>
             Whitepaper
@@ -47,7 +154,7 @@ export default function ProjectDetail ({project}) {
         </Grid>
       </Grid>
       <Grid container spacing={3} mb={4}>
-        <Grid item xs={7}>
+        <Grid item container direction="column" lg={7}>
           <TitleSection>Thông tin dự án</TitleSection>
           <WrapperInfoProject>
             <li>
@@ -106,7 +213,7 @@ export default function ProjectDetail ({project}) {
             </li>
           </WrapperInfoProject>
         </Grid>
-        <Grid item container direction="column" xs={5}>
+        <Grid item container direction="column" lg={5}>
           <TitleSection>QR code</TitleSection>
           <WrapperQRCode>
             <Image src={`/assets/images/${project.qr_img_path}`} alt={project.name} width={375} height={375}/>
@@ -122,7 +229,7 @@ export default function ProjectDetail ({project}) {
           </TabsListUnstyled>
           <TabPanelUnstyled value={0}>
             <Grid container mt={0} spacing={2}>
-              <Grid item xs={3}>
+              <Grid item container lg={3} justifyContent="center">
                 <CardBoxPassport>
                   <Box sx={{ width: '100%', height: 172, display: 'flex', justifyContent: 'center', marginBottom: '18px' }}>
                     <Image src="/assets/images/IOTA.png" alt="IOTA.png" width={172} height={172}/>
@@ -135,11 +242,11 @@ export default function ProjectDetail ({project}) {
                   </div>
                 </CardBoxPassport>
               </Grid>
-              <Grid item xs={9}>
+              <Grid item container lg={9} justifyContent="center">
                 <NFTCardBoxPassport>
                   <Grid container justifyContent="space-between">
                     <TitleSection>NFT Passport of Blockchain</TitleSection>
-                    <CustomButtonDetail variant="outlined" startIcon={<VisibilityIcon />}>
+                    <CustomButtonDetail variant="outlined" onClick={handleOpen} startIcon={<VisibilityIcon />}>
                       Chi tiết
                     </CustomButtonDetail>
                   </Grid>
@@ -147,14 +254,14 @@ export default function ProjectDetail ({project}) {
                     <span>Phân tích số liệu</span>
                     <span>Đánh giá</span>
                   </div>
-                  <Grid container mt={2}>
-                    <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', marginRight: '15px' }}>
+                  <Grid container>
+                    <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
                       <Image src="/assets/images/logo-tss.png" alt="logo-tss.png" width={68} height={30}/>
                     </Box>
-                    <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', marginRight: '15px' }}>
+                    <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
                       <Image src="/assets/images/logo-bas.png" alt="logo-bas.png" width={68} height={30}/>
                     </Box>
-                    <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', marginRight: '15px' }}>
+                    <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
                       <Image src="/assets/images/logo-vcb.png" alt="logo-vcb.png" width={68} height={30}/>
                     </Box>
                     <BoxMoreInfo>
@@ -171,19 +278,19 @@ export default function ProjectDetail ({project}) {
                     </BoxMoreInfo>
                   </Grid>
                   <Grid container mt={0} spacing={2}>
-                    <Grid item xs={4}>
+                    <Grid item lg={4} xs={12}>
                       <BoxMoreAnalytic>
                         <h5>Pháp lý</h5>
                         <span className="green">Rủi ro thấp</span>
                       </BoxMoreAnalytic>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item lg={4} xs={12}>
                       <BoxMoreAnalytic>
                         <h5>Công nghệ</h5>
                         <span className="yellow">Có khả năng ứng dụng</span>
                       </BoxMoreAnalytic>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item lg={4} xs={12}>
                       <BoxMoreAnalytic>
                         <h5>Giá trị xã hội </h5>
                         <span className="green">Có tiềm năng đóng góp cho xã hội</span>
@@ -221,227 +328,191 @@ export default function ProjectDetail ({project}) {
       <Grid container pt={2} pb={2}>
         <TitleSection>Tokenomics</TitleSection>
         <Grid container justifyContent="flex-end">
-          <CustomButtonDetail variant="outlined" startIcon={<VisibilityIcon />}>
+          <CustomButtonDetail variant="outlined" onClick={handleOpen} startIcon={<VisibilityIcon />}>
             Chi tiết
           </CustomButtonDetail>
         </Grid>
-          {/* <Doughnut data={{
-            labels: [
-              "Public sale",
-              "Private sale",
-              "Staking reward",
-              "Community & marketing",
-              "Team & Advisors",
-              "Lab reservers",
-              "Play to earn reward",
-              "DEX liquidity",
-            ],
-            datasets: [
-              {
-                label: "Population (millions)",
-                backgroundColor: [
-                  "#483168",
-                  "#00B919",
-                  "#685BF4",
-                  "#344DA3",
-                  "#15DAAE",
-                  "#AB5BF4",
-                  "#11B3D3",
-                  "#2424F4",
-                ],
-                data: [3, 12, 14, 27, 3, 5, 31, 5]
-              }
-            ]
-          }}
-          option={{
-            title: {
-              display: true,
-              text: "Predicted world population (millions) in 2050"
-            }
-          }}
-          /> */}
+        <Grid container mb={4}>
+          <Grid item container md={6} justifyContent="center" alignItems="center">
+            <Box sx={{ width: '350px', height: 'auto' }}>
+              <Doughnut data={data} options={options} />
+            </Box>
+          </Grid>
+          <Grid item container md={6} pl={6} pt={2}>
+            {data.labels.map((label, i) => {
+              return (
+                <Grid container alignItems="center" mb={3}>
+                  <Box sx={{ width: '40px', height: '15px', backgroundColor: data.datasets[0].backgroundColor[i], marginRight: '13px' }}></Box>
+                  <span className="font-20">{label}</span>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Grid>
       </Grid>
       <Grid container>
         <TitleSection>Đối tác của Jade Labs</TitleSection>
         <CustomSlider {...settings}>
           <div>
-            <Grid container direction="row" justifyContent="space-between">
+            <Box sx={{padding: '0 10px'}}>
               <img src="/assets/images/image-slide-1.png" alt="image-slide-1.png"/>
-              <img src="/assets/images/image-slide-5.png" alt="image-slide-2.png"/>
-              <img src="/assets/images/image-slide-3.png" alt="image-slide-3.png"/>
-              <img src="/assets/images/image-slide-4.png" alt="image-slide-4.png"/>
-              <img src="/assets/images/image-slide-2.png" alt="image-slide-5.png"/>
-            </Grid>
+            </Box>
           </div>
           <div>
-            <Grid container direction="row" justifyContent="space-between">
-              <img src="/assets/images/image-slide-1.png" alt="image-slide-1.png"/>
-              <img src="/assets/images/image-slide-5.png" alt="image-slide-2.png"/>
-              <img src="/assets/images/image-slide-3.png" alt="image-slide-3.png"/>
-              <img src="/assets/images/image-slide-4.png" alt="image-slide-4.png"/>
-              <img src="/assets/images/image-slide-2.png" alt="image-slide-5.png"/>
-            </Grid>
+            <Box sx={{padding: '0 10px'}}>
+              <img src="/assets/images/image-slide-5.png" alt="image-slide-1.png"/>
+            </Box>
           </div>
           <div>
-            <Grid container direction="row" justifyContent="space-between">
-              <img src="/assets/images/image-slide-1.png" alt="image-slide-1.png"/>
-              <img src="/assets/images/image-slide-5.png" alt="image-slide-2.png"/>
-              <img src="/assets/images/image-slide-3.png" alt="image-slide-3.png"/>
-              <img src="/assets/images/image-slide-4.png" alt="image-slide-4.png"/>
-              <img src="/assets/images/image-slide-2.png" alt="image-slide-5.png"/>
-            </Grid>
+            <Box sx={{padding: '0 10px'}}>
+              <img src="/assets/images/image-slide-3.png" alt="image-slide-1.png"/>
+            </Box>
+          </div>
+          <div>
+            <Box sx={{padding: '0 10px'}}>
+              <img src="/assets/images/image-slide-4.png" alt="image-slide-1.png"/>
+            </Box>
+          </div>
+          <div>
+            <Box sx={{padding: '0 10px'}}>
+              <img src="/assets/images/image-slide-2.png" alt="image-slide-1.png"/>
+            </Box>
+          </div>
+          <div>
+            <Box sx={{padding: '0 10px'}}>
+              <img src="/assets/images/image-slide-4.png" alt="image-slide-1.png"/>
+            </Box>
           </div>
         </CustomSlider>
       </Grid>
-      <Grid container mb={10}>
+      <Grid container mt={2} mb={8}>
         <TitleSection>Đội ngũ Jadelabs</TitleSection>
-        <CustomSlider {...settings}>
+        <CustomSlider {...settingsTeam}>
           <div>
-            <Grid container spacing={2}>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-            </Grid>
+            <BoxTeam>
+              <div className="box-team-image">
+                <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
+              </div>
+              <div className="box-team-content">
+                <h6>Bessie Cooper</h6>
+                <span>Chief executive officer JadeLabs</span>
+              </div>
+            </BoxTeam>
           </div>
           <div>
-            <Grid container spacing={2}>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-            </Grid>
+            <BoxTeam>
+              <div className="box-team-image">
+                <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
+              </div>
+              <div className="box-team-content">
+                <h6>Bessie Cooper</h6>
+                <span>Chief executive officer JadeLabs</span>
+              </div>
+            </BoxTeam>
           </div>
           <div>
-            <Grid container spacing={2}>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-              <Grid item md={3}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>Bessie Cooper</h6>
-                    <span>Chief executive officer JadeLabs</span>
-                  </div>
-                </BoxTeam>
-              </Grid>
-            </Grid>
+            <BoxTeam>
+              <div className="box-team-image">
+                <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
+              </div>
+              <div className="box-team-content">
+                <h6>Bessie Cooper</h6>
+                <span>Chief executive officer JadeLabs</span>
+              </div>
+            </BoxTeam>
+          </div>
+          <div>
+            <BoxTeam>
+              <div className="box-team-image">
+                <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
+              </div>
+              <div className="box-team-content">
+                <h6>Bessie Cooper</h6>
+                <span>Chief executive officer JadeLabs</span>
+              </div>
+            </BoxTeam>
+          </div>
+          <div>
+            <BoxTeam>
+              <div className="box-team-image">
+                <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
+              </div>
+              <div className="box-team-content">
+                <h6>Bessie Cooper</h6>
+                <span>Chief executive officer JadeLabs</span>
+              </div>
+            </BoxTeam>
+          </div>
+          <div>
+            <BoxTeam>
+              <div className="box-team-image">
+                <img src="/assets/images/team-avatar.png" alt="team-avatar.png"/>
+              </div>
+              <div className="box-team-content">
+                <h6>Bessie Cooper</h6>
+                <span>Chief executive officer JadeLabs</span>
+              </div>
+            </BoxTeam>
           </div>
         </CustomSlider>
       </Grid>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+         <BoxSTyleModal>
+          <Grid container className="wrapper-header">
+            <h2 id="parent-modal-title">Chi tiết tỉ lệ phân bổ token</h2>
+          </Grid>
+          <Grid container className="wrapper-body">
+            <CustomTableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }}>
+                <TableHead>
+                  <TableRow style={{}}>
+                    <TableCell>#</TableCell>
+                    <TableCell>Hạng mục</TableCell>
+                    <TableCell align="right">Tỉ lệ</TableCell>
+                    <TableCell align="right">Giá bán</TableCell>
+                    <TableCell align="right">Số lượng</TableCell>
+                    <TableCell>Vesting</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      key={row.index}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">{row.index}</TableCell>
+                      <TableCell>{row.cate}</TableCell>
+                      <TableCell align="right">{row.ratio}%</TableCell>
+                      <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.price)}</TableCell>
+                      <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.quantity)}</TableCell>
+                      <TableCell>{row.vesting}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+                <TableFooter>
+                  <TableRow style={{}}>
+                    <TableCell></TableCell>
+                    <TableCell>Tổng cộng</TableCell>
+                    <TableCell align="right">100%</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </CustomTableContainer>
+          </Grid>
+          <Grid container className="wrapper-footer">
+            <CustomButtonBlue variant="contained" onClick={handleClose}>Xong</CustomButtonBlue>
+          </Grid>
+        </BoxSTyleModal>
+      </Modal>
     </Container>
   );
 }
@@ -452,6 +523,7 @@ const TitleProject = styled.h2`
   font-size: 24px;
   line-height: 29px;
   font-family: 'Inter-Medium';
+  margin-right: 16px;
 `;
 
 const BoxCertified = styled.div`
@@ -465,7 +537,7 @@ const BoxCertified = styled.div`
   max-height: 25px;
   justify-content: center;
   align-items: center;
-  margin-left: 16px;
+  margin: 5px 0;
 `;
 
 const BoxButton = styled.button`
@@ -494,12 +566,12 @@ const TitleSection = styled.h3`
   margin: 0 0 15px;
 `;
 
-const WrapperInfoProject = styled.h3`
+const WrapperInfoProject = styled.ul`
   list-style: none;
   background: #EFF2F5;
   border-radius: 12px;
   margin: 0;
-  padding: 4px 15px 4px 40px;
+  padding: 4px 15px;
   li {
     padding: 20px 0;
     font-family: 'Inter-Medium';
@@ -514,6 +586,9 @@ const WrapperInfoProject = styled.h3`
     &:not(:last-child) {
       border-bottom: 1px solid #A6B0C3;
     }
+  }
+  @media screen and ${device.laptopM} {
+    padding: 4px 15px 4px 40px;
   }
 `;
 
@@ -560,6 +635,7 @@ const CardBoxPassport = styled.div`
   padding: 24px;
   filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
   position: relative;
+  height: 100%;
   .box-passport-content {
     padding-top: 45px;
     border-top: 1px dashed rgba(88, 102, 126, 0.3);
@@ -625,6 +701,10 @@ const NFTCardBoxPassport = styled.div`
   border-radius: 12px;
   height: 100%;
   .wrapper-analytic {
+    margin-top: 10px;
+    @media screen and ${device.laptopM} {
+      margin-top: 0;
+    }
     span {
       font-family: 'Inter-Regular';
       background: #EFF2F5;
@@ -643,6 +723,7 @@ const BoxMoreInfo = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 15px 0;
   .block-copy {
     position: relative;
     cursor: copy;
@@ -772,6 +853,11 @@ const CustomSlider = styled(Slider)`
   .slick-dots li.slick-active button:before {
     color: #446DFF;
   }
+  .slick-slide img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
 `;
 
 const BoxTeam = styled.div`
@@ -781,7 +867,7 @@ const BoxTeam = styled.div`
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 16px;
-  margin-bottom: 12px;
+  margin: 12px;
   position: relative;
   &:after {
     content: '';
@@ -816,6 +902,81 @@ const BoxTeam = styled.div`
     span {
       font-family: 'Inter-Regular';
       color: #58667E;
+    }
+  }
+`;
+
+const BoxSTyleModal = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  .wrapper-header {
+    padding: 24px;
+    border-bottom: 1px solid #EFF2F5;
+    h2 {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
+      color: #11142D;
+      margin: 0;
+    }
+  }
+  .wrapper-body {
+    height: 100%;
+    overflow: auto;
+    max-height: 70vh;
+  }
+  .wrapper-footer {
+    padding: 12px 24px;
+    border-top: 1px solid #EFF2F5;
+    justify-content: flex-end;
+  }
+`;
+
+const CustomButtonBlue = styled(Button)({
+  padding: '12px 40px',
+  textTransform: 'none',
+  lineHeight: '19px',
+  fontWeight: '600',
+  backgroundColor: '#446DFF',
+  fontFamily: 'Inter-Regular',
+  borderRadius: '8px',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#446DFF',
+    color: '#ffffff',
+  },
+});
+
+const CustomTableContainer = styled(TableContainer)`
+  padding: 15px 35px;
+  td, th {
+    color: #11142D;
+  }
+  td {
+    font-family: 'Inter-Medium';
+  }
+  th {
+    font-family: 'Inter-Bold';
+  }
+  thead {
+    tr {
+      background-color: #EFF2F5;
+    }
+  }
+  tfoot {
+    tr {
+      background-color: #EFF2F5;
+    }
+    td {
+      font-family: 'Inter-Bold';
     }
   }
 `;

@@ -18,8 +18,8 @@ const NotFoundPage: NextPage = () => {
 
       <main>
         <HeaderDetail/>
-        <Grid container direction="column" justifyContent="center" alignItems="center" mt={16}>
-          <Box sx={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" mt={16} mb={16}>
+          <Box sx={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', padding: '0 15px' }}>
             <img src="/assets/images/image-404.png" alt="image-404"/>
             <h1>Trang không tồn tại</h1>
             <p>Có thể liên kết đã hỏng hoặc trang đã bị gỡ. Hãy kiểm tra xem liên kết mà bạn đang cố mở có chính xác không.</p>

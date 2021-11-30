@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export interface HeaderProps {
 }
@@ -43,6 +44,7 @@ const WrapperNav = styled.nav`
 
 const ListMenuNav = styled.ul`
   list-style: none;
+  padding: 0;
   li {
     display: inline-block;
     margin-left: 30px;
@@ -50,6 +52,18 @@ const ListMenuNav = styled.ul`
     font-family: 'Inter-Bold';
     &.active {
       color: var(--color-neutral-gray-1);
+    }
+    &:first-child {
+      display: none;
+    }
+  }
+  @media screen and ${device.tablet} {
+    padding-left: 30px;
+    list-style: none;
+    li {
+      &:first-child {
+        display: inline-block;
+      }
     }
   }
 `;

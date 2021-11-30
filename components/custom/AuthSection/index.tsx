@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export default function AuthSection () {
   return (
@@ -25,7 +26,10 @@ export default function AuthSection () {
 }
 
 const WrapperSection = styled.div`
-  margin: 150px 0 30px;
+margin: 50px 0 30px;
+  @media screen and ${device.tablet} {
+    margin: 150px 0 30px;
+  }
 `;
 
 const TitleSection = styled.h3`

@@ -18,7 +18,7 @@ const ComingSoon: NextPage = () => {
 
       <main>
         <HeaderDetail/>
-        <Grid container direction="column" justifyContent="center" alignItems="center" mt={16}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" mt={16} mb={16}>
           <Box sx={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
             <img src="/assets/images/comingsoon.png" alt="comingsoon"/>
             <h1>Chức năng đang phát triển</h1>

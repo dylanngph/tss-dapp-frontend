@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import BoxIOTA from 'components/custom/BoxIOTA';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export default function Banner () {
   return (
@@ -11,10 +12,10 @@ export default function Banner () {
       <Header/>
       <Container>
         <Grid container>
-          <Grid item container alignItems="center" xs={6}>
+          <Grid item container alignItems="center" md={6}>
             <TitleSection>Cấp NFT xác thực dự án Blockchain của bạn</TitleSection>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6}>
             <Image src="/assets/images/sec-banner-image.png" alt="banner image" width={640} height={507}/>
           </Grid>
         </Grid>
@@ -42,15 +43,20 @@ const WrapperBanner = styled.div`
 
 const TitleSection = styled.h2`
   color: #ffffff;
-  font-size: 48px;
-  line-height: 58px;
+  font-size: 36px;
+  @media screen and ${device.tabletL} {
+    font-size: 48px;
+    line-height: 58px;
+  }
 `;
 
 const WrapperListIOTA = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: -80px;
-  width: 100%;
+  @media screen and ${device.tabletL} {
+    position: absolute;
+    left: 0;
+    bottom: -80px;
+    width: 100%;
+  }
 `;
 
 const listBoxIOTA = [
