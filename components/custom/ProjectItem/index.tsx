@@ -3,35 +3,48 @@ import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/router';
+export interface ProjectItemProps {
+  project: {
+    id: number,
+    img_path: string,
+    name: string,
+    token: string,
+    nft: Array<string>,
+    standard: string,
+    basis: string,
+    address_smart_contract: string,
+  },
+  index: number,
+}
 
-export default function ProjectItem ({project, index}) {
+export default function ProjectItem ({project: {id, img_path, name, token, nft, standard, basis, address_smart_contract}, index}: ProjectItemProps) {
   const router = useRouter();
   return (
-    <tr onClick={() => { router.push(`/project/${project.id}`) }}>
+    <tr onClick={() => { router.push(`/project/${id}`) }}>
       <td>{index}</td>
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
           <Box sx={{ width: 34, height: 24 }}>
-            <Image src={`/assets/images/${project.img_path}`} alt={project.name} width={24} height={24}/>
+            <Image src={`/assets/images/${img_path}`} alt={name} width={24} height={24}/>
           </Box>
-          <span>{project.name}</span>
+          <span>{name}</span>
         </Grid>
       </td>
-      <td>{project.token}</td>
+      <td>{token}</td>
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
-          {project.nft.map((item) => {
+          {nft.map((iNFT) => {
             return (
-              <Box key={item} sx={{ width: 34, height: 24 }}>
-                <Image src={`/assets/images/IOTA${item}-small.png`} alt="digital-currency-ogo" width={24} height={24}/>
+              <Box key={iNFT} sx={{ width: 34, height: 24 }}>
+                <Image src={`/assets/images/IOTA${iNFT}-small.png`} alt="iNFT" width={24} height={24}/>
               </Box>
             )
           })}
         </Grid>
       </td>
-      <td>{project.standard}</td>
-      <td>{project.basis}</td>
-      <td>{project.address_smart_contract}</td>
+      <td>{standard}</td>
+      <td>{basis}</td>
+      <td>{address_smart_contract}</td>
     </tr>
   );
 }

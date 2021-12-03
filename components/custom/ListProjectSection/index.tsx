@@ -16,6 +16,48 @@ export interface ListProjectSection {
 }
 
 export default function ListProjectSection (props: ListProjectSection) {
+  const projectList = [
+    {
+      id: 1,
+      img_path: 'digital-currency-ogo.png',
+      name: 'Ethereum',
+      token: 'ETH',
+      nft: ['1', '2', '3'],
+      standard: 'ERC20, BEP20',
+      basis: 'Kardiachain',
+      address_smart_contract: '0E14BD7C7a45xEB...63208'
+    },
+    {
+      id: 2,
+      img_path: 'digital-currency-ogo.png',
+      name: 'Ethereum',
+      token: 'ETH',
+      nft: ['1', '2', '3'],
+      standard: 'ERC20, BEP20',
+      basis: 'Kardiachain',
+      address_smart_contract: '0E14BD7C7a45xEB...63208'
+    },
+    {
+      id: 3,
+      img_path: 'digital-currency-ogo.png',
+      name: 'Ethereum',
+      token: 'ETH',
+      nft: ['1'],
+      standard: 'ERC20, BEP20',
+      basis: 'Kardiachain',
+      address_smart_contract: '0E14BD7C7a45xEB...63208'
+    },
+    {
+      id: 4,
+      img_path: 'digital-currency-ogo.png',
+      name: 'Ethereum',
+      token: 'ETH',
+      nft: ['1', '3'],
+      standard: 'ERC20, BEP20',
+      basis: 'Kardiachain',
+      address_smart_contract: '0E14BD7C7a45xEB...63208'
+    }
+  ];
   return (
     <WrapperSection>
       <Container maxWidth="lg">
@@ -73,14 +115,16 @@ export default function ListProjectSection (props: ListProjectSection) {
               </tr>
             </thead>
             <tbody>
-              {ProjectListDataExample.map((item, index) => {
-                return <ProjectItem key={item.id} project={item} index={index++}></ProjectItem>
-              })}
+              {
+                projectList.map((item, index) => {
+                  return <ProjectItem key={item.id} project={item} index={index++}></ProjectItem>
+                })
+              }
             </tbody>
             <tfoot>
               <tr>
-                <td colSpan="5">Đang hiển thị 10 / 21.120</td>
-                <td colSpan="2">
+                <td colSpan={5}>Đang hiển thị 10 / 21.120</td>
+                <td colSpan={2}>
                   <Grid container direction="row" justifyContent="flex-end" alignItems="center">
                     <ButtonArrowNext/>
                     <BoxContentNumberPag>01</BoxContentNumberPag>
@@ -237,46 +281,3 @@ const CustomButton = styled(Button)({
     boxShadow: 'none',
   },
 });
-
-const ProjectListDataExample = [
-  {
-    id: 1,
-    img_path: 'digital-currency-ogo.png',
-    name: 'Ethereum',
-    token: 'ETH',
-    nft: ['1', '2', '3'],
-    standard: 'ERC20, BEP20',
-    basis: 'Kardiachain',
-    address_smart_contract: '0E14BD7C7a45xEB...63208'
-  },
-  {
-    id: 2,
-    img_path: 'digital-currency-ogo.png',
-    name: 'Ethereum',
-    token: 'ETH',
-    nft: ['1', '2', '3'],
-    standard: 'ERC20, BEP20',
-    basis: 'Kardiachain',
-    address_smart_contract: '0E14BD7C7a45xEB...63208'
-  },
-  {
-    id: 3,
-    img_path: 'digital-currency-ogo.png',
-    name: 'Ethereum',
-    token: 'ETH',
-    nft: ['1'],
-    standard: 'ERC20, BEP20',
-    basis: 'Kardiachain',
-    address_smart_contract: '0E14BD7C7a45xEB...63208'
-  },
-  {
-    id: 4,
-    img_path: 'digital-currency-ogo.png',
-    name: 'Ethereum',
-    token: 'ETH',
-    nft: ['1', '3'],
-    standard: 'ERC20, BEP20',
-    basis: 'Kardiachain',
-    address_smart_contract: '0E14BD7C7a45xEB...63208'
-  }
-];

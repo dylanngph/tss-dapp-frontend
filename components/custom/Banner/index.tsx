@@ -7,6 +7,29 @@ import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
 export default function Banner () {
+  const listBoxIOTA = [
+    {
+      id: 1,
+      img: 'IOTA1.png',
+      subtitle: 'CON DẤU NFT',
+      title: 'Passport of Blockchain',
+      description: 'Hồ sơ dự án Blockchain',
+    },
+    {
+      id: 2,
+      img: 'IOTA2.png',
+      subtitle: 'CON DẤU NFT',
+      title: 'Tài sản số',
+      description: '',
+    },
+    {
+      id: 3,
+      img: 'IOTA3.png',
+      subtitle: 'CON DẤU NFT',
+      title: 'Tài sản nền',
+      description: '',
+    }
+  ];
   return (
     <WrapperBanner>
       <Header/>
@@ -23,9 +46,11 @@ export default function Banner () {
       <WrapperListIOTA>
         <Container>
           <Grid container>
-            {listBoxIOTA.map((item) => {
-              return <BoxIOTA key={item.id} item={item}></BoxIOTA>
-            })}
+            {
+              listBoxIOTA.map((item) => {
+                return <BoxIOTA key={item.id} IOTA={item}></BoxIOTA>
+              })
+            }
           </Grid>
         </Container>
       </WrapperListIOTA>
@@ -58,27 +83,3 @@ const WrapperListIOTA = styled.div`
     width: 100%;
   }
 `;
-
-const listBoxIOTA = [
-  {
-    id: 1,
-    img: 'IOTA1.png',
-    subtitle: 'CON DẤU NFT',
-    title: 'Passport of Blockchain',
-    description: 'Hồ sơ dự án Blockchain',
-  },
-  {
-    id: 2,
-    img: 'IOTA2.png',
-    subtitle: 'CON DẤU NFT',
-    title: 'Tài sản số',
-    description: '',
-  },
-  {
-    id: 3,
-    img: 'IOTA3.png',
-    subtitle: 'CON DẤU NFT',
-    title: 'Tài sản nền',
-    description: '',
-  }
-];

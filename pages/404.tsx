@@ -1,11 +1,6 @@
 import type { NextPage } from 'next';
-import React, { useState, useEffect, useRef } from "react";
-import HeaderDetail from 'components/display/HeaderDetail';
 import Head from 'next/head';
-import Grid from '@mui/material/Grid';
-import Link from "next/link";
-import Box from '@mui/material/Box';
-import styled from 'styled-components';
+import NotFound from 'components/display/NotFound';
 
 const NotFoundPage: NextPage = () => {
   return (
@@ -17,35 +12,10 @@ const NotFoundPage: NextPage = () => {
       </Head>
 
       <main>
-        <HeaderDetail/>
-        <Grid container direction="column" justifyContent="center" alignItems="center" mt={16} mb={16}>
-          <Box sx={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', padding: '0 15px' }}>
-            <img src="/assets/images/image-404.png" alt="image-404"/>
-            <h1>Trang không tồn tại</h1>
-            <p>Có thể liên kết đã hỏng hoặc trang đã bị gỡ. Hãy kiểm tra xem liên kết mà bạn đang cố mở có chính xác không.</p>
-            <BoxLink>
-              <Link href="/" passHref>Trở về trang chủ</Link>
-            </BoxLink>
-          </Box>
-        </Grid>
+        <NotFound />
       </main>
     </div>
   )
 }
-
-const BoxLink = styled.div`
-  margin-top: 25px;
-  a {
-    padding: 12px 24px;
-    text-transform: none;
-    line-height: 19px;
-    font-weight: 600;
-    background-color: #446DFF;
-    font-family: 'Inter-Regular';
-    border-radius: 8px;
-    color: #fff;
-    display: inline-block;
-  }
-`;
 
 export default NotFoundPage

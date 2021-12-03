@@ -7,15 +7,32 @@ import styled from 'styled-components';
 export interface FooterProps {
 }
 
-export default function Footer (props: FooterProps) {
+export default function Footer(props: FooterProps) {
+  const listSocial = [
+    {
+      id: 1,
+      icon_path: '/assets/icons/ico-fb.svg',
+      link: '#'
+    },
+    {
+      id: 2,
+      icon_path: '/assets/icons/ico-twitter.svg',
+      link: '#'
+    },
+    {
+      id: 3,
+      icon_path: '/assets/icons/ico-telegram.svg',
+      link: '#'
+    }
+  ];
   return (
     <WrapperNav>
       <Container>
         <Grid container spacing={4} mt={0} pt={7} pb={7}>
           <Grid item container lg={4} sm={12}>
-            <Box sx={{ width: 150, height: 71,}}>
+            <Box sx={{ width: 150, height: 71, }}>
               <a href="">
-                <Image src="/assets/images/logo-tss-footer.png" alt="Logo TSS Footer" width={150} height={71}/>
+                <Image src="/assets/images/logo-tss-footer.png" alt="Logo TSS Footer" width={150} height={71} />
               </a>
             </Box>
           </Grid>
@@ -26,22 +43,18 @@ export default function Footer (props: FooterProps) {
           <Grid item container direction="column" lg={4} sm={6}>
             <h4>Trụ sở chính</h4>
             <p>124 Huỳnh Tấn Phát, Phường Tân Thuận Tây, Quận 7, Thành phố Hồ Chí Minh.</p>
-            <Grid container style={{marginTop: '20px'}}>
-              <Grid item>
-                <a href="#" target="_blank">
-                  <Image src="/assets/icons/ico-fb.svg" alt="FB" width={24} height={24}/>
-                </a>
-              </Grid>
-              <Grid item style={{marginLeft: '20px'}}>
-                <a href="#" target="_blank">
-                <Image src="/assets/icons/ico-twitter.svg" alt="TW" width={24} height={24}/>
-                </a>
-              </Grid>
-              <Grid item style={{marginLeft: '20px'}}>
-                <a href="#" target="_blank">
-                <Image src="/assets/icons/ico-telegram.svg" alt="TE" width={24} height={24}/>
-                </a>
-              </Grid>
+            <Grid container style={{ marginTop: '20px' }}>
+              {
+                listSocial.map(({id, link, icon_path}) => {
+                  return (
+                    <Grid item key={id} mr={2}>
+                      <a href={link} target="_blank" rel="noreferrer">
+                        <Image src={icon_path} alt="FB" width={24} height={24} />
+                      </a>
+                    </Grid>
+                  )
+                })
+              }
             </Grid>
           </Grid>
         </Grid>
