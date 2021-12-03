@@ -1,13 +1,23 @@
-import type { NextPage } from 'next';
+import type { NextPage } from "next";
 import React, { useState, useEffect, useRef } from "react";
-import Head from 'next/head';
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import Head from "next/head";
 import Footer from "components/display/Footer";
 import Banner from "components/custom/Banner";
-import AuthenticationSection from 'components/custom/AuthSection';
-import ListProjectSection from 'components/custom/ListProjectSection';
-import ProcessNFTSection from 'components/custom/ProcessNFTSection';
+import AuthenticationSection from "components/custom/AuthSection";
+import ListProjectSection from "components/custom/ListProjectSection";
+import ProcessNFTSection from "components/custom/ProcessNFTSection";
+import { getProjectInfo } from "redux/project/project.action";
 
 const Home: NextPage = () => {
+  const projectStore = useAppSelector(
+    (state) => state?.rootReducer?.projectReducers?.projectStore ?? "default"
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getProjectInfo({ username: "admin", password: "1234567" }));
+  }, []);
   return (
     <div>
       <Head>
@@ -25,7 +35,7 @@ const Home: NextPage = () => {
 
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
