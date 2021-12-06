@@ -4,16 +4,17 @@ import Link from "next/link";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import Burger from 'components/display/Header/Burger'
 import Menu from 'components/display/Header/Menu'
+import ButtonLink from 'components/custom/ButtonLink';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
 export interface HeaderProps {
+  theme: string,
 }
 
-export default function Header(props: HeaderProps) {
+export default function Header({theme}: HeaderProps) {
   const [open, setOpen] = React.useState(false);
   return (
     <WrapperNav>
@@ -22,7 +23,7 @@ export default function Header(props: HeaderProps) {
           <Grid item container alignItems="center" xs={8}>
             <Box sx={{ width: 70, height: 32, cursor: 'pointer' }}>
               <Link href="/" passHref>
-                <Image src="/logo-tss.svg" alt="LOGO TSS" width={70} height={32} />
+                <Image src={theme == 'white' ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" width={70} height={32} />
               </Link>
             </Box>
             <ul>
@@ -30,12 +31,12 @@ export default function Header(props: HeaderProps) {
               <li>Listing Hồ sơ</li>
             </ul>
           </Grid>
-          <Grid item container direction="row" alignItems="center" justifyContent="flex-end" xs={4}>
-            <CustomButton className="btn-create" variant="contained">Tạo hồ sơ dự án</CustomButton>
-            <Burger open={open} setOpen={setOpen} />
+          <Grid item container direction="row" alignItems="center" justifyContent="flex-end" xs={4} className="btn-create">
+            <ButtonLink title={theme == 'white' ? "Tạo hồ sơ dự án" : "Tạo hồ sơ"} href={"#"} />
+            <Burger open={open} setOpen={setOpen} theme={theme} />
           </Grid>
         </Grid>
-        <Menu open={open} />
+        <Menu open={open} theme={theme} />
       </Container>
     </WrapperNav>
   );
@@ -59,7 +60,7 @@ const WrapperNav = styled.nav`
   .btn-nav {
     display: block;
   }
-  .btn-create {
+  .btn-create > div {
     display: none;
   }
   @media screen and ${device.tablet} {
@@ -71,30 +72,14 @@ const WrapperNav = styled.nav`
       display: block;
       li {
         display: inline-block;
-        color: #ffffff;
+        color: ${({ theme }) => theme == 'white' ? '#ffffff' : 'var(--color-primary)'};
       }
     }
     .btn-nav {
       display: none;
     }
-    .btn-create {
+    .btn-create > div {
       display: block;
     }
   }
 `;
-
-const CustomButton = styled(Button)({
-  padding: '12px 24px',
-  textTransform: 'none',
-  lineHeight: '19px',
-  fontWeight: '600',
-  backgroundColor: '#446DFF',
-  fontFamily: 'Inter-Regular',
-  borderRadius: '8px',
-  boxShadow: 'none',
-  '&:hover': {
-    backgroundColor: '#ffffff',
-    color: '#446DFF',
-    boxShadow: 'none',
-  },
-});

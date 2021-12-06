@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Footer from "components/display/Footer";
-import HeaderDetail from 'components/display/HeaderDetail';
+import Header from 'components/display/Header';
 import BoxProjectDetail from 'components/custom/ProjectDetail';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,7 +15,7 @@ export default function ProjectDetail() {
       </Head>
 
       <main>
-        <HeaderDetail/>
+        <Header theme={'black'}/>
         <BoxProjectDetail project={project_detail}/>
       </main>
 
@@ -36,6 +36,7 @@ const project_detail = {
   basis: 'Kardiachain, Binance Smart Chain',
   address_smart_contract: '0E14BD7C7a45xEB...63208',
   website: 'jadelabs.org',
+  social: [],
   socialNetwork: [],
   qr_img_path: 'qr-example.png',
 }

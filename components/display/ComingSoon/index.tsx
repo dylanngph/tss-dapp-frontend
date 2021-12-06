@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
-import HeaderDetail from 'components/display/HeaderDetail';
+import Header from 'components/display/Header';
 import Grid from '@mui/material/Grid';
 import Link from "next/link";
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ export interface ComingSoonProps {
 export default function ComingSoon(props: ComingSoonProps) {
   return (
     <div>
-      <HeaderDetail />
+      <Header theme={'black'} />
       <Grid container direction="column" justifyContent="center" alignItems="center" mt={16} mb={16}>
         <Box sx={{
           maxWidth: '600px',

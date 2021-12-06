@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
+import { device } from 'styles/media-device';
 
 export interface SliderProps {
   settings: object,
@@ -79,8 +80,8 @@ const BoxTeam = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  padding: 16px;
-  margin: 12px;
+  padding: 10px;
+  margin: 6px;
   position: relative;
   &:after {
     content: '';
@@ -107,14 +108,24 @@ const BoxTeam = styled.div`
   .box-team-content {
     text-align: center;
     h6 {
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 18px;
+      line-height: 24px;
       color: #446DFF;
       margin: 0 auto 12px;
     }
     span {
       font-family: 'Inter-Regular';
       color: #58667E;
+    }
+  }
+  @media screen and ${device.tabletL} {
+    margin: 12px;
+    padding: 16px;
+    .box-team-content {
+      h6 {
+        font-size: 24px;
+        line-height: 29px;
+      }
     }
   }
 `;

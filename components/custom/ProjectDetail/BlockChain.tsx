@@ -174,6 +174,7 @@ const CardBoxPassport = styled.div`
   filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
   position: relative;
   height: 100%;
+  width: 100%;
   .box-passport-content {
     padding-top: 45px;
     border-top: 1px dashed rgba(88, 102, 126, 0.3);
@@ -228,6 +229,9 @@ const CardBoxPassport = styled.div`
   //   background-color: #ffffff;
   //   border-left: 1px solid #EFF2F5;
   // }
+  @media screen and ${device.mobileL} {
+    width: fit-content;
+  }
 `;
 
 const NFTCardBoxPassport = styled.div`

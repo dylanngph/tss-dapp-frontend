@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
-import HeaderDetail from 'components/display/HeaderDetail';
+import Header from 'components/display/Header';
 import Grid from '@mui/material/Grid';
 import Link from "next/link";
 import Box from '@mui/material/Box';
@@ -11,7 +11,7 @@ export interface NotFoundProps {
 export default function NotFound(props: NotFoundProps) {
   return (
     <div>
-      <HeaderDetail />
+      <Header theme={'black'} />
       <Grid container direction="column" justifyContent="center" alignItems="center" mt={16} mb={16}>
         <Box sx={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', padding: '0 15px' }}>
           <img src="/assets/images/image-404.png" alt="image-404" />

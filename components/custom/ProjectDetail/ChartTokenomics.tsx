@@ -92,17 +92,18 @@ export default function ChartTokenomics (props: ChartTokenomicsProps) {
             <Doughnut data={data} options={options} />
           </Box>
         </Grid>
-        <Grid item container md={6} pl={6} pt={2}>
+        <Grid item container md={6} pt={2}>
           {data.labels.map((label, i) => {
             return (
-              <Grid key={i} container alignItems="center" mb={3}>
+              <Grid key={i} container alignItems="center" mb={3} xs={6} sm={12}>
                 <Box sx={{
                   width: '40px',
                   height: '15px',
                   backgroundColor: data.datasets[0].backgroundColor[i],
-                  marginRight: '13px'
+                  marginRight: '13px',
+                  paddingLeft: '15px'
                 }}></Box>
-                <span className="font-20">{label}</span>
+                <span>{label}</span>
               </Grid>
             )
           })}

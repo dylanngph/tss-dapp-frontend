@@ -24,8 +24,8 @@ export default function AuthSection () {
   ];
   return (
     <WrapperSection>
-      <h3 className="title-sec">Đơn vị xác thực</h3>
       <Container maxWidth="lg">
+        <h3 className="title-sec">Đơn vị xác thực</h3>
         <Grid container>
           {
             list.map(({id, img_path, name}) => {
@@ -43,7 +43,10 @@ export default function AuthSection () {
 }
 
 const WrapperSection = styled.div`
-margin: 50px 0 30px;
+  margin: 50px 0 30px;
+  h3 {
+    text-align: center;
+  }
   @media screen and ${device.tablet} {
     margin: 150px 0 30px;
   }

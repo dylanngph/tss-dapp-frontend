@@ -1,17 +1,25 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import ButtonLink from 'components/custom/ButtonLink';
 import styled from 'styled-components';
 
 interface MenuProps {
   open: boolean,
+  theme: string,
 }
 
-const Menu: React.FC<MenuProps> = ({ open }) => {
+const Menu: React.FC<MenuProps> = ({ open, theme }) => {
   return (
     <StyledMenu open={open}>
-      <a href="#">Trang chủ</a>
-      <a href="#">Listing Hồ sơ</a>
-      <CustomButton variant="contained">Tạo hồ sơ dự án</CustomButton>
+      <li>
+        <a href="#">Trang chủ</a>
+      </li>
+      <li>
+        <a href="#">Listing Hồ sơ</a>
+      </li>
+      <li>
+        <ButtonLink title={theme == 'white' ? "Tạo hồ sơ dự án" : "Tạo hồ sơ"} href={"#"} />
+      </li>
     </StyledMenu>
   );
 };
@@ -20,18 +28,20 @@ export default Menu;
 
 const StyledMenu = styled.nav<MenuProps>`
   display: none;
-  a {
+  li {
     padding: 12px 15px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
     display: block;
-    color: #58667E;
+    > a {
+      font-size: 16px;
+      line-height: 19px;
+      color: #58667E;
+      font-weight: bold;
+      text-decoration: none;
+    }
   }
   @media (max-width: 768px) {
     flex-flow: column wrap;
-    background-color: #E5E5E5;
+    background-color: #ffffff;
     position: fixed;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;

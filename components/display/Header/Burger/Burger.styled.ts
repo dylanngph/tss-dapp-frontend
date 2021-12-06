@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 interface BurgerProps {
-  open: boolean
+  open: boolean,
+  theme: string,
 }
 
 export const StyledBurger = styled.button<BurgerProps>`
   width: 1.8rem;
-  height: 1.8rem;
+  height: 2rem;
   position: fixed;
   top: 25px;
   right: 25px;
@@ -26,7 +27,7 @@ export const StyledBurger = styled.button<BurgerProps>`
   div {
     width: 1.8rem;
     height: 0.1rem;
-    background-color: ${({ open }) => open ? '#030303' : '#ffffff'};
+    background-color: ${({ open, theme }) => (open || theme == 'black') ? '#030303' : '#ffffff'};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;

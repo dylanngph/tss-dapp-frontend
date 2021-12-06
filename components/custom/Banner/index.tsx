@@ -32,7 +32,7 @@ export default function Banner () {
   ];
   return (
     <WrapperBanner>
-      <Header/>
+      <Header theme={'white'}/>
       <Container>
         <Grid container>
           <Grid item container alignItems="center" md={6}>
@@ -63,7 +63,12 @@ const WrapperBanner = styled.div`
   background-image: url('/assets/images/hero-img-banner.png');
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 676px;
+  min-height: inherit;
+  margin-bottom: 500px;
+  @media screen and ${device.tabletL} {
+    min-height: 676px;
+    margin-bottom: 0;
+  }
 `;
 
 const TitleSection = styled.h2`
@@ -76,10 +81,19 @@ const TitleSection = styled.h2`
 `;
 
 const WrapperListIOTA = styled.div`
+  position: absolute;
+  left: inherit;
+  bottom: inherit;
+  margin-top: -40px;
+  @media screen and ${device.tablet} {
+    left: inherit;
+    bottom: inherit;
+    margin-top: -40px;
+  }
   @media screen and ${device.tabletL} {
-    position: absolute;
     left: 0;
-    bottom: -80px;
+    bottom: -40px;
     width: 100%;
+    margin-top: 0;
   }
 `;

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import ButtonLink from 'components/custom/ButtonLink';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
@@ -15,7 +16,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
       <Container maxWidth="lg">
         <TitleSection>Quy trình cấp NFT</TitleSection>
         <DesSection>Cùng chung tay tạo nên một cộng đồng blockchain Việt Nam minh bạch.</DesSection>
-        <Grid container style={{ paddingTop: '60px' }}>
+        <Grid container pt={8} mb={6}>
           <Grid item container justifyContent="center" md={3}>
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
@@ -25,9 +26,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
               <BoxBg></BoxBg>
             </Box>
           </Grid>
-          <GridBoxArrow item container justifyContent="center" md={1.5}>
-            <Image src="/assets/icons/ico-arrow-right.svg" alt="arrow-right" width={100} height={30}/>
-          </GridBoxArrow>
+          <GridBoxArrow item container justifyContent="center" md={1.5} />
           <Grid item container justifyContent="center" md={3}>
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
@@ -37,9 +36,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
               <BoxBg></BoxBg>
             </Box>
           </Grid>
-          <GridBoxArrow item container justifyContent="center" md={1.5}>
-            <Image src="/assets/icons/ico-arrow-right.svg" alt="arrow-right" width={100} height={30}/>
-          </GridBoxArrow>
+          <GridBoxArrow item container justifyContent="center" md={1.5} />
           <Grid item container justifyContent="center" md={3}>
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
@@ -50,6 +47,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
             </Box>
           </Grid>
         </Grid>
+        <ButtonLink title={"Xác thực ngay"} href={'#'} />
       </Container>
     </WrapperSection>
   );
@@ -117,12 +115,15 @@ const BoxBg = styled.div`
 `;
 
 const GridBoxArrow = styled(Grid)`
-  transform: rotate(90deg);
-  height: 100px;
-  margin-bottom: 10px;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('/assets/icons/ico-arrow-down-mb.svg');
   @media screen and ${device.tabletL} {
+    height: 100px;
     transform: none;
     height: inherit;
     margin-bottom: 0;
+    background-image: url('/assets/icons/ico-arrow-right.svg');
   }
 `;
