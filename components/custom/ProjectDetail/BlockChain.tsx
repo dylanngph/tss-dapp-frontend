@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
@@ -44,8 +45,8 @@ export default function Information ({project}: InformationProps) {
           <Grid container mt={0} spacing={2}>
             <Grid item container lg={3} justifyContent="center">
               <CardBoxPassport>
-                <Box sx={{ width: '100%', height: 172, display: 'flex', justifyContent: 'center', marginBottom: '18px' }}>
-                  <Image src="/assets/images/IOTA.png" alt="IOTA.png" width={172} height={172}/>
+                <Box className="box-passport-img" sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                  <img src="/assets/images/IOTA.png" alt="IOTA.png" />
                 </Box>
                 <div className="box-passport-content">
                   <h3>SEAL NFT</h3>
@@ -165,18 +166,46 @@ const CustomButtonTab =  styled(TabUnstyled)`
 
 const CardBoxPassport = styled.div`
   background: #FFFFFF;
-  border: 1px solid #EFF2F5;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 24px;
-  filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
   position: relative;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .box-passport-img,
   .box-passport-content {
-    padding-top: 45px;
-    border-top: 1px dashed rgba(88, 102, 126, 0.3);
+    height: 46%;
+    border: 1px solid #EFF2F5;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
+  }
+  .box-passport-img {
+    padding: 24px 24px 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 0;
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+  .box-passport-content {
+    border-top: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 24px;
     text-align: center;
+    position: relative;
+    &:after {
+      content: '';
+      width: 80%;
+      height: 1px;
+      position: absolute;
+      top: -10%;
+      left: 10%;
+      border-top: 1px dashed rgba(88, 102, 126, 0.3);
+    }
     h3 {
       font-weight: 900;
       font-size: 14px;
@@ -205,28 +234,30 @@ const CardBoxPassport = styled.div`
       display: inline-block;
     }
   }
-  // &:after {
-  //   content: '';
-  //   width: 36px;
-  //   height: 36px;
-  //   top: 196px;
-  //   left: -18px;
-  //   position: absolute;
-  //   border-radius: 50%;
-  //   background-color: #ffffff;
-  //   border-right: 1px solid #EFF2F5;
-  // }
-  // &:before {
-  //   content: '';
-  //   width: 36px;
-  //   height: 36px;
-  //   top: 196px;
-  //   right: -18px;
-  //   position: absolute;
-  //   border-radius: 50%;
-  //   background-color: #ffffff;
-  //   border-left: 1px solid #EFF2F5;
-  // }
+  &:after {
+    content: '';
+    width: 8%;
+    height: 8%;
+    top: 46%;
+    left: -3%;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border-right: 1px solid #EFF2F5;
+    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
+  }
+  &:before {
+    content: '';
+    width: 8%;
+    height: 8%;
+    top: 46%;
+    right: -3%;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border-left: 1px solid #EFF2F5;
+    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
+  }
   @media screen and ${device.mobileL} {
     width: fit-content;
   }
