@@ -36,7 +36,22 @@ const project_detail = {
   basis: 'Kardiachain, Binance Smart Chain',
   address_smart_contract: '0E14BD7C7a45xEB...63208',
   website: 'jadelabs.org',
-  social: [],
-  socialNetwork: [],
+  social: [
+    {
+      id: 1,
+      icon_path: '/assets/icons/ico-social-twitter.svg',
+      link: '#'
+    },
+    {
+      id: 2,
+      icon_path: '/assets/icons/ico-social-telegram.svg',
+      link: '#'
+    },
+    {
+      id: 3,
+      icon_path: '/assets/icons/ico-social-m.svg',
+      link: '#'
+    },
+  ],
   qr_img_path: 'qr-example.png',
 }

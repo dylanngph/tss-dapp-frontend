@@ -49,7 +49,7 @@ export default function Footer(props: FooterProps) {
                   return (
                     <Grid item key={id} mr={2}>
                       <a href={link} target="_blank" rel="noreferrer">
-                        <Image src={icon_path} alt="FB" width={24} height={24} />
+                        <Image src={icon_path} alt="social" width={24} height={24} />
                       </a>
                     </Grid>
                   )

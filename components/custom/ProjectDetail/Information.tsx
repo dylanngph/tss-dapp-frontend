@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
@@ -15,7 +16,8 @@ export interface BlockChainProps {
     address_smart_contract: string,
     website: string,
     social: {
-      ico_path: string,
+      id: number,
+      icon_path: string,
       link: string,
     }[],
     qr_img_path: string,
@@ -79,7 +81,27 @@ export default function BlockChain ({project}: BlockChainProps) {
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Mạng xã hội</Grid>
-              <Grid item>{project.website}</Grid>
+              <Grid item>
+              {
+                project.social.map(({id, link, icon_path}) => {
+                  return (
+                    <Box key={id} sx={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                      marginLeft: '10px',
+                      display: 'inline-block',
+                      padding: '3px',
+                    }}>
+                      <a href={link} target="_blank" rel="noreferrer">
+                        <Image src={icon_path} alt="social" width={18} height={18} />
+                      </a>
+                    </Box>
+                  )
+                })
+              }
+              </Grid>
             </Grid>
           </li>
         </WrapperInfoProject>

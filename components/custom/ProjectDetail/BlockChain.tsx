@@ -22,7 +22,8 @@ export interface InformationProps {
     address_smart_contract: string,
     website: string,
     social: {
-      ico_path: string,
+      id: number,
+      icon_path: string,
       link: string,
     }[],
     qr_img_path: string,
@@ -62,10 +63,6 @@ export default function Information ({project}: InformationProps) {
                     Chi tiết
                   </CustomButtonDetail>
                 </Grid>
-                <div className="wrapper-analytic">
-                  <span>Phân tích số liệu</span>
-                  <span>Đánh giá</span>
-                </div>
                 <Grid container>
                   <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
                     <Image src="/assets/images/logo-tss.png" alt="logo-tss.png" width={68} height={30}/>
@@ -76,16 +73,17 @@ export default function Information ({project}: InformationProps) {
                   <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
                     <Image src="/assets/images/logo-vcb.png" alt="logo-vcb.png" width={68} height={30}/>
                   </Box>
-                  <BoxMoreInfo>
-                    <span>Ngày cấp</span>
-                    <span>06/05/2022</span>
-                  </BoxMoreInfo>
+
                   <BoxMoreInfo>
                     <span className="block-copy">NFT ID</span>
                     <span>153979</span>
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span className="block-copy">Contract ID</span>
+                    <span>0xE1D7CB...647278</span>
+                  </BoxMoreInfo>
+                  <BoxMoreInfo>
+                    <span className="block-copy">TX Hash</span>
                     <span>0xE1D7CB...647278</span>
                   </BoxMoreInfo>
                 </Grid>
@@ -243,21 +241,6 @@ const NFTCardBoxPassport = styled.div`
   border-radius: 12px;
   height: 100%;
   width: 100%;
-  .wrapper-analytic {
-    margin-top: 10px;
-    @media screen and ${device.laptopM} {
-      margin-top: 0;
-    }
-    span {
-      font-family: 'Inter-Regular';
-      background: #EFF2F5;
-      border-radius: 4px;
-      font-size: 14px;
-      padding: 4px 8px;
-      display: inline-block;
-      margin-right: 12px;
-    }
-  }
 `;
 
 const BoxMoreInfo = styled(Box)`

@@ -22,7 +22,8 @@ export interface ProjectDetailProps {
     address_smart_contract: string,
     website: string,
     social: {
-      ico_path: string,
+      id: number,
+      icon_path: string,
       link: string,
     }[],
     qr_img_path: string,
@@ -161,16 +162,6 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
             Chứng nhận: 10/13/2020
           </BoxCertified>
         </Grid>
-        <Grid item container md="auto" sm={12} pt={1}>
-          <BoxButton>
-            <Box sx={{ width: 24, height: 24, marginRight: '10px', backgroundImage: 'url("/assets/icons/ico-paperclip.svg")' }}/>
-            Whitepaper
-          </BoxButton>
-          <BoxButton>
-            <Box sx={{ width: 24, height: 24, marginRight: '10px', backgroundImage: 'url("/assets/icons/ico-global.svg")' }}/>
-            Website
-          </BoxButton>
-        </Grid>
       </Grid>
 
       <InformationProject project={project} />
@@ -220,24 +211,5 @@ const BoxCertified = styled.div`
     font-size: 14px;
     line-height: 17px;
     padding: 8px;
-  }
-`;
-
-const BoxButton = styled.button`
-  background: #EFF2F5;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 17px;
-  color: #58667E;
-  padding: 8px 12px;
-  border: 0;
-  display: flex;
-  max-height: 40px;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Inter-Medium';
-  cursor: pointer;
-  &:not(:last-child) {
-    margin-right: 12px;
   }
 `;
