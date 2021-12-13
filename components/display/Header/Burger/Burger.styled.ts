@@ -8,8 +8,8 @@ interface BurgerProps {
 export const StyledBurger = styled.button<BurgerProps>`
   width: 1.8rem;
   height: 2rem;
-  position: fixed;
-  top: 25px;
+  position: relative;
+  top: 0;
   right: 25px;
   z-index: 20;
   display: none;
