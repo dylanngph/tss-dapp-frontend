@@ -18,9 +18,9 @@ export default function ProjectDetail() {
       <main>
         <Header theme={'black'}/>
         <BoxProjectDetail project={projectDetailItem}/>
-      </main>
 
-      <Footer />
+        <Footer />
+      </main>
 
     </div>
   )

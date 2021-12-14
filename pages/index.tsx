@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import React, { useState, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import Head from "next/head";
+import Header from 'components/display/Header';
 import Footer from "components/display/Footer";
 import Banner from "components/custom//Home/Banner";
 import AuthenticationSection from "components/custom/Home/AuthSection";
@@ -27,13 +28,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
+        <Header theme={'white'}/>
         <Banner />
         <AuthenticationSection />
         <ListProjectSection />
         <ProcessNFTSection />
+        <Footer />
       </main>
 
-      <Footer />
     </div>
   );
 };

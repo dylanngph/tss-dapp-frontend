@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Header from 'components/display/Header';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import BoxIOTA from 'components/custom/Home/BoxIOTA';
@@ -10,7 +9,6 @@ import { device } from 'styles/media-device';
 export default function Banner () {
   return (
     <WrapperBanner>
-      <Header theme={'white'}/>
       <Container>
         <Grid container>
           <Grid item container alignItems="center" md={6}>
@@ -43,9 +41,13 @@ const WrapperBanner = styled.div`
   background-size: cover;
   min-height: inherit;
   margin-bottom: 500px;
+  padding-top: 80px;
+  margin-top: -80px;
   @media screen and ${device.tabletL} {
     min-height: 676px;
     margin-bottom: 0;
+    padding-top: 100px;
+    margin-top: -100px;
   }
 `;
 

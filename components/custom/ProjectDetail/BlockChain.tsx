@@ -66,15 +66,15 @@ export default function Information ({project}: InformationProps) {
                       </Box>
                     ))
                   }
-                  <BoxMoreInfo>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(project.NFT_ID)}}>
                     <span className="block-copy">NFT ID</span>
                     <span>{project.NFT_ID}</span>
                   </BoxMoreInfo>
-                  <BoxMoreInfo>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(project.Contract_ID)}}>
                     <span className="block-copy">Contract ID</span>
                     <span>{project.Contract_ID}</span>
                   </BoxMoreInfo>
-                  <BoxMoreInfo>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(project.TX_Hash)}}>
                     <span className="block-copy">TX Hash</span>
                     <span>{project.TX_Hash}</span>
                   </BoxMoreInfo>
@@ -274,9 +274,9 @@ const BoxMoreInfo = styled(Box)`
   flex-direction: column;
   justify-content: space-between;
   margin: 15px 0;
+  cursor: copy;
   .block-copy {
     position: relative;
-    cursor: copy;
     min-width: 60px;
     &:after {
       content: '';

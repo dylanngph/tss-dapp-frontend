@@ -4,8 +4,9 @@ import Link from "next/link";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Burger from 'components/display/Header/Burger'
-import Menu from 'components/display/Header/Menu'
+import Burger from 'components/display/Header/Burger';
+import Menu from 'components/display/Header/Menu';
+import useScrollHandler from "utils/hooks/useScrollHandler";
 import { useRouter } from "next/router";
 import { NavMenu } from './config';
 import styled from 'styled-components';
@@ -18,8 +19,9 @@ export interface HeaderProps {
 export default function Header({theme}: HeaderProps) {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
+  const scrollPosition = useScrollHandler();
   return (
-    <WrapperNav>
+    <WrapperNav className={`${theme} ${scrollPosition ? 'nav-sticky' : ''}`}>
       <Container maxWidth="lg">
         <Grid container>
           <Grid item container alignItems="center" xs={8}>
@@ -51,6 +53,22 @@ export default function Header({theme}: HeaderProps) {
 const WrapperNav = styled.nav`
   padding: 24px 0;
   color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background 0.3s;
+  &.white {
+    background-color: transparent;
+    &.nav-sticky {
+      background: linear-gradient(286.23deg,#2A2AFF -70.7%,#000696 78.49%);
+    }
+  }
+  &.black {
+    background-color: #ffffff;
+  }
+  &.nav-sticky {
+    box-shadow: 0px 4px 17px rgb(0 0 0 / 5%);
+  }
   ul {
     display: none;
     li {

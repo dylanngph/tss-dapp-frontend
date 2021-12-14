@@ -158,10 +158,23 @@ const WrapperTable = styled.table`
   color: #11142D;
   td, th {
     text-align: left;
-    padding: 20px;
+    padding: 10px;
+    @media screen and ${device.tablet} {
+      padding: 20px;
+    }
   }
   tr {
     border-bottom: 1px solid #EAEAEA;
+  }
+  thead {
+    tr {
+      th:nth-child(2) {
+        min-width: 150px;
+      }
+      th:nth-child(4) {
+        min-width: 125px;
+      }
+    }
   }
   thead, tfoot {
     background: #F7F8FA;
