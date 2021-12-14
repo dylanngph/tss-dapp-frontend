@@ -69,13 +69,7 @@ export default function ChartTokenomics (props: ChartTokenomicsProps) {
       legend: {
         display: false,
       },
-      // tooltip: {
-      //   labels: {
-      //     font: {
-      //       family: "'Inter-Regular'"
-      //     }
-      //   }
-      // }
+
     }
   };
   return (
@@ -88,7 +82,7 @@ export default function ChartTokenomics (props: ChartTokenomicsProps) {
       </Grid>
       <Grid container mb={4}>
         <Grid item container md={6} justifyContent="center" alignItems="center">
-          <Box sx={{ width: '350px', height: 'auto' }}>
+          <Box sx={{ width: '350px', height: 'auto', maxWidth: '70vw' }}>
             <Doughnut data={data} options={options} />
           </Box>
         </Grid>
@@ -97,11 +91,16 @@ export default function ChartTokenomics (props: ChartTokenomicsProps) {
             return (
               <Grid key={i} container alignItems="center" mb={3} xs={6} sm={12}>
                 <Box sx={{
-                  width: '40px',
-                  height: '15px',
+                  width: '15px',
+                  height: '10px',
                   backgroundColor: data.datasets[0].backgroundColor[i],
-                  marginRight: '13px',
-                  paddingLeft: '15px'
+                  marginRight: '5px',
+                  ["@media (min-width: 600px)"]: {
+                    width: '40px',
+                    height: '15px',
+                    marginRight: '13px',
+                    paddingLeft: '15px',
+                  }
                 }}></Box>
                 <span>{label}</span>
               </Grid>

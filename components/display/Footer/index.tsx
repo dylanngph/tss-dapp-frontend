@@ -3,28 +3,12 @@ import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import { FooterData } from './config';
 import styled from 'styled-components';
 export interface FooterProps {
 }
 
 export default function Footer(props: FooterProps) {
-  const listSocial = [
-    {
-      id: 1,
-      icon_path: '/assets/icons/ico-fb.svg',
-      link: '#'
-    },
-    {
-      id: 2,
-      icon_path: '/assets/icons/ico-twitter.svg',
-      link: '#'
-    },
-    {
-      id: 3,
-      icon_path: '/assets/icons/ico-telegram.svg',
-      link: '#'
-    }
-  ];
   return (
     <WrapperNav>
       <Container>
@@ -32,20 +16,16 @@ export default function Footer(props: FooterProps) {
           <Grid item container lg={4} sm={12}>
             <Box sx={{ width: 150, height: 71, }}>
               <a href="">
-                <Image src="/assets/images/logo-tss-footer.png" alt="Logo TSS Footer" width={150} height={71} />
+                <Image src={FooterData.img_footer_path} alt="Logo TSS Footer" width={150} height={71} />
               </a>
             </Box>
           </Grid>
+          <Grid item container direction="column" lg={4} sm={6} dangerouslySetInnerHTML={{__html: FooterData.about}} />
           <Grid item container direction="column" lg={4} sm={6}>
-            <h4>Về chúng tôi</h4>
-            <p>TRUNG TÂM QUẢN LÝ TÀI SẢN SỐ - Digital Asset Management Center - gọi tắt TSS là đơn vị tiên phong tại Việt Nam được Nhà nước công nhận tư cách pháp nhân để làm nhiệm vụ thúc đẩy, tổ chức các hoạt động số hóa, quản lý tài sản số trong các hoạt động kinh tế theo định hướng KINH TẾ SỐ của Chính phủ, nhằm phát triển nền kinh tế tri thức tại Việt Nam.</p>
-          </Grid>
-          <Grid item container direction="column" lg={4} sm={6}>
-            <h4>Trụ sở chính</h4>
-            <p>124 Huỳnh Tấn Phát, Phường Tân Thuận Tây, Quận 7, Thành phố Hồ Chí Minh.</p>
+            <div dangerouslySetInnerHTML={{__html: FooterData.headquarters}}></div>
             <Grid container style={{ marginTop: '20px' }}>
               {
-                listSocial.map(({id, link, icon_path}) => {
+                FooterData.list_social.map(({id, link, icon_path}) => {
                   return (
                     <Grid item key={id} mr={2}>
                       <a href={link} target="_blank" rel="noreferrer">

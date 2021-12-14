@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import Head from "next/head";
 import Footer from "components/display/Footer";
-import Banner from "components/custom/Banner";
-import AuthenticationSection from "components/custom/AuthSection";
-import ListProjectSection from "components/custom/ListProjectSection";
-import ProcessNFTSection from "components/custom/ProcessNFTSection";
+import Banner from "components/custom//Home/Banner";
+import AuthenticationSection from "components/custom/Home/AuthSection";
+import ListProjectSection from "components/custom/Home/ListProjectSection";
+import ProcessNFTSection from "components/custom/Home/ProcessNFTSection";
 import { getProjectInfo } from "redux/project/project.action";
 
 const Home: NextPage = () => {

@@ -2,34 +2,12 @@ import Image from 'next/image';
 import Header from 'components/display/Header';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import BoxIOTA from 'components/custom/BoxIOTA';
+import BoxIOTA from 'components/custom/Home/BoxIOTA';
 import styled from 'styled-components';
+import { listBoxIOTA } from '../../config.nft';
 import { device } from 'styles/media-device';
 
 export default function Banner () {
-  const listBoxIOTA = [
-    {
-      id: 1,
-      img: 'IOTA1.png',
-      subtitle: 'CON DẤU NFT',
-      title: 'Passport of Blockchain',
-      description: 'Hồ sơ dự án Blockchain',
-    },
-    {
-      id: 2,
-      img: 'IOTA2.png',
-      subtitle: 'CON DẤU NFT',
-      title: 'Tài sản số',
-      description: '',
-    },
-    {
-      id: 3,
-      img: 'IOTA3.png',
-      subtitle: 'CON DẤU NFT',
-      title: 'Tài sản nền',
-      description: '',
-    }
-  ];
   return (
     <WrapperBanner>
       <Header theme={'white'}/>

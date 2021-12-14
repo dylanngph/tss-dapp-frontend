@@ -109,7 +109,7 @@ export default function BlockChain ({project}: BlockChainProps) {
       <Grid item container direction="column" lg={5}>
         <h3 className="title-sec">QR code</h3>
         <WrapperQRCode>
-          <Image src={`/assets/images/${project.qr_img_path}`} alt={project.name} width={375} height={375}/>
+          <Image src={project.qr_img_path} alt={project.name} width={375} height={375}/>
         </WrapperQRCode>
       </Grid>
     </Grid>

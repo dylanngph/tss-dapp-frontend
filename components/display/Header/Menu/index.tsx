@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import ButtonLink from 'components/custom/ButtonLink';
+import Link from "next/link";
+import { NavMenu } from '../config';
+import { useRouter } from "next/router";
 import styled from 'styled-components';
 
 interface MenuProps {
@@ -9,17 +11,16 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ open, theme }) => {
+  const router = useRouter();
   return (
     <StyledMenu open={open}>
-      <li>
-        <a href="#">Trang chủ</a>
-      </li>
-      <li>
-        <a href="#">Listing Hồ sơ</a>
-      </li>
-      <li>
-        <ButtonLink title={theme == 'white' ? "Tạo hồ sơ dự án" : "Tạo hồ sơ"} href={"#"} />
-      </li>
+      {
+        NavMenu.map(({title, href}) => (
+          <li key={title} className={router.pathname == "/" ? "active" : ""}>
+            <Link href={href} passHref>{title}</Link>
+          </li>
+        ))
+      }
     </StyledMenu>
   );
 };
@@ -55,21 +56,3 @@ const StyledMenu = styled.nav<MenuProps>`
     z-index: 10;
   }
 `;
-
-const CustomButton = styled(Button)({
-  padding: '12px 24px',
-  textTransform: 'none',
-  lineHeight: '19px',
-  fontWeight: '600',
-  backgroundColor: '#446DFF',
-  fontFamily: 'Inter-Regular',
-  borderRadius: '8px',
-  boxShadow: 'none',
-  marginTop: '12px',
-  marginLeft: '15px',
-  '&:hover': {
-    backgroundColor: '#446DFF',
-    color: '#ffffff',
-    boxShadow: 'none',
-  },
-});

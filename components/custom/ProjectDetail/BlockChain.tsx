@@ -8,26 +8,23 @@ import TabUnstyled from '@mui/base/TabUnstyled';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
 export interface InformationProps {
   project: {
-    name_company: string,
-    headquarters: string,
-    name: string,
-    unit_token: string,
-    standard: string,
-    basis: string,
-    address_smart_contract: string,
-    website: string,
-    social: {
-      id: number,
-      icon_path: string,
-      link: string,
-    }[],
-    qr_img_path: string,
+    passport_of_blockchain: {
+      img_path: string,
+      list_img: {
+        id: number,
+        img_path: string,
+        name: string,
+      }[],
+    },
+    supply_date: string,
+    NFT_ID: string,
+    Contract_ID: string,
+    TX_Hash: string,
   }
 }
 
@@ -46,46 +43,40 @@ export default function Information ({project}: InformationProps) {
             <Grid item container lg={3} justifyContent="center">
               <CardBoxPassport>
                 <Box className="box-passport-img" sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                  <img src="/assets/images/IOTA.png" alt="IOTA.png" />
+                  <img src={project.passport_of_blockchain.img_path} alt="PASSPORT IMG" />
                 </Box>
                 <div className="box-passport-content">
                   <h3>SEAL NFT</h3>
                   <h4>Passport of Blockchain</h4>
                   <p>Blockchain project profile</p>
-                  <div className="date">Ngày cấp: 24/12/2022</div>
+                  <div className="date">Ngày cấp: { project.supply_date }</div>
                 </div>
               </CardBoxPassport>
             </Grid>
             <Grid item container lg={9} justifyContent="center">
               <NFTCardBoxPassport>
-                <Grid container justifyContent="space-between">
+                <Grid container>
                   <h3 className="title-sec">NFT Passport of Blockchain</h3>
-                  <CustomButtonDetail variant="outlined" onClick={() => console.log('onClick')} startIcon={<VisibilityIcon />}>
-                    Chi tiết
-                  </CustomButtonDetail>
                 </Grid>
                 <Grid container>
-                  <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
-                    <Image src="/assets/images/logo-tss.png" alt="logo-tss.png" width={68} height={30}/>
-                  </Box>
-                  <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
-                    <Image src="/assets/images/logo-bas.png" alt="logo-bas.png" width={68} height={30}/>
-                  </Box>
-                  <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
-                    <Image src="/assets/images/logo-vcb.png" alt="logo-vcb.png" width={68} height={30}/>
-                  </Box>
-
+                  {
+                    project.passport_of_blockchain.list_img.map(({id, img_path, name}) => (
+                      <Box key={id} sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
+                        <Image src={img_path} alt={name} width={68} height={30}/>
+                      </Box>
+                    ))
+                  }
                   <BoxMoreInfo>
                     <span className="block-copy">NFT ID</span>
-                    <span>153979</span>
+                    <span>{project.NFT_ID}</span>
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span className="block-copy">Contract ID</span>
-                    <span>0xE1D7CB...647278</span>
+                    <span>{project.Contract_ID}</span>
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span className="block-copy">TX Hash</span>
-                    <span>0xE1D7CB...647278</span>
+                    <span>{project.TX_Hash}</span>
                   </BoxMoreInfo>
                 </Grid>
                 <Grid container mt={0} spacing={2}>
@@ -158,6 +149,7 @@ const CustomButtonTab =  styled(TabUnstyled)`
     font-size: 24px;
     color: rgba(0, 0, 0, 0.85);
     background: #EFF2F5;
+    font-weight: 700;
   }
   &:not(:last-child) {
     margin-right: 15px;
@@ -174,13 +166,14 @@ const CardBoxPassport = styled.div`
   justify-content: space-between;
   .box-passport-img,
   .box-passport-content {
-    height: 46%;
+    height: 50%;
+    background: #FFFFFF;
     border: 1px solid #EFF2F5;
     box-sizing: border-box;
     filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
   }
   .box-passport-img {
-    padding: 24px 24px 0;
+    padding: 24px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom: 0;
@@ -202,7 +195,7 @@ const CardBoxPassport = styled.div`
       width: 80%;
       height: 1px;
       position: absolute;
-      top: -10%;
+      top: 0;
       left: 10%;
       border-top: 1px dashed rgba(88, 102, 126, 0.3);
     }
@@ -234,30 +227,30 @@ const CardBoxPassport = styled.div`
       display: inline-block;
     }
   }
-  &:after {
-    content: '';
-    width: 8%;
-    height: 8%;
-    top: 46%;
-    left: -3%;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #ffffff;
-    border-right: 1px solid #EFF2F5;
-    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
-  }
-  &:before {
-    content: '';
-    width: 8%;
-    height: 8%;
-    top: 46%;
-    right: -3%;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #ffffff;
-    border-left: 1px solid #EFF2F5;
-    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
-  }
+  // &:after {
+  //   content: '';
+  //   width: 8%;
+  //   height: 8%;
+  //   top: 46%;
+  //   left: -3%;
+  //   position: absolute;
+  //   border-radius: 50%;
+  //   background-color: #ffffff;
+  //   border-right: 1px solid #EFF2F5;
+  //   filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
+  // }
+  // &:before {
+  //   content: '';
+  //   width: 8%;
+  //   height: 8%;
+  //   top: 46%;
+  //   right: -3%;
+  //   position: absolute;
+  //   border-radius: 50%;
+  //   background-color: #ffffff;
+  //   border-left: 1px solid #EFF2F5;
+  //   filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.05));
+  // }
   @media screen and ${device.mobileL} {
     width: fit-content;
   }

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Footer from "components/display/Footer";
 import Header from 'components/display/Header';
 import BoxProjectDetail from 'components/custom/ProjectDetail';
+import { projectDetailItem } from './config';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -16,42 +17,11 @@ export default function ProjectDetail() {
 
       <main>
         <Header theme={'black'}/>
-        <BoxProjectDetail project={project_detail}/>
+        <BoxProjectDetail project={projectDetailItem}/>
       </main>
 
       <Footer />
 
     </div>
   )
-}
-
-const project_detail = {
-  id: 1,
-  img_logo_path: 'logo-img-project-detail.png',
-  name: 'Jadelabs',
-  name_company: 'Jadelabs',
-  headquarters: '138 Robinson Road #02-50 Singapore',
-  unit_token: 'JAD',
-  standard: 'ERC20, BEP20',
-  basis: 'Kardiachain, Binance Smart Chain',
-  address_smart_contract: '0E14BD7C7a45xEB...63208',
-  website: 'jadelabs.org',
-  social: [
-    {
-      id: 1,
-      icon_path: '/assets/icons/ico-social-twitter.svg',
-      link: '#'
-    },
-    {
-      id: 2,
-      icon_path: '/assets/icons/ico-social-telegram.svg',
-      link: '#'
-    },
-    {
-      id: 3,
-      icon_path: '/assets/icons/ico-social-m.svg',
-      link: '#'
-    },
-  ],
-  qr_img_path: 'qr-example.png',
 }

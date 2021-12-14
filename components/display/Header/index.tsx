@@ -6,7 +6,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Burger from 'components/display/Header/Burger'
 import Menu from 'components/display/Header/Menu'
-import ButtonLink from 'components/custom/ButtonLink';
+import { useRouter } from "next/router";
+import { NavMenu } from './config';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
@@ -16,6 +17,7 @@ export interface HeaderProps {
 
 export default function Header({theme}: HeaderProps) {
   const [open, setOpen] = React.useState(false);
+  const router = useRouter();
   return (
     <WrapperNav>
       <Container maxWidth="lg">
@@ -27,12 +29,16 @@ export default function Header({theme}: HeaderProps) {
               </Link>
             </Box>
             <ul>
-              <li className="active">Trang chủ</li>
-              <li>Listing Hồ sơ</li>
+              {
+                NavMenu.map(({title, href}) => (
+                  <li key={title} className={router.pathname == "/" ? "active" : ""}>
+                    <Link href={href} passHref>{title}</Link>
+                  </li>
+                ))
+              }
             </ul>
           </Grid>
           <Grid item container direction="row" alignItems="center" justifyContent="flex-end" xs={4} className="btn-create">
-            <ButtonLink title={theme == 'white' ? "Tạo hồ sơ dự án" : "Tạo hồ sơ"} href={"#"} />
             <Burger open={open} setOpen={setOpen} theme={theme} />
           </Grid>
         </Grid>

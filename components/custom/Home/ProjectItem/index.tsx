@@ -21,7 +21,7 @@ export default function ProjectItem ({project: {id, img_path, name, token, nft, 
   const router = useRouter();
   return (
     <tr onClick={() => { router.push(`/project/${id}`) }}>
-      <td>{index}</td>
+      <td>{index + 1}</td>
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
           <Box sx={{ width: 34, height: 24 }}>

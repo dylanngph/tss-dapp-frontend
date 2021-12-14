@@ -8,7 +8,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import ProjectItem from 'components/custom/ProjectItem';
+import ProjectItem from 'components/custom/Home/ProjectItem';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
@@ -117,7 +117,7 @@ export default function ListProjectSection (props: ListProjectSection) {
             <tbody>
               {
                 projectList.map((item, index) => {
-                  return <ProjectItem key={item.id} project={item} index={index++}></ProjectItem>
+                  return <ProjectItem key={item.id} project={item} index={index}></ProjectItem>
                 })
               }
             </tbody>

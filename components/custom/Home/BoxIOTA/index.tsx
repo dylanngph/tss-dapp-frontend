@@ -18,7 +18,7 @@ export default function BoxIOTA ({IOTA}: BoxIOTAProps) {
       <BoxWrapper>
         <Grid container>
           <Grid item style={{ width: '99px' }}>
-            <img src={"/assets/images/" + IOTA.img} alt="IOTA nft" />
+            <img src={IOTA.img} alt="IOTA nft" />
           </Grid>
           <Grid item style={{ width: 'calc(100% - 99px)' }} container direction="column">
             <h5>{IOTA.subtitle}</h5>
