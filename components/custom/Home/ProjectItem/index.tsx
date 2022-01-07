@@ -21,7 +21,7 @@ export interface ProjectItemProps {
 export default function ProjectItem ({project, index}: ProjectItemProps) {
   const router = useRouter();
   const minimizeAddress = (smartContractAddress: string) => {
-    return smartContractAddress.substring(0, 8) + "...." + smartContractAddress.substring(smartContractAddress.length - 6, smartContractAddress.length);
+    return smartContractAddress.substring(0, 8) + "..." + smartContractAddress.substring(smartContractAddress.length - 4, smartContractAddress.length);
   };
   return (
     <tr onClick={() => { router.push(`/project/${project._id}`) }}>

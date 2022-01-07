@@ -12,23 +12,35 @@ import styled from 'styled-components';
 import { device } from 'styles/media-device';
 
 export interface InformationProps {
-  project: {
-    passport_of_blockchain: {
-      img_path: string,
-      list_img: {
-        id: number,
-        img_path: string,
-        name: string,
-      }[],
-    },
-    supply_date: string,
-    NFT_ID: string,
-    Contract_ID: string,
-    TX_Hash: string,
-  }
 }
 
-export default function Information ({project}: InformationProps) {
+
+const PASSPORT_BLOCKCHAIN = {
+  logo: '/assets/images/IOTA.png',
+  supplyDate: '24/12/2020',
+  listImg: [
+    {
+      id: 1,
+      imgPath: '/assets/images/logo-tss.png',
+      name: 'logo-tss',
+    },
+    {
+      id: 2,
+      imgPath: '/assets/images/logo-bas.png',
+      name: 'logo-bas',
+    },
+    {
+      id: 3,
+      imgPath: '/assets/images/logo-vcb.png',
+      name: 'logo-vcb',
+    }
+  ],
+  NFT_ID: '153979',
+  Contract_ID: '0xC1346F105791FF91578737377B65f98De1025fa4',
+  TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
+}
+
+export default function Information (props: InformationProps) {
 
   return (
     <Grid container>
@@ -43,13 +55,13 @@ export default function Information ({project}: InformationProps) {
             <Grid item container lg={3} justifyContent="center">
               <CardBoxPassport>
                 <Box className="box-passport-img" sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                  <img src={project.passport_of_blockchain.img_path} alt="PASSPORT IMG" />
+                  <img src={PASSPORT_BLOCKCHAIN.logo} alt="PASSPORT IMG" />
                 </Box>
                 <div className="box-passport-content">
                   <h3>SEAL NFT</h3>
                   <h4>Passport of Blockchain</h4>
                   <p>Blockchain project profile</p>
-                  <div className="date">Ngày cấp: { project.supply_date }</div>
+                  <div className="date">Ngày cấp: { PASSPORT_BLOCKCHAIN.supplyDate }</div>
                 </div>
               </CardBoxPassport>
             </Grid>
@@ -60,23 +72,23 @@ export default function Information ({project}: InformationProps) {
                 </Grid>
                 <Grid container>
                   {
-                    project.passport_of_blockchain.list_img.map(({id, img_path, name}) => (
+                    PASSPORT_BLOCKCHAIN.listImg.map(({id, imgPath, name}) => (
                       <Box key={id} sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0' }}>
-                        <Image src={img_path} alt={name} width={68} height={30}/>
+                        <Image src={imgPath} alt={name} width={68} height={30}/>
                       </Box>
                     ))
                   }
-                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(project.NFT_ID)}}>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.NFT_ID)}}>
                     <span className="block-copy">NFT ID</span>
-                    <span>{project.NFT_ID}</span>
+                    <span>{PASSPORT_BLOCKCHAIN.NFT_ID}</span>
                   </BoxMoreInfo>
-                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(project.Contract_ID)}}>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}}>
                     <span className="block-copy">Contract ID</span>
-                    <span>{project.Contract_ID}</span>
+                    <span>{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</span>
                   </BoxMoreInfo>
-                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(project.TX_Hash)}}>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.TX_Hash)}}>
                     <span className="block-copy">TX Hash</span>
-                    <span>{project.TX_Hash}</span>
+                    <span>{PASSPORT_BLOCKCHAIN.TX_Hash}</span>
                   </BoxMoreInfo>
                 </Grid>
                 <Grid container mt={0} spacing={2}>

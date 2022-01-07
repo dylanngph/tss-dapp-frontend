@@ -9,46 +9,62 @@ import { device } from 'styles/media-device';
 export interface SliderProps {
   settings: object,
   typeSettings: string,
-  listData: {
-    id: number,
-    img_path: string,
-    name: string,
-    position: string,
-  }[]
+  project: {
+    detail: {
+      developmentPartner: {
+        id: string,
+        image: string,
+        name: string,
+        website: string,
+        position: string,
+      }[],
+      developmentTeam: {
+        id: string,
+        image: string,
+        name: string,
+        website: string,
+        position: string,
+      }[]
+    }
+  }
+  
 }
 
-export default function SliderSlick ({ settings, typeSettings, listData }: SliderProps) {
-  const typeIMG = 'img';
+const IMG_RANDOM = '/assets/images/image-slide-';
+const IMG_TEAM_DEFAULT = '/assets/images/team-avatar.png';
+const typeIMG = 'img';
+
+export default function SliderSlick ({ settings, typeSettings, project }: SliderProps) {
   return (
     <Grid container>
       <CustomSlider {...settings}>
         {
           typeSettings === typeIMG ?
-            listData.map(({id, img_path}) => {
-              return (
-                <div key={id}>
-                  <Box sx={{padding: '0 10px'}}>
-                    <img src={img_path} alt="image slide.png"/>
-                  </Box>
-                </div>
-              )
-            })
+          project.detail.developmentPartner.map(({id, image, name}, index) => {
+            return (
+              <div key={index}>
+                <Box sx={{padding: '0 10px'}}>
+                  <img src={image?image:`${IMG_RANDOM + (Math.floor(Math.random() * 5) + 1)}.png`} alt={name}/>
+                </Box>
+              </div>
+            )
+          })
           :
-            listData.map(({id, img_path, name, position}) => {
-              return (
-                <div key={id}>
-                  <BoxTeam>
-                    <div className="box-team-image">
-                      <img src={img_path} alt={name}/>
-                    </div>
-                    <div className="box-team-content">
-                      <h6>{name}</h6>
-                      <span>{position}</span>
-                    </div>
-                  </BoxTeam>
-                </div>
-              )
-            })
+          project.detail.developmentTeam.map(({id, image, name, position}, index) => {
+            return (
+              <div key={index}>
+                <BoxTeam>
+                  <div className="box-team-image">
+                    <img src={image?image:IMG_TEAM_DEFAULT} alt={name}/>
+                  </div>
+                  <div className="box-team-content">
+                    <h6>{name}</h6>
+                    <span>{position}</span>
+                  </div>
+                </BoxTeam>
+              </div>
+            )
+          })
         }
       </CustomSlider>
     </Grid>

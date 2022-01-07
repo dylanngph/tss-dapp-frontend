@@ -3,16 +3,14 @@ import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 
 export interface IntroduceProps {
-  project: {
-    description: string,
-  }
+  description: string,
 }
 
-export default function Introduce ({project}: IntroduceProps) {
+export default function Introduce ({description}: IntroduceProps) {
   return (
     <Grid container pt={4} pb={2}>
       <h3 className="title-sec">Giới thiệu</h3>
-      <PSection>{project.description}</PSection>
+      <PSection>{description}</PSection>
     </Grid>
   );
 }
@@ -20,4 +18,5 @@ export default function Introduce ({project}: IntroduceProps) {
 const PSection = styled.p`
   font-family: 'Inter-Regular';
   color: #58667E;
+  width: 100%;
 `;

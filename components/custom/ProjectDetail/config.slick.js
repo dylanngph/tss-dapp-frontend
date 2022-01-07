@@ -1,7 +1,7 @@
 export const settingsPartner = {
   dots: true,
   arrows: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 1,
@@ -23,7 +23,7 @@ export const settingsPartner = {
 export const settingsTeam = {
   dots: true,
   arrows: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
