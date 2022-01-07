@@ -11,14 +11,14 @@ import ProcessNFTSection from "components/custom/Home/ProcessNFTSection";
 import { getProjectInfo } from "redux/project/project.action";
 
 const Home: NextPage = () => {
-  const projectStore = useAppSelector(
-    (state) => state?.rootReducer?.projectReducers?.projectStore ?? "default"
-  );
-  const dispatch = useAppDispatch();
+  // const projectStore = useAppSelector(
+  //   (state) => state?.rootReducer?.projectReducers?.projectStore ?? "default"
+  // );
+  // const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getProjectInfo({ username: "admin", password: "1234567" }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getProjectInfo({ username: "admin", password: "1234567" }));
+  // }, []);
   return (
     <div>
       <Head>

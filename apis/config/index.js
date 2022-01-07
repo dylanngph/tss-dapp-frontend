@@ -2,7 +2,7 @@ let envRelease = 'sandbox'; // sandbox / staging / beta / production
 const vesionApi = '/v1'; // v1 / v2
 
 const tssProject = {
-    sandbox: 'https://sabxpj.tss.vn',
+    sandbox: 'http://localhost:5555',
     staging: 'https://stagpj.tss.vn',
     beta: 'https://betapj.tss.vn',
     production: 'https://prodpj.tss.vn'

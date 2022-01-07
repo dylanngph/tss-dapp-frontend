@@ -14,7 +14,7 @@ export interface BoxIOTAProps {
 
 export default function BoxIOTA ({IOTA}: BoxIOTAProps) {
   return (
-    <Grid item container md={4}>
+    <Grid item container md={6}>
       <BoxWrapper>
         <Grid container>
           <Grid item style={{ width: '99px' }}>

@@ -5,46 +5,53 @@ import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/router';
 export interface ProjectItemProps {
   project: {
-    id: number,
-    img_path: string,
-    name: string,
-    token: string,
-    nft: Array<string>,
-    standard: string,
-    basis: string,
-    address_smart_contract: string,
+    detail: {
+      logo: string,
+      projectName: string,
+      symbol: string,
+      communications: [],
+      standards: [],
+      smartContractAddress: string,
+    },
+    _id: string,
   },
   index: number,
 }
 
-export default function ProjectItem ({project: {id, img_path, name, token, nft, standard, basis, address_smart_contract}, index}: ProjectItemProps) {
+export default function ProjectItem ({project, index}: ProjectItemProps) {
   const router = useRouter();
+  const minimizeAddress = (smartContractAddress: string) => {
+    return smartContractAddress.substring(0, 8) + "...." + smartContractAddress.substring(smartContractAddress.length - 6, smartContractAddress.length);
+  };
   return (
-    <tr onClick={() => { router.push(`/project/${id}`) }}>
+    <tr onClick={() => { router.push(`/project/${project._id}`) }}>
       <td>{index + 1}</td>
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
           <Box sx={{ width: 34, height: 24 }}>
-            <Image src={`/assets/images/${img_path}`} alt={name} width={24} height={24}/>
+            <Image src={`/assets/images/${project.detail.logo}`} alt={project.detail.projectName} width={24} height={24}/>
           </Box>
-          <span>{name}</span>
+          <span>{project.detail.projectName}</span>
         </Grid>
       </td>
-      <td>{token}</td>
+      <td>{project.detail.symbol}</td>
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
-          {nft.map((iNFT) => {
+          {/* {nft.map((item) => {
             return (
-              <Box key={iNFT} sx={{ width: 34, height: 24 }}>
-                <Image src={`/assets/images/IOTA${iNFT}-small.png`} alt="iNFT" width={24} height={24}/>
+              <Box key={item} sx={{ width: 34, height: 24 }}>
+                <Image src={`/assets/images/IOTA${item}-small.png`} alt="iNFT" width={24} height={24}/>
               </Box>
             )
-          })}
+          })} */}
+          <Box sx={{ width: 34, height: 24 }}>
+            <Image src="/assets/images/IOTA1-small.png" alt="iNFT" width={24} height={24}/>
+          </Box>
         </Grid>
       </td>
-      <td>{standard}</td>
-      <td>{basis}</td>
-      <td>{address_smart_contract}</td>
+      <td>{project.detail.standards.join(", ")}</td>
+      <td>{project.detail.communications.join(", ")}</td>
+      <td>{minimizeAddress(project.detail.smartContractAddress)}</td>
     </tr>
   );
 }

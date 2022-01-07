@@ -21,7 +21,7 @@ export default function Banner () {
       </Container>
       <WrapperListIOTA>
         <Container>
-          <Grid container>
+          <Grid container justifyContent="center">
             {
               listBoxIOTA.map((item) => {
                 return <BoxIOTA key={item.id} IOTA={item}></BoxIOTA>
