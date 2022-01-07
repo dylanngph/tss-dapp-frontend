@@ -1,4 +1,4 @@
-export const projectDetailItem = {
+const projectDetailItem = {
   id: 1,
   img_logo_path: '/assets/images/logo-img-project-detail.png',
   certifications_date: '10/10/2020',
@@ -124,3 +124,5 @@ export const projectDetailItem = {
     },
   ],
 }
+
+export default projectDetailItem

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Footer from "components/display/Footer";
 import Header from 'components/display/Header';
 import BoxProjectDetail from 'components/custom/ProjectDetail';
-import { projectDetailItem } from './config';
+import projectDetailItem from '../../constants/data/project';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
