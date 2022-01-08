@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Footer from "components/display/Footer";
 import Header from 'components/display/Header';
 import BoxProjectDetail from 'components/custom/ProjectDetail';
-import { projectDetailItem } from './config';
+import { projectDetailItem } from 'constants/data/project/index';
 import axios from 'axios';
 import { API_PROJECT } from 'apis/config/index';
 import { useRouter } from 'next/router';

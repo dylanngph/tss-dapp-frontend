@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { REQUEST_STATUS } from "../../components/custom/Notify";
+import { REQUEST_STATUS } from "constants/api/apiConfigs";
 import { constants } from "../../redux/project";
 import { constants as loadingConstant } from "../../redux/loading";
 import Notify from "./../../components/custom/Notify";

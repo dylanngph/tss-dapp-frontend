@@ -92,5 +92,6 @@ export const projectDetailItem = {
       position: 'Chief executive officer JadeLabs',
     },
   ],
- 
 }
+
+export default projectDetailItem

@@ -1,4 +1,4 @@
-import { REQUEST_STATUS } from "../../constants/api/apiConfigs";
+import { REQUEST_STATUS } from "constants/api/apiConfigs";
 import AxiosBase from "./apiBase";
 
 export const callApi = async (props) => {
