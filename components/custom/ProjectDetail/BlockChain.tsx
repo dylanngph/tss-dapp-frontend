@@ -36,7 +36,7 @@ const PASSPORT_BLOCKCHAIN = {
     }
   ],
   NFT_ID: '153979',
-  Contract_ID: '0xC1346F105791FF91578737377B65f98De1025fa4',
+  Contract_ID: '0xc1346f105791ff91578737377b65f98de1025fa4',
   TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
 }
 
@@ -82,9 +82,9 @@ export default function Information (props: InformationProps) {
                     <span className="block-copy">NFT ID</span>
                     <span>{PASSPORT_BLOCKCHAIN.NFT_ID}</span>
                   </BoxMoreInfo>
-                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}}>
-                    <span className="block-copy">Contract ID</span>
-                    <span>{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</span>
+                  <BoxMoreInfo>
+                    <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
+                    <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank">{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</a></span>
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.TX_Hash)}}>
                     <span className="block-copy">TX Hash</span>
