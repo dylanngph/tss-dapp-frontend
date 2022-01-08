@@ -8,7 +8,7 @@ import Banner from "components/custom//Home/Banner";
 import AuthenticationSection from "components/custom/Home/AuthSection";
 import ListProjectSection from "components/custom/Home/ListProjectSection";
 import ProcessNFTSection from "components/custom/Home/ProcessNFTSection";
-import { getProjectInfo } from "redux/project/project.action";
+// import { getProjectInfo } from "redux/project/project.action";
 
 const Home: NextPage = () => {
   // const projectStore = useAppSelector(

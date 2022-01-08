@@ -10,22 +10,20 @@ export interface SliderProps {
   settings: object,
   typeSettings: string,
   project: {
-    detail: {
-      developmentPartner: {
-        id: string,
-        image: string,
-        name: string,
-        website: string,
-        position: string,
-      }[],
-      developmentTeam: {
-        id: string,
-        image: string,
-        name: string,
-        website: string,
-        position: string,
-      }[]
-    }
+    developmentPartner: {
+      id: string,
+      image: string,
+      name: string,
+      website: string,
+      position: string,
+    }[],
+    developmentTeam: {
+      id: string,
+      image: string,
+      name: string,
+      website: string,
+      position: string,
+    }[]
   }
   
 }
@@ -40,7 +38,7 @@ export default function SliderSlick ({ settings, typeSettings, project }: Slider
       <CustomSlider {...settings}>
         {
           typeSettings === typeIMG ?
-          project.detail.developmentPartner.map(({id, image, name}, index) => {
+          project.developmentPartner.map(({id, image, name}, index) => {
             return (
               <div key={index}>
                 <Box sx={{padding: '0 10px'}}>
@@ -50,7 +48,7 @@ export default function SliderSlick ({ settings, typeSettings, project }: Slider
             )
           })
           :
-          project.detail.developmentTeam.map(({id, image, name, position}, index) => {
+          project.developmentTeam.map(({id, image, name, position}, index) => {
             return (
               <div key={index}>
                 <BoxTeam>

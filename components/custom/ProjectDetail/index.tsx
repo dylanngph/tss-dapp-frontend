@@ -12,43 +12,43 @@ export interface ProjectDetailProps {
   project: {
     id: string,
     detail: {
-      logo: string,
-      acceptDate: string,
-      projectName: string,
       incorporationName: string,
       incorporationAddress: string,
-      symbol: string,
-      standards: [],
-      communications: [],
-      smartContractAddress: string,
-      websites: [],
-      socialWebs: {
-        name: string,
-        link: string,
-      }[],
-      description: string,
-      tokenAllocations: {
-        allocationName: string,
-        rate: number,
-        amount: number,
-        price: number,
-        vesting: string
-      }[],
-      developmentPartner: {
-        id: string,
-        image: string,
-        name: string,
-        website: string,
-        position: string,
-      }[],
-      developmentTeam: {
-        id: string,
-        image: string,
-        name: string,
-        website: string,
-        position: string,
-      }[]
+      acceptDate: string,
     },
+    logo: string,
+    projectName: string,
+    symbol: string,
+    standards: [],
+    communications: [],
+    smartContractAddress: string,
+    websites: [],
+    socialWebs: {
+      name: string,
+      link: string,
+    }[],
+    description: string,
+    tokenAllocations: {
+      allocationName: string,
+      rate: number,
+      amount: number,
+      price: number,
+      vesting: string
+    }[],
+    developmentPartner: {
+      id: string,
+      image: string,
+      name: string,
+      website: string,
+      position: string,
+    }[],
+    developmentTeam: {
+      id: string,
+      image: string,
+      name: string,
+      website: string,
+      position: string,
+    }[]
   }
 }
 
@@ -91,7 +91,7 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
         data: number[],
       }[]
     } = dataChartDefault;
-    project.detail.tokenAllocations.map(({allocationName, rate}) => {
+    project.tokenAllocations.map(({allocationName, rate}) => {
       tpmArrAllocationName.push(allocationName);
       tpmArrRate.push(rate * 100);
     });
@@ -109,9 +109,9 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
 
       <BlockChainProject />
 
-      <Introduce description={project.detail.description} />
+      <Introduce description={project.description} />
 
-      <ChartTokenomics tokenAllocations={project.detail.tokenAllocations} dataChart={getDataChartDefault()} />
+      <ChartTokenomics tokenAllocations={project.tokenAllocations} dataChart={getDataChartDefault()} />
 
       <Grid container>
         <h3 className="title-sec">Đối tác của Jade Labs</h3>

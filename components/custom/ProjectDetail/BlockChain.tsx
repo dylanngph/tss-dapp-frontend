@@ -88,7 +88,7 @@ export default function Information (props: InformationProps) {
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.TX_Hash)}}>
                     <span className="block-copy">TX Hash</span>
-                    <span>{PASSPORT_BLOCKCHAIN.TX_Hash}</span>
+                    <span>{PASSPORT_BLOCKCHAIN.TX_Hash.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.TX_Hash.substring(PASSPORT_BLOCKCHAIN.TX_Hash.length - 4, PASSPORT_BLOCKCHAIN.TX_Hash.length)}</span>
                   </BoxMoreInfo>
                 </Grid>
                 <Grid container mt={0} spacing={2}>
