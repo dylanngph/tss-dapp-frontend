@@ -7,22 +7,24 @@ import { device } from 'styles/media-device';
 
 export interface BlockChainProps {
   project: {
-    name_company: string,
-    headquarters: string,
-    name: string,
-    unit_token: string,
-    standard: string,
-    basis: string,
-    address_smart_contract: string,
-    website: string,
-    social: {
-      id: number,
-      icon_path: string,
+    projectName: string,
+    detail: {
+      incorporationName: string,
+      incorporationAddress: string,
+    },
+    symbol: string,
+    standards: [],
+    communications: [],
+    smartContractAddress: string,
+    websites: [],
+    socialWebs: {
+      name: string,
       link: string,
     }[],
-    qr_img_path: string,
   }
 }
+
+const QR_CODE = '/assets/images/qr-example.png';
 
 export default function BlockChain ({project}: BlockChainProps) {
   return (
@@ -33,49 +35,56 @@ export default function BlockChain ({project}: BlockChainProps) {
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Công ty chủ quản</Grid>
-              <Grid item>{project.name_company}</Grid>
+              <Grid item>{project.detail.incorporationName}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Trụ sở</Grid>
-              <Grid item>{project.headquarters}</Grid>
+              <Grid item>{project.detail.incorporationAddress}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Tên gọi</Grid>
-              <Grid item>{project.name}</Grid>
+              <Grid item>{project.projectName}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Ký hiệu token</Grid>
-              <Grid item>{project.unit_token}</Grid>
+              <Grid item>{project.symbol}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Tiêu chuẩn</Grid>
-              <Grid item>{project.standard}</Grid>
+              <Grid item>{project.standards.join(", ")}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Nền tảng</Grid>
-              <Grid item>{project.basis}</Grid>
+              <Grid item>{project.communications.join(", ")}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Địa chỉ Smart Contract</Grid>
-              <Grid item>{project.address_smart_contract}</Grid>
+              <Grid item>{project.smartContractAddress}</Grid>
             </Grid>
           </li>
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Website</Grid>
-              <Grid item><a href="project.website" target="_blank">{project.website}</a></Grid>
+              <Grid item>
+                {
+                  project.websites.map((web) => {
+                    return (
+                      <a style={{display: 'block'}} key={web} href={web} target="_blank">{web}</a>
+                    )
+                  })
+                }</Grid>
             </Grid>
           </li>
           <li>
@@ -83,9 +92,9 @@ export default function BlockChain ({project}: BlockChainProps) {
               <Grid item>Mạng xã hội</Grid>
               <Grid item>
               {
-                project.social.map(({id, link, icon_path}) => {
+                project.socialWebs.map(({name, link}, key) => {
                   return (
-                    <Box key={id} sx={{
+                    <Box key={key} sx={{
                       width: '24px',
                       height: '24px',
                       borderRadius: '50%',
@@ -95,7 +104,7 @@ export default function BlockChain ({project}: BlockChainProps) {
                       padding: '3px',
                     }}>
                       <a href={link} target="_blank" rel="noreferrer">
-                        <Image src={icon_path} alt="social" width={18} height={18} />
+                        <Image src={`/assets/icons/socials/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" width={18} height={18} />
                       </a>
                     </Box>
                   )
@@ -109,7 +118,7 @@ export default function BlockChain ({project}: BlockChainProps) {
       <Grid item container direction="column" lg={5}>
         <h3 className="title-sec">QR code</h3>
         <WrapperQRCode>
-          <Image src={project.qr_img_path} alt={project.name} width={375} height={375}/>
+          <Image src={QR_CODE} alt={project.projectName} width={375} height={375}/>
         </WrapperQRCode>
       </Grid>
     </Grid>

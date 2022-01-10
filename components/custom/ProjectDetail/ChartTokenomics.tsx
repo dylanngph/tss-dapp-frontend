@@ -14,56 +14,28 @@ import TableRow from '@mui/material/TableRow';
 import TableContainer from '@mui/material/TableContainer';
 import Modal from '@mui/material/Modal';
 import styled from 'styled-components';
-
-function createData(index: number, cate: string, ratio: number, price: number, quantity: number, vesting: string) {
-  return { index, cate, ratio, price, quantity, vesting };
-};
-
-const rows = [
-  createData(1, 'Public sale', 3, 10000, 560000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(2, 'Private sale', 12, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(3, 'Staking reward', 14, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(4, 'Community & marketing', 27, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(5, 'Team & Advisors', 3, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(6, 'Lab reservers', 5, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(7, 'Play to earn reward', 31, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-  createData(8, 'DEX liquidity', 5, 10000, 56160000, '5% unlock at TGE, 90-days cliff, 6% monthly'),
-];
-
 export interface ChartTokenomicsProps {
+  tokenAllocations: {
+    allocationName: string,
+    rate: number,
+    amount: number,
+    price: number,
+    vesting: string
+  }[],
+  dataChart: {
+    labels: string[],
+    datasets: {
+      backgroundColor: string[],
+      data: number[],
+    }[]
+  }
 }
 
-export default function ChartTokenomics (props: ChartTokenomicsProps) {
+export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTokenomicsProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const data = {
-    labels: [
-      "Public sale",
-      "Private sale",
-      "Staking reward",
-      "Community & marketing",
-      "Team & Advisors",
-      "Lab reservers",
-      "Play to earn reward",
-      "DEX liquidity",
-    ],
-    datasets: [
-      {
-        backgroundColor: [
-          "#483168",
-          "#00B919",
-          "#685BF4",
-          "#344DA3",
-          "#15DAAE",
-          "#AB5BF4",
-          "#11B3D3",
-          "#2424F4",
-        ],
-        data: [3, 12, 14, 27, 3, 5, 31, 5]
-      }
-    ]
-  };
+  
   const options = {
     plugins: {
       legend: {
@@ -83,17 +55,17 @@ export default function ChartTokenomics (props: ChartTokenomicsProps) {
       <Grid container mb={4}>
         <Grid item container md={6} justifyContent="center" alignItems="center">
           <Box sx={{ width: '350px', height: 'auto', maxWidth: '70vw' }}>
-            <Doughnut data={data} options={options} />
+            <Doughnut data={dataChart} options={options} />
           </Box>
         </Grid>
         <Grid item container md={6} pt={2}>
-          {data.labels.map((label, i) => {
+          {dataChart.labels.map((label: string, index) => {
             return (
-              <Grid key={i} container alignItems="center" mb={3} xs={6} sm={12}>
+              <Grid key={index} item container alignItems="center" mb={3} xs={6} sm={12}>
                 <Box sx={{
                   width: '15px',
                   height: '10px',
-                  backgroundColor: data.datasets[0].backgroundColor[i],
+                  backgroundColor: dataChart.datasets[0].backgroundColor[index],
                   marginRight: '5px',
                   ["@media (min-width: 600px)"]: {
                     width: '40px',
@@ -133,16 +105,16 @@ export default function ChartTokenomics (props: ChartTokenomicsProps) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {tokenAllocations.map((row, index) => (
                     <TableRow
-                      key={row.index}
+                      key={index}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">{row.index}</TableCell>
-                      <TableCell>{row.cate}</TableCell>
-                      <TableCell align="right">{row.ratio}%</TableCell>
+                      <TableCell component="th" scope="row">{index + 1}</TableCell>
+                      <TableCell>{row.allocationName}</TableCell>
+                      <TableCell align="right">{(row.rate*100).toFixed()}&#37;</TableCell>
                       <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.price)}</TableCell>
-                      <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.quantity)}</TableCell>
+                      <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.amount)}</TableCell>
                       <TableCell>{row.vesting}</TableCell>
                     </TableRow>
                   ))}

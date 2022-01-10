@@ -5,14 +5,12 @@ import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/router';
 export interface ProjectItemProps {
   project: {
-    detail: {
-      logo: string,
-      projectName: string,
-      symbol: string,
-      communications: [],
-      standards: [],
-      smartContractAddress: string,
-    },
+    logo: string,
+    projectName: string,
+    symbol: string,
+    communications: [],
+    standards: [],
+    smartContractAddress: string,
     _id: string,
   },
   index: number,
@@ -21,7 +19,7 @@ export interface ProjectItemProps {
 export default function ProjectItem ({project, index}: ProjectItemProps) {
   const router = useRouter();
   const minimizeAddress = (smartContractAddress: string) => {
-    return smartContractAddress.substring(0, 8) + "...." + smartContractAddress.substring(smartContractAddress.length - 6, smartContractAddress.length);
+    return smartContractAddress.substring(0, 8) + "..." + smartContractAddress.substring(smartContractAddress.length - 4, smartContractAddress.length);
   };
   return (
     <tr onClick={() => { router.push(`/project/${project._id}`) }}>
@@ -29,12 +27,12 @@ export default function ProjectItem ({project, index}: ProjectItemProps) {
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
           <Box sx={{ width: 34, height: 24 }}>
-            <Image src={`/assets/images/${project.detail.logo}`} alt={project.detail.projectName} width={24} height={24}/>
+            <Image src={`/assets/images/${project.logo}`} alt={project.projectName} width={24} height={24}/>
           </Box>
-          <span>{project.detail.projectName}</span>
+          <span>{project.projectName}</span>
         </Grid>
       </td>
-      <td>{project.detail.symbol}</td>
+      <td>{project.symbol}</td>
       <td>
         <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
           {/* {nft.map((item) => {
@@ -49,9 +47,9 @@ export default function ProjectItem ({project, index}: ProjectItemProps) {
           </Box>
         </Grid>
       </td>
-      <td>{project.detail.standards.join(", ")}</td>
-      <td>{project.detail.communications.join(", ")}</td>
-      <td>{minimizeAddress(project.detail.smartContractAddress)}</td>
+      <td>{project.standards.join(", ")}</td>
+      <td>{project.communications.join(", ")}</td>
+      <td>{minimizeAddress(project.smartContractAddress)}</td>
     </tr>
   );
 }

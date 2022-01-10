@@ -10,52 +10,96 @@ import SliderSlick from 'components/custom/Slider';
 import { settingsPartner, settingsTeam } from './config.slick';
 export interface ProjectDetailProps {
   project: {
-    id: number,
-    img_logo_path: string,
-    certifications_date: string,
-    name_company: string,
-    headquarters: string,
-    name: string,
-    unit_token: string,
-    standard: string,
-    basis: string,
-    address_smart_contract: string,
-    website: string,
-    social: {
-      id: number,
-      icon_path: string,
+    id: string,
+    detail: {
+      incorporationName: string,
+      incorporationAddress: string,
+      acceptDate: string,
+    },
+    logo: string,
+    projectName: string,
+    symbol: string,
+    standards: [],
+    communications: [],
+    smartContractAddress: string,
+    websites: [],
+    socialWebs: {
+      name: string,
       link: string,
     }[],
-    qr_img_path: string,
-    passport_of_blockchain: {
-      img_path: string,
-      list_img: {
-        id: number,
-        img_path: string,
-        name: string,
-      }[],
-    },
-    supply_date: string,
-    NFT_ID: string,
-    Contract_ID: string,
-    TX_Hash: string,
     description: string,
-    list_partner: {
-      id: number,
-      img_path: string,
+    tokenAllocations: {
+      allocationName: string,
+      rate: number,
+      amount: number,
+      price: number,
+      vesting: string
+    }[],
+    developmentPartner: {
+      id: string,
+      image: string,
       name: string,
+      website: string,
       position: string,
     }[],
-    list_team: {
-      id: number,
-      img_path: string,
+    developmentTeam: {
+      id: string,
+      image: string,
       name: string,
+      website: string,
       position: string,
-    }[],
+    }[]
   }
 }
 
 export default function ProjectDetail ({project}: ProjectDetailProps) {
+  const dataChartDefault = {
+    labels: [
+      "Public sale",
+      "Private sale",
+      "Staking reward",
+      "Community & marketing",
+      "Team & Advisors",
+      "Lab reservers",
+      "Play to earn reward",
+      "DEX liquidity",
+    ],
+    datasets: [
+      {
+        backgroundColor: [
+          "#483168",
+          "#00B919",
+          "#685BF4",
+          "#344DA3",
+          "#15DAAE",
+          "#AB5BF4",
+          "#11B3D3",
+          "#2424F4",
+        ],
+        data: [3, 12, 14, 27, 3, 5, 31, 5]
+      }
+    ]
+  };
+
+  const getDataChartDefault = () => {
+    let tpmArrAllocationName: string[] = [];
+    let tpmArrRate: number[] = [];
+    let dataTpm: {
+      labels: string[],
+      datasets: {
+        backgroundColor: string[],
+        data: number[],
+      }[]
+    } = dataChartDefault;
+    project.tokenAllocations.map(({allocationName, rate}) => {
+      tpmArrAllocationName.push(allocationName);
+      tpmArrRate.push(rate * 100);
+    });
+    dataTpm.labels = tpmArrAllocationName;
+    dataTpm.datasets[0].data = tpmArrRate;
+    return dataTpm;
+  };
+
   return (
     <Container>
 
@@ -63,20 +107,20 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
 
       <InformationProject project={project} />
 
-      <BlockChainProject project={project} />
+      <BlockChainProject />
 
-      <Introduce project={project} />
+      <Introduce description={project.description} />
 
-      <ChartTokenomics />
+      <ChartTokenomics tokenAllocations={project.tokenAllocations} dataChart={getDataChartDefault()} />
 
       <Grid container>
         <h3 className="title-sec">Đối tác của Jade Labs</h3>
-        <SliderSlick settings={settingsPartner} typeSettings={'img'} listData={project.list_partner}/>
+        <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project}/>
       </Grid>
 
       <Grid container mt={2} mb={8}>
         <h3 className="title-sec">Đội ngũ Jadelabs</h3>
-        <SliderSlick settings={settingsTeam} typeSettings={'team'} listData={project.list_team}/>
+        <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project}/>
       </Grid>
 
     </Container>
