@@ -19,8 +19,8 @@ export default function HeaderBox ({project}: HeaderBoxProps) {
     <Grid container justifyContent="space-between" pt={3} pb={3}>
       <Grid item container alignItems="center" justifyContent="space-between" md="auto" sm={12} pt={1}>
         <Box sx={{ display: 'flex', alignItems: 'center'}}>
-          <Box sx={{ width: 40, height: 40, marginRight: '16px' }}>
-            <Image src={project?.logo} alt={project?.projectName} width={40} height={40}/>
+          <Box sx={{ width: 40, height: 40, marginRight: '16px', '& img': {maxWidth: '100%', height: 'auto'} }}>
+            <img src={project?.logo} alt={project?.projectName}/>
             {/* <Image src={project.logo} alt={project.projectName} width={40} height={40}/> */}
           </Box>
           <TitleProject>{project?.projectName}</TitleProject>

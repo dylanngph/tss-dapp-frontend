@@ -40,7 +40,7 @@ const WrapperBanner = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: inherit;
-  margin-bottom: 500px;
+  margin-bottom: 200px;
   padding-top: 80px;
   margin-top: -80px;
   @media screen and ${device.tabletL} {

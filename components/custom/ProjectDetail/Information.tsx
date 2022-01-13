@@ -119,7 +119,14 @@ export default function BlockChain ({project}: BlockChainProps) {
       <Grid item container direction="column" lg={5}>
         <h3 className="title-sec">QR code</h3>
         <WrapperQRCode>
-          <Image src={QR_CODE} alt={project.projectName} width={375} height={375}/>
+          {/* <Image src={QR_CODE} alt={project.projectName} width={375} height={375}/> */}
+          {
+            typeof window !== "undefined" &&
+            <BoxQrCode>
+              <QRCode value={window?.location.href} />
+            </BoxQrCode>
+          }
+          
         </WrapperQRCode>
       </Grid>
     </Grid>
@@ -160,4 +167,10 @@ const WrapperQRCode = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+`;
+
+const BoxQrCode = styled(Box)`
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #ffffff;
 `;

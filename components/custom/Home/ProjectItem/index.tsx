@@ -26,8 +26,8 @@ export default function ProjectItem ({project, index}: ProjectItemProps) {
       <td>{index + 1}</td>
       <td>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Box sx={{ width: 34, height: 24, marginRight: '5px' }}>
-            <Image src={project.logo} alt={project.projectName} width={24} height={24}/>
+          <Box sx={{ width: 34, height: 24, marginRight: '5px', '& img': {maxWidth: '100%', height: 'auto'} }}>
+            <img src={project?.logo} alt={project.projectName}/>
           </Box>
           <span>{project.projectName}</span>
         </Box>
