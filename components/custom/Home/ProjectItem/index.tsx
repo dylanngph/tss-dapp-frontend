@@ -25,12 +25,12 @@ export default function ProjectItem ({project, index}: ProjectItemProps) {
     <tr onClick={() => { router.push(`/project/${project._id}`) }}>
       <td>{index + 1}</td>
       <td>
-        <Grid item container direction="row" justifyContent="flex-start" alignItems="center">
-          <Box sx={{ width: 34, height: 24 }}>
-            <Image src={`/assets/images/${project.logo}`} alt={project.projectName} width={24} height={24}/>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Box sx={{ width: 34, height: 24, marginRight: '5px' }}>
+            <Image src={project.logo} alt={project.projectName} width={24} height={24}/>
           </Box>
           <span>{project.projectName}</span>
-        </Grid>
+        </Box>
       </td>
       <td>{project.symbol}</td>
       <td>

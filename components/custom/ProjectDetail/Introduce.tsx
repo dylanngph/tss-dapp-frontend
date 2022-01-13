@@ -19,4 +19,5 @@ const PSection = styled.p`
   font-family: 'Inter-Regular';
   color: #58667E;
   width: 100%;
+  white-space: pre;
 `;

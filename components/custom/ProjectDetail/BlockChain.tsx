@@ -9,9 +9,18 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import styled from 'styled-components';
+import { LegalProp, TechLevelProp, SocialValueProp, CommunRepuProp, LegalPropColor, TechLevelPropColor, SocialValuePropColor, CommunRepuPropColor } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
 export interface InformationProps {
+  nft: {
+    id: string,
+    tokenId: string,
+    imageId: string,
+    txHash: string,
+    owner: string,
+    issuedAt: string,
+  }
 }
 
 
@@ -40,7 +49,7 @@ const PASSPORT_BLOCKCHAIN = {
   TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
 }
 
-export default function Information (props: InformationProps) {
+export default function Information ({nft}: InformationProps) {
 
   return (
     <Grid container>
@@ -61,7 +70,7 @@ export default function Information (props: InformationProps) {
                   <h3>SEAL NFT</h3>
                   <h4>Passport of Blockchain</h4>
                   <p>Blockchain project profile</p>
-                  <div className="date">Ngày cấp: { PASSPORT_BLOCKCHAIN.supplyDate }</div>
+                  <div className="date">Ngày cấp: { new Date(nft?.issuedAt).toLocaleDateString('vi-VI') }</div>
                 </div>
               </CardBoxPassport>
             </Grid>
@@ -78,42 +87,42 @@ export default function Information (props: InformationProps) {
                       </Box>
                     ))
                   }
-                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.NFT_ID)}}>
-                    <span className="block-copy">NFT ID</span>
-                    <span>{PASSPORT_BLOCKCHAIN.NFT_ID}</span>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.tokenId)}}>
+                    <span className="block-copy">TOKEN ID</span>
+                    <span>{nft.tokenId}</span>
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
                     <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank">{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</a></span>
                   </BoxMoreInfo>
-                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.TX_Hash)}}>
+                  <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>
                     <span className="block-copy">TX Hash</span>
-                    <span>{PASSPORT_BLOCKCHAIN.TX_Hash.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.TX_Hash.substring(PASSPORT_BLOCKCHAIN.TX_Hash.length - 4, PASSPORT_BLOCKCHAIN.TX_Hash.length)}</span>
+                    <span>{nft.txHash.substring(0, 8) + "..." + nft.txHash.substring(nft.txHash.length - 4, nft.txHash.length)}</span>
                   </BoxMoreInfo>
                 </Grid>
                 <Grid container mt={0} spacing={2}>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Pháp lý</h5>
-                      <span className="green">Rủi ro thấp</span>
+                      <span className={LegalPropColor[nft.legalId]}>{ LegalProp[nft.legalId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Công nghệ</h5>
-                      <span className="yellow">Có khả năng ứng dụng</span>
+                      <span className={TechLevelPropColor[nft.techLevelId]}>{ TechLevelProp[nft.techLevelId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Giá trị xã hội </h5>
-                      <span className="yellow">Có tiềm năng đóng góp cho xã hội</span>
+                      <span className={SocialValuePropColor[nft.socialValueId]}>{ SocialValueProp[nft.socialValueId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Uy tín cộng đồng</h5>
-                      <span className="red">Có một số thông tin tiêu cực</span>
+                      <span className={CommunRepuPropColor[nft.communRepuId]}>{ CommunRepuProp[nft.communRepuId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                 </Grid>
@@ -306,6 +315,7 @@ const BoxMoreInfo = styled(Box)`
   }
   span:last-child {
     color: #11142D;
+    min-width: 80px;
   }
 `;
 

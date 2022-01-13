@@ -16,6 +16,14 @@ export interface ProjectDetailProps {
       incorporationAddress: string,
       acceptDate: string,
     },
+    nfts: {
+      id: string,
+      tokenId: string,
+      imageId: string,
+      txHash: string,
+      owner: string,
+      issuedAt: string,
+    }[],
     logo: string,
     projectName: string,
     symbol: string,
@@ -107,7 +115,11 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
 
       <InformationProject project={project} />
 
-      <BlockChainProject />
+      {
+        project?.nfts.map((nft) => (
+          <BlockChainProject key={nft.id} nft={nft} />
+        ))
+      }
 
       <Introduce description={project.description} />
 

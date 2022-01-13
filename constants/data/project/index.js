@@ -6,6 +6,7 @@ export const projectDetailItem = {
     incorporationAddress: '138 Robinson Road #02-50 Singapore',
     acceptDate: '10/10/2020',
   },
+  nfts: [],
   projectName: 'Jadelabs',
   symbol: 'JAD',
   standards: [
