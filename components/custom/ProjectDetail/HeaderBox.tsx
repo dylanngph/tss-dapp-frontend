@@ -20,14 +20,14 @@ export default function HeaderBox ({project}: HeaderBoxProps) {
       <Grid item container alignItems="center" justifyContent="space-between" md="auto" sm={12} pt={1}>
         <Box sx={{ display: 'flex', alignItems: 'center'}}>
           <Box sx={{ width: 40, height: 40, marginRight: '16px' }}>
-            <Image src={'/assets/images/logo-img-project-detail.png'} alt={project.projectName} width={40} height={40}/>
+            <Image src={'/assets/images/logo-img-project-detail.png'} alt={project?.projectName} width={40} height={40}/>
             {/* <Image src={project.logo} alt={project.projectName} width={40} height={40}/> */}
           </Box>
-          <TitleProject>{project.projectName}</TitleProject>
+          <TitleProject>{project?.projectName}</TitleProject>
         </Box>
         <BoxCertified>
           <Box sx={{ width: 16, height: 16, marginRight: '6px', backgroundImage: 'url("/assets/icons/ico-shield-tick.svg")' }}/>
-          Chứng nhận: {project.detail.acceptDate}
+          Chứng nhận: {project?.detail?.acceptDate}
         </BoxCertified>
       </Grid>
     </Grid>
