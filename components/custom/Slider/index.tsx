@@ -11,18 +11,10 @@ export interface SliderProps {
   typeSettings: string,
   project: {
     developmentPartner: {
-      id: string,
-      image: string,
-      name: string,
-      website: string,
-      position: string,
+      [key: string]: string
     }[],
     developmentTeam: {
-      id: string,
-      image: string,
-      name: string,
-      website: string,
-      position: string,
+      [key: string]: string
     }[]
   }
   
@@ -38,9 +30,9 @@ export default function SliderSlick ({ settings, typeSettings, project }: Slider
       <CustomSlider {...settings}>
         {
           typeSettings === typeIMG ?
-          project.developmentPartner.map(({id, image, name}, index) => {
+          project.developmentPartner.map(({id, image, name, website}) => {
             return (
-              <div key={index}>
+              <div key={id}>
                 <Box sx={{padding: '0 10px'}}>
                   <img src={image?image:`${IMG_RANDOM + (Math.floor(Math.random() * 5) + 1)}.png`} alt={name}/>
                 </Box>
@@ -48,9 +40,9 @@ export default function SliderSlick ({ settings, typeSettings, project }: Slider
             )
           })
           :
-          project.developmentTeam.map(({id, image, name, position}, index) => {
+          project.developmentTeam.map(({id, image, name, position}) => {
             return (
-              <div key={index}>
+              <div key={id}>
                 <BoxTeam>
                   <div className="box-team-image">
                     <img src={image?image:IMG_TEAM_DEFAULT} alt={name}/>

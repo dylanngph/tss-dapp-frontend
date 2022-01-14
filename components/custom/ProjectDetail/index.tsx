@@ -23,14 +23,18 @@ export interface ProjectDetailProps {
       txHash: string,
       owner: string,
       issuedAt: string,
+      legalId: string,
+      techLevelId: string,
+      socialValueId: string,
+      communRepuId: string,
     }[],
     logo: string,
     projectName: string,
     symbol: string,
-    standards: [],
-    communications: [],
+    standards: string[],
+    communications: string[],
     smartContractAddress: string,
-    websites: [],
+    websites: string[],
     socialWebs: {
       name: string,
       link: string,
@@ -44,18 +48,10 @@ export interface ProjectDetailProps {
       vesting: string
     }[],
     developmentPartner: {
-      id: string,
-      image: string,
-      name: string,
-      website: string,
-      position: string,
+      [key: string]: string
     }[],
     developmentTeam: {
-      id: string,
-      image: string,
-      name: string,
-      website: string,
-      position: string,
+      [key: string]: string
     }[]
   }
 }

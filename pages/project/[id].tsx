@@ -35,8 +35,8 @@ export default function ProjectDetail() {
       </Head>
 
       <main>
-        <Header theme={'black'}/>
-        <BoxProjectDetail project={projectDetail}/>
+        <Header theme={'black'} />
+        <BoxProjectDetail project={projectDetail} />
         <Footer />
       </main>
 

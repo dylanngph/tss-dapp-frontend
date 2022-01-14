@@ -35,64 +35,8 @@ export const projectDetailItem = {
       vesting: "5% unlock at TGE, 90-days cliff, 6% monthly"
     }
   ],
-  developmentPartner: [
-    {
-      id: 1,
-      image: '/assets/images/image-slide-1.png',
-      name: 'KAI',
-      website: 'kai.com'
-    },
-    {
-      id: 2,
-      image: '/assets/images/image-slide-5.png',
-      name: '',
-      position: '',
-    },
-    {
-      id: 3,
-      image: '/assets/images/image-slide-3.png',
-      name: '',
-      position: '',
-    },
-    {
-      id: 4,
-      image: '/assets/images/image-slide-4.png',
-      name: '',
-      position: '',
-    },
-  ],
-  developmentTeam: [
-    {
-      id: 1,
-      image: '/assets/images/team-avatar.png',
-      name: 'Bessie Cooper',
-      position: 'Chief executive officer JadeLabs',
-    },
-    {
-      id: 2,
-      image: '/assets/images/team-avatar.png',
-      name: 'Bessie Cooper',
-      position: 'Chief executive officer JadeLabs',
-    },
-    {
-      id: 3,
-      image: '/assets/images/team-avatar.png',
-      name: 'Bessie Cooper',
-      position: 'Chief executive officer JadeLabs',
-    },
-    {
-      id: 4,
-      image: '/assets/images/team-avatar.png',
-      name: 'Bessie Cooper',
-      position: 'Chief executive officer JadeLabs',
-    },
-    {
-      id: 5,
-      image: '/assets/images/team-avatar.png',
-      name: 'Bessie Cooper',
-      position: 'Chief executive officer JadeLabs',
-    },
-  ],
+  developmentPartner: [],
+  developmentTeam: [],
 }
 
 export default projectDetailItem

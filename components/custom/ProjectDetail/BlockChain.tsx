@@ -20,9 +20,12 @@ export interface InformationProps {
     txHash: string,
     owner: string,
     issuedAt: string,
+    legalId: string,
+    techLevelId: string,
+    socialValueId: string,
+    communRepuId: string,
   }
 }
-
 
 const PASSPORT_BLOCKCHAIN = {
   logo: '/assets/images/IOTA.png',
@@ -93,7 +96,7 @@ export default function Information ({nft}: InformationProps) {
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
-                    <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank">{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</a></span>
+                    <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank" rel="noopener noreferrer">{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</a></span>
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>
                     <span className="block-copy">TX Hash</span>

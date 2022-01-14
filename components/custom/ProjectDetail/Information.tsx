@@ -14,10 +14,10 @@ export interface BlockChainProps {
       incorporationAddress: string,
     },
     symbol: string,
-    standards: [],
-    communications: [],
+    standards: string[],
+    communications: string[],
     smartContractAddress: string,
-    websites: [],
+    websites: string[],
     socialWebs: {
       name: string,
       link: string,
@@ -82,7 +82,7 @@ export default function BlockChain ({project}: BlockChainProps) {
                 {
                   project.websites.map((web) => {
                     return (
-                      <a style={{display: 'block'}} key={web} href={web} target="_blank">{web}</a>
+                      <a style={{display: 'block'}} key={web} href={web} target="_blank" rel="noopener noreferrer">{web}</a>
                     )
                   })
                 }</Grid>
@@ -104,7 +104,7 @@ export default function BlockChain ({project}: BlockChainProps) {
                       display: 'inline-block',
                       padding: '3px',
                     }}>
-                      <a href={link} target="_blank" rel="noreferrer">
+                      <a href={link} target="_blank" rel="noopener noreferrer">
                         <Image src={`/assets/icons/socials/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" width={18} height={18} />
                       </a>
                     </Box>
