@@ -45,15 +45,15 @@ export const SocialValuePropColor: tplotOptions = {
 };
 
 export const CommunRepuProp: tplotOptions = {
-  '1': 'Có nhiều thông tin tiêu cực',
+  '1': 'Có nhiều thông tin tích cực',
   '2': 'Có một số thông tin tiêu cực',
   '3': 'Chưa tìm thấy thông tin tiêu cực',
   '4': 'Không có thông tin',
 };
 
 export const CommunRepuPropColor: tplotOptions = {
-  '1': 'red',
-  '2': 'green',
+  '1': 'green',
+  '2': 'red',
   '3': 'yellow',
   '4': 'yellow',
 };
