@@ -97,7 +97,7 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
     } = dataChartDefault;
     project.tokenAllocations.map(({allocationName, rate}) => {
       tpmArrAllocationName.push(allocationName);
-      tpmArrRate.push(rate * 100);
+      tpmArrRate.push(rate);
     });
     dataTpm.labels = tpmArrAllocationName;
     dataTpm.datasets[0].data = tpmArrRate;
