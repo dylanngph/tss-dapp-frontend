@@ -122,12 +122,12 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
       <ChartTokenomics tokenAllocations={project.tokenAllocations} dataChart={getDataChartDefault()} />
 
       <Grid container>
-        <h3 className="title-sec">Đối tác của Jade Labs</h3>
+        <h3 className="title-sec">{`Đối tác của ${project.projectName}`}</h3>
         <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project}/>
       </Grid>
 
       <Grid container mt={2} mb={8}>
-        <h3 className="title-sec">Đội ngũ Jadelabs</h3>
+        <h3 className="title-sec">{`Đội ngũ của ${project.projectName}`}</h3>
         <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project}/>
       </Grid>
 

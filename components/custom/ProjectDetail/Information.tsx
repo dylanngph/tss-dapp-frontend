@@ -25,9 +25,21 @@ export interface BlockChainProps {
   }
 }
 
-const QR_CODE = '/assets/images/qr-example.png';
+// const QR_CODE = '/assets/images/qr-example.png';
 
 export default function BlockChain ({project}: BlockChainProps) {
+  const verifyWebsite = (link: string) => {
+    if (link.indexOf('http') === -1) {
+      return `https://${link}`;
+    }
+    return link;
+  }
+  const verifySmartContract = (str: string) => {
+    if (str.length > 25) {
+      return str.substring(0, 8) + "..." + str.substring(str.length - 4, str.length);
+    }
+    return str;
+  }
   return (
     <Grid container spacing={3} mb={4}>
       <Grid item container direction="column" lg={7}>
@@ -72,7 +84,7 @@ export default function BlockChain ({project}: BlockChainProps) {
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Địa chỉ Smart Contract</Grid>
-              <Grid item>{project.smartContractAddress}</Grid>
+              <Grid item>{verifySmartContract(project.smartContractAddress)}</Grid>
             </Grid>
           </li>
           <li>
@@ -82,7 +94,7 @@ export default function BlockChain ({project}: BlockChainProps) {
                 {
                   project.websites.map((web) => {
                     return (
-                      <a style={{display: 'block'}} key={web} href={web} target="_blank" rel="noopener noreferrer">{web}</a>
+                      <a style={{display: 'block'}} key={web} href={verifyWebsite(web)} target="_blank" rel="noopener noreferrer">{web}</a>
                     )
                   })
                 }</Grid>
