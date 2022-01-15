@@ -19,15 +19,27 @@ export interface ListProjectSection {
 
 export default function ListProjectSection (props: ListProjectSection) {
   const [projectList, setProjectList] = React.useState([]);
+  const [inputSearch, setInputSearch] = React.useState('');
+  const [projectListSearch, setProjectListSearch] = React.useState([]);
+
   React.useEffect(() => {
     fetchData();
   }, []);
+
   const fetchData = async () => {
     try {
       const response = await axios.get(`${API_PROJECT}/project/active/all`);
       setProjectList(response.data.data);
     } catch (error) {}
   };
+
+  const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputSearch(newValue);
+    const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch) !== -1 || item.symbol.toLowerCase().search(inputSearch) !== -1));
+    setProjectListSearch(tpm);
+  };
+
   return (
     <WrapperSection>
       <Container maxWidth="lg">
@@ -49,6 +61,8 @@ export default function ListProjectSection (props: ListProjectSection) {
               ),
             }}
             variant="outlined"
+            value={inputSearch}
+            onChange={handleInputSearch}
           />
         </Box>
         <Grid container justifyContent="space-between">
@@ -86,14 +100,25 @@ export default function ListProjectSection (props: ListProjectSection) {
             </thead>
             <tbody>
               {
-                projectList.map((item, index) => {
-                  return <ProjectItem key={index} project={item} index={index}></ProjectItem>
-                })
+                !inputSearch ?
+                  projectList.map((item, index) => {
+                    return <ProjectItem key={index} project={item} index={index}></ProjectItem>
+                  })
+                :
+                  projectListSearch.map((item, index) => {
+                    return <ProjectItem key={index} project={item} index={index}></ProjectItem>
+                  })
               }
             </tbody>
             <tfoot>
               <tr>
-                <td colSpan={5}>Đang hiển thị 10 / {projectList.length}</td>
+                {
+                  !inputSearch ?
+                    <td colSpan={5}>Đang hiển thị {projectList.length} / {projectList.length}</td>
+                  :
+                    <td colSpan={5}>Đang hiển thị {projectListSearch.length} / {projectListSearch.length}</td>
+                }
+                
                 <td colSpan={2}>
                   <Grid container direction="row" justifyContent="flex-end" alignItems="center">
                     <ButtonArrowNext/>
