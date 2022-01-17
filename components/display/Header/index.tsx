@@ -26,9 +26,10 @@ export default function Header({theme}: HeaderProps) {
         <Grid container>
           <Grid item container alignItems="center" xs={8}>
             <Box sx={{ width: 70, height: 32, cursor: 'pointer' }}>
-              <a href="/">
+              {/* <Link href="/">
                 <Image src={theme == 'white' ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" width={70} height={32} />
-              </a>
+              </Link> */}
+              <Image src={theme == 'white' ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" width={70} height={32} />
             </Box>
             <ul>
               {
