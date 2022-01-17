@@ -2,7 +2,7 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
-import { listAuthSection } from '../../config.nft';
+import { listAuthSection } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
 export default function AuthSection () {

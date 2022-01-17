@@ -25,9 +25,7 @@ export interface BlockChainProps {
   }
 }
 
-// const QR_CODE = '/assets/images/qr-example.png';
-
-export default function BlockChain ({project}: BlockChainProps) {
+export default function Information ({project}: BlockChainProps) {
   const verifyWebsite = (link: string) => {
     if (link.indexOf('http') === -1) {
       return `https://${link}`;
@@ -94,7 +92,7 @@ export default function BlockChain ({project}: BlockChainProps) {
                 {
                   project.websites.map((web) => {
                     return (
-                      <a style={{display: 'block'}} key={web} href={verifyWebsite(web)} target="_blank" rel="noopener noreferrer">{web}</a>
+                      <a key={web} style={{display: 'block'}} href={verifyWebsite(web)} target="_blank" rel="noopener noreferrer">{web}</a>
                     )
                   })
                 }</Grid>
@@ -105,9 +103,9 @@ export default function BlockChain ({project}: BlockChainProps) {
               <Grid item>Mạng xã hội</Grid>
               <Grid item>
               {
-                project.socialWebs.map(({name, link}, key) => {
+                project.socialWebs.map(({name, link}) => {
                   return (
-                    <Box key={key} sx={{
+                    <Box key={name} sx={{
                       width: '24px',
                       height: '24px',
                       borderRadius: '50%',
@@ -117,7 +115,7 @@ export default function BlockChain ({project}: BlockChainProps) {
                       padding: '3px',
                     }}>
                       <a href={link} target="_blank" rel="noopener noreferrer">
-                        <Image src={`/assets/icons/socials/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" width={18} height={18} />
+                        <ImgSocial src={`/assets/icons/socials/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
                       </a>
                     </Box>
                   )
@@ -131,14 +129,13 @@ export default function BlockChain ({project}: BlockChainProps) {
       <Grid item container direction="column" lg={5}>
         <h3 className="title-sec">QR code</h3>
         <WrapperQRCode>
-          {/* <Image src={QR_CODE} alt={project.projectName} width={375} height={375}/> */}
           {
-            typeof window !== "undefined" &&
-            <BoxQrCode>
-              <QRCode value={window?.location.href} />
-            </BoxQrCode>
+            typeof window !== "undefined" && (
+              <BoxQrCode>
+                <QRCode title="qr-code" value={window?.location.href} />
+              </BoxQrCode>
+            )
           }
-          
         </WrapperQRCode>
       </Grid>
     </Grid>
@@ -181,8 +178,13 @@ const WrapperQRCode = styled.div`
   padding: 20px;
 `;
 
-const BoxQrCode = styled(Box)`
+const BoxQrCode = styled.div`
   padding: 30px;
   border-radius: 20px;
   background-color: #ffffff;
+`;
+
+const ImgSocial = styled.img`
+  width: 18px;
+  height: 18px;
 `;

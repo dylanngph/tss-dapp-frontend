@@ -17,46 +17,54 @@ export interface SliderProps {
       [key: string]: string
     }[]
   }
-  
 }
 
-const IMG_RANDOM = '/assets/images/image-slide-';
 const IMG_TEAM_DEFAULT = '/assets/images/team-avatar.png';
-const typeIMG = 'img';
+const TYPE_SLICK = 'img';
 
 export default function SliderSlick ({ settings, typeSettings, project }: SliderProps) {
   return (
     <Grid container>
-      <CustomSlider {...settings}>
-        {
-          typeSettings === typeIMG ?
-          project.developmentPartner.map(({id, image, name, website}) => {
-            return (
-              <div key={id}>
-                <Box sx={{padding: '0 10px'}}>
-                  <img src={image?image:`${IMG_RANDOM + (Math.floor(Math.random() * 5) + 1)}.png`} alt={name}/>
-                </Box>
-              </div>
-            )
-          })
-          :
-          project.developmentTeam.map(({id, image, name, position}) => {
-            return (
-              <div key={id}>
-                <BoxTeam>
-                  <div className="box-team-image">
-                    <img src={image?image:IMG_TEAM_DEFAULT} alt={name}/>
-                  </div>
-                  <div className="box-team-content">
-                    <h6>{name}</h6>
-                    <span>{position}</span>
-                  </div>
-                </BoxTeam>
-              </div>
-            )
-          })
-        }
-      </CustomSlider>
+      {
+        typeSettings === TYPE_SLICK ?
+          project.developmentPartner.length > 0 && (
+            <CustomSlider {...settings}>
+              {
+                project.developmentPartner.map(({id, image, name, website}, index) => {
+                  return (
+                    <Box key={index}>
+                      <Box sx={{padding: '0 10px'}}>
+                        <StyledImg src={image} alt={name} />
+                      </Box>
+                    </Box>
+                  )
+                })
+              }
+            </CustomSlider>
+          )
+        :
+          project.developmentTeam.length > 0 && (
+            <CustomSlider {...settings}>
+              {
+                project.developmentTeam.map(({id, image, name, position}, index) => {
+                  return (
+                    <Box key={index}>
+                      <BoxTeam>
+                        <BoxTeamImg>
+                          <img src={image?image:IMG_TEAM_DEFAULT} alt={name}/>
+                        </BoxTeamImg>
+                        <BoxTeamContent>
+                          <h6>{name}</h6>
+                          <span>{position}</span>
+                        </BoxTeamContent>
+                      </BoxTeam>
+                    </Box>
+                  )
+                })
+              }
+            </CustomSlider>
+          )
+      }
     </Grid>
   );
 }
@@ -73,11 +81,12 @@ const CustomSlider = styled(Slider)`
   .slick-dots li.slick-active button:before {
     color: #446DFF;
   }
-  .slick-slide img {
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-  }
+`;
+
+const StyledImg = styled.img`
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 `;
 
 const BoxTeam = styled.div`
@@ -103,35 +112,40 @@ const BoxTeam = styled.div`
     border-radius: 12px;
     z-index: -1;
   }
-  .box-team-image {
-    width: 86px;
-    height: 86px;
-    margin: 0 auto 12px;
-    img {
-      border-radius: 50%;
-    }
-  }
-  .box-team-content {
-    text-align: center;
-    h6 {
-      font-size: 18px;
-      line-height: 24px;
-      color: #446DFF;
-      margin: 0 auto 12px;
-    }
-    span {
-      font-family: 'Inter-Regular';
-      color: #58667E;
-    }
-  }
   @media screen and ${device.tabletL} {
     margin: 12px;
     padding: 16px;
-    .box-team-content {
-      h6 {
-        font-size: 24px;
-        line-height: 29px;
-      }
+  }
+`;
+
+const BoxTeamImg = styled(Box)`
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 12px;
+  img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const BoxTeamContent = styled(Box)`
+  text-align: center;
+  h6 {
+    font-size: 18px;
+    line-height: 24px;
+    color: #446DFF;
+    margin: 0 auto 12px;
+  }
+  span {
+    font-family: 'Inter-Regular';
+    color: #58667E;
+  }
+  @media screen and ${device.tabletL} {
+    h6 {
+      font-size: 24px;
+      line-height: 29px;
     }
   }
 `;

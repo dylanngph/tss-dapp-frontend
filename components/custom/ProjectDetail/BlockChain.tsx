@@ -52,7 +52,7 @@ const PASSPORT_BLOCKCHAIN = {
   TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
 }
 
-export default function Information ({nft}: InformationProps) {
+export default function BlockChain ({nft}: InformationProps) {
 
   return (
     <Grid container>
