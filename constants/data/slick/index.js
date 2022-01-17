@@ -11,15 +11,10 @@ export const settingsPartner = {
       settings: {
         slidesToShow: 3,
       }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-      }
-    },
+    }
   ]
 };
+
 export const settingsTeam = {
   dots: true,
   arrows: false,

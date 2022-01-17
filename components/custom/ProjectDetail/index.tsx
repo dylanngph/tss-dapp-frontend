@@ -2,12 +2,12 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import HeaderBox from 'components/custom/ProjectDetail/HeaderBox';
-import InformationProject from 'components/custom/ProjectDetail/Information';
-import BlockChainProject from 'components/custom/ProjectDetail/BlockChain';
+import Information from 'components/custom/ProjectDetail/Information';
+import BlockChain from 'components/custom/ProjectDetail/BlockChain';
 import Introduce from 'components/custom/ProjectDetail/Introduce';
 import ChartTokenomics from 'components/custom/ProjectDetail/ChartTokenomics';
 import SliderSlick from 'components/custom/Slider';
-import { settingsPartner, settingsTeam } from './config.slick';
+import { settingsPartner, settingsTeam } from 'constants/data/slick';
 export interface ProjectDetailProps {
   project: {
     id: string,
@@ -109,11 +109,11 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
 
       <HeaderBox project={project} />
 
-      <InformationProject project={project} />
+      <Information project={project} />
 
       {
-        project?.nfts.map((nft) => (
-          <BlockChainProject key={nft.id} nft={nft} />
+        project?.nfts.map((nft, index) => (
+          <BlockChain key={index} nft={nft} />
         ))
       }
 
@@ -126,7 +126,7 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
         <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project}/>
       </Grid>
 
-      <Grid container mt={2} mb={8}>
+      <Grid container mt={2} mb={8} id="boxSlideTeam">
         <h3 className="title-sec">{`Đội ngũ của ${project.projectName}`}</h3>
         <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project}/>
       </Grid>

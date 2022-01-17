@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import BoxIOTA from 'components/custom/Home/BoxIOTA';
 import styled from 'styled-components';
-import { listBoxIOTA } from '../../config.nft';
+import { listBoxIOTA } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
 export default function Banner () {
