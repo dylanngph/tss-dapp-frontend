@@ -43,7 +43,7 @@ export default function ListProjectSection (props: ListProjectSection) {
   return (
     <WrapperSection>
       <Container maxWidth="lg">
-        <Box sx={{ width: 500, height: 90, maxWidth: '100%',}}>
+        <Box sx={{ width: 500, height: 60, maxWidth: '100%',}}>
           <CustomInputSearch
             fullWidth
             id="input-search"
@@ -66,13 +66,13 @@ export default function ListProjectSection (props: ListProjectSection) {
           />
         </Box>
         <Grid container justifyContent="space-between">
-          <Grid item>
+          <Grid item mt={2}>
             <CustomButton className="active" variant="contained">Tất cả dự án</CustomButton>
             {/* <CustomButton variant="contained">Passport of Blockchain</CustomButton>
             <CustomButton variant="contained">Tài sản số</CustomButton>
             <CustomButton variant="contained">Tài sản nền</CustomButton> */}
           </Grid>
-          <Grid item>
+          <Grid item mt={2}>
             <LabelSpan>Hiển thị</LabelSpan>
             <CustomSelect
               labelId="simple-select-show-label"

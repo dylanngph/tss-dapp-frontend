@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from "next/link";
 import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -15,7 +16,9 @@ export default function Footer(props: FooterProps) {
         <Grid container spacing={4} mt={0} pt={7} pb={7}>
           <Grid item container lg={4} sm={12}>
             <Box sx={{ width: 150, height: 71, }}>
-              <Image src={FooterData.img_footer_path} alt="Logo TSS Footer" width={150} height={71} />
+              <Link href="/">
+                <img src={FooterData.img_footer_path} alt="LOGO TSS" />
+              </Link>
             </Box>
           </Grid>
           <Grid item container direction="column" lg={4} sm={6} dangerouslySetInnerHTML={{__html: FooterData.about}} />

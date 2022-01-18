@@ -85,7 +85,7 @@ export const listBoxIOTA = [
 export const listAuthSection = [
   {
     id: 1,
-    img_path: '/assets/images/logoTSS.png',
+    img_path: '/assets/images/logo-tss-black.png',
     name: 'LOGO TSS',
   },
   {
