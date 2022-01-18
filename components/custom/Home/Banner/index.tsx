@@ -43,7 +43,7 @@ const WrapperBanner = styled.div`
   margin-bottom: 200px;
   padding-top: 80px;
   margin-top: -80px;
-  @media screen and ${device.tabletL} {
+  @media screen and ${device.tablet} {
     min-height: 676px;
     margin-bottom: 0;
     padding-top: 100px;
