@@ -33,7 +33,7 @@ const PASSPORT_BLOCKCHAIN = {
   listImg: [
     {
       id: 1,
-      imgPath: '/assets/images/logo-tss.png',
+      imgPath: '/assets/images/logo-tss-black.png',
       name: 'logo-tss',
     },
     {
@@ -72,7 +72,6 @@ export default function BlockChain ({nft}: InformationProps) {
                 <div className="box-passport-content">
                   <h3>SEAL NFT</h3>
                   <h4>Passport of Blockchain</h4>
-                  <p>Blockchain project profile</p>
                   <div className="date">Ngày cấp: { new Date(nft?.issuedAt).toLocaleDateString('vi-VI') }</div>
                 </div>
               </CardBoxPassport>
@@ -249,6 +248,7 @@ const CardBoxPassport = styled.div`
       font-size: 14px;
       padding: 4px 8px;
       display: inline-block;
+      margin-top: 30px;
     }
   }
   // &:after {

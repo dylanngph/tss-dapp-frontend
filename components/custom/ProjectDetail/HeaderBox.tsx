@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { Grid, Box } from '@mui/material';
 import styled from 'styled-components';
-import { device } from 'styles/media-device';
+// import { device } from 'styles/media-device';
 
 export interface HeaderBoxProps {
   project: {
@@ -19,16 +19,15 @@ export default function HeaderBox ({project}: HeaderBoxProps) {
     <Grid container justifyContent="space-between" pt={3} pb={3}>
       <Grid item container alignItems="center" justifyContent="space-between" md="auto" sm={12} pt={1}>
         <Box sx={{ display: 'flex', alignItems: 'center'}}>
-          <Box sx={{ width: 40, height: 40, marginRight: '16px', '& img': {maxWidth: '100%', height: 'auto'} }}>
+          <BoxWrapperImage>
             <img src={project?.logo} alt={project?.projectName}/>
-            {/* <Image src={project.logo} alt={project.projectName} width={40} height={40}/> */}
-          </Box>
+          </BoxWrapperImage>
           <TitleProject>{project?.projectName}</TitleProject>
         </Box>
-        <BoxCertified>
+        {/* <BoxCertified>
           <Box sx={{ width: 16, height: 16, marginRight: '6px', backgroundImage: 'url("/assets/icons/ico-shield-tick.svg")' }}/>
           Chứng nhận: {project?.detail?.acceptDate}
-        </BoxCertified>
+        </BoxCertified> */}
       </Grid>
     </Grid>
   );
@@ -43,21 +42,35 @@ const TitleProject = styled.h2`
   margin-right: 16px;
 `;
 
-const BoxCertified = styled.div`
-  font-size: 12px;
-  line-height: 14px;
-  background: #EFF2F5;
-  border-radius: 4px;
-  padding: 6px;
-  color: #58667E;
+const BoxWrapperImage = styled(Box)`
   display: flex;
-  max-height: 25px;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px 0;
-  @media screen and ${device.tabletL} {
-    font-size: 14px;
-    line-height: 17px;
-    padding: 8px;
+  img {
+    max-width: 100%;
+    height: auto;
   }
 `;
+
+// const BoxCertified = styled.div`
+//   font-size: 12px;
+//   line-height: 14px;
+//   background: #EFF2F5;
+//   border-radius: 4px;
+//   padding: 6px;
+//   color: #58667E;
+//   display: flex;
+//   max-height: 25px;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 5px 0;
+//   @media screen and ${device.tabletL} {
+//     font-size: 14px;
+//     line-height: 17px;
+//     padding: 8px;
+//   }
+// `;

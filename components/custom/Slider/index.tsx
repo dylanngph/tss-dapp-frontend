@@ -24,7 +24,7 @@ const TYPE_SLICK = 'img';
 
 export default function SliderSlick ({ settings, typeSettings, project }: SliderProps) {
   return (
-    <Grid container>
+    <Grid container sx={{ padding: '0 25px' }}>
       {
         typeSettings === TYPE_SLICK ?
           project.developmentPartner.length > 0 && (
@@ -80,6 +80,9 @@ const CustomSlider = styled(Slider)`
   }
   .slick-dots li.slick-active button:before {
     color: #446DFF;
+  }
+  .slick-prev:before, .slick-next:before {
+    color: #A6B0C3;
   }
 `;
 

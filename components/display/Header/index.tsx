@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Image from 'next/image';
 import Link from "next/link";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -26,10 +25,9 @@ export default function Header({theme}: HeaderProps) {
         <Grid container>
           <Grid item container alignItems="center" xs={8}>
             <Box sx={{ width: 70, height: 32, cursor: 'pointer' }}>
-              {/* <Link href="/">
-                <Image src={theme == 'white' ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" width={70} height={32} />
-              </Link> */}
-              <Image src={theme == 'white' ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" width={70} height={32} />
+              <Link href="/">
+                <img src={theme == 'white' ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" />
+              </Link>
             </Box>
             <ul>
               {
@@ -62,6 +60,7 @@ const WrapperNav = styled.nav`
     background-color: transparent;
     &.nav-sticky {
       background: linear-gradient(286.23deg,#2A2AFF -70.7%,#000696 78.49%);
+      // background-color: #ffffff;
     }
   }
   &.black {
@@ -76,10 +75,10 @@ const WrapperNav = styled.nav`
       margin-left: 30px;
       cursor: pointer;
       font-family: 'Inter-Bold';
-      color: var(--color-primary);
-      &.active {
-        color: var(--color-neutral-gray-1);
-      }
+      color: #ffffff;
+      // &.active {
+      //   color: var(--color-neutral-gray-1);
+      // }
     }
   }
   .btn-nav {
@@ -97,7 +96,11 @@ const WrapperNav = styled.nav`
       display: block;
       li {
         display: inline-block;
-        color: ${({ theme }) => theme == 'white' ? '#ffffff' : 'var(--color-primary)'};
+      }
+    }
+    &.black {
+      ul li {
+        color: var(--color-primary);
       }
     }
     .btn-nav {
