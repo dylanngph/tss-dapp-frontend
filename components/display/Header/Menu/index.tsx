@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Link from "next/link";
-import { NavMenu } from '../config';
+import { NavMenu } from 'constants/data/menu';
 import { useRouter } from "next/router";
 import styled from 'styled-components';
 

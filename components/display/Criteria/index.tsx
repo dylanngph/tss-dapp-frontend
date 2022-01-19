@@ -76,7 +76,7 @@ export default function CriteriaPage () {
         <h5>Tổng thể đánh giá sau 10 tiêu chí</h5>
         <ul>
           <li><strong>Rủi ro thấp:</strong> khi có từ 7 tiêu chí đạt “Rủi ro thấp” trở lên</li>
-          <li><strong>Rủi ro:</strong> khi có từ 5 – 7 tiêu chí là mức “Rủi ro”</li>
+          <li><strong>Rủi ro:</strong> khi có từ 5 - 7 tiêu chí là mức “Rủi ro”</li>
           <li><strong>Rủi ro cao:</strong> khi có từ 7 tiêu chí ở mức “Rủi ro” trở lên </li>
           <li><strong>Chưa đánh giá được:</strong> khi có từ 5 tiêu chí ở mức “Chưa đủ dữ liệu để đánh giá”</li>
         </ul>

@@ -4,7 +4,7 @@ export const NavMenu = [
     href: '/',
   },
   {
-    title: 'Listing Hồ sơ',
-    href: '#',
+    title: 'Quỹ đầu tư',
+    href: '/investment-funds',
   }
 ]

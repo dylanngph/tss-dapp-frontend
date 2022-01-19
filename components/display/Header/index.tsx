@@ -7,7 +7,7 @@ import Burger from 'components/display/Header/Burger';
 import Menu from 'components/display/Header/Menu';
 import useScrollHandler from "utils/hooks/useScrollHandler";
 import { useRouter } from "next/router";
-import { NavMenu } from './config';
+import { NavMenu } from 'constants/data/menu';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 

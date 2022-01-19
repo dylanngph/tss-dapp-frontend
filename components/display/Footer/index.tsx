@@ -24,7 +24,7 @@ export default function Footer(props: FooterProps) {
           <Grid item container direction="column" lg={4} sm={6} dangerouslySetInnerHTML={{__html: FooterData.about}} />
           <Grid item container direction="column" lg={4} sm={6}>
             <div dangerouslySetInnerHTML={{__html: FooterData.headquarters}}></div>
-            <Grid container style={{ marginTop: '20px' }}>
+            <Grid container mt={4} mb={4}>
               {
                 FooterData.list_social.map(({id, link, icon_path}) => {
                   return (
@@ -37,6 +37,9 @@ export default function Footer(props: FooterProps) {
                 })
               }
             </Grid>
+            <Box sx={{ fontWeight: 'bold' }}>
+              <Link href="/criteria">Tiêu chí xét duyệt dự án</Link>
+            </Box>
           </Grid>
         </Grid>
       </Container>
