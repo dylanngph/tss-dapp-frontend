@@ -1,17 +1,31 @@
 import * as React from 'react';
-import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import styled from 'styled-components';
 
 export interface ProjectsProps {
   data: {
-    image: string,
+    logo: string,
     name: string,
-    type: string,
-    totalAmount: number,
-    dateCallCapital: string,
+    round: string,
+    totalCap: number,
+    fundedDate: string,
+    website: string,
   }[]
+}
+
+const convertTotalCap = (totalCap: number) => {
+  if (!totalCap || (typeof totalCap !== 'number')) return;
+  const oneM = 1000000;
+  return '$' + (totalCap / oneM) + 'm';
+}
+
+const verifyWebsite = (link: string) => {
+  if (!link) return '#';
+  if (link.indexOf('http') === -1) {
+    return `https://${link}`;
+  }
+  return link;
 }
 
 export default function Projects ({data}: ProjectsProps) {
@@ -19,27 +33,31 @@ export default function Projects ({data}: ProjectsProps) {
     <Box pt={2} pb={2}>
       <h3 className="title-sec">Danh mục đầu tư ({data.length})</h3>
       <Grid container spacing={2}>
-        {data.map(({image, name, type, totalAmount, dateCallCapital}, index) => (
+        {data.map(({logo, name, round, totalCap, fundedDate, website}, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
             <BoxProject>
               <Grid container justifyContent="space-between">
                 <Grid item>
-                  <Image src={image} alt={name} width={40} height={40} />
-                  <TitleBox>{name}</TitleBox>
+                  <Box sx={{ maxWidth: 40, '& img': { maxWidth: '100%', height: 'auto' } }}>
+                    <img src={logo} alt={name} />
+                  </Box>
+                  <TitleBox>
+                    <a href={verifyWebsite(website)} target="_blank" rel="noopener noreferrer">{name}</a>
+                  </TitleBox>
                 </Grid>
                 <Grid item>
-                  <LabelBox>{type}</LabelBox>
+                  <LabelBox>{round}</LabelBox>
                 </Grid>
               </Grid>
               <Box sx={{ borderBottom: '1px solid #EFF2F5', margin: '16px 0' }}></Box>
               <Grid container spacing={1}>
                 <Grid item container justifyContent="center" alignItems="center" xs={6}>
                   <BoxCapitalTitle>Tổng số vốn gọi</BoxCapitalTitle>
-                  <BoxCapitalContent>{'$' + totalAmount + 'm'}</BoxCapitalContent>
+                  <BoxCapitalContent>{convertTotalCap(totalCap)}</BoxCapitalContent>
                 </Grid>
                 <Grid item container justifyContent="center" alignItems="center" xs={6}>
                   <BoxCapitalTitle>Ngày gọi vốn</BoxCapitalTitle>
-                  <BoxCapitalContent>{dateCallCapital}</BoxCapitalContent>
+                  <BoxCapitalContent>{fundedDate && new Date(fundedDate).toLocaleDateString('vi-VI')}</BoxCapitalContent>
                 </Grid>
               </Grid>
             </BoxProject>

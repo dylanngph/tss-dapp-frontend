@@ -1,12 +1,37 @@
+import * as React from 'react';
 import type { NextPage } from "next";
 import Head from "next/head";
 import Header from 'components/display/Header';
 import Footer from "components/display/Footer";
 import FunPage from "components/display/Fund";
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import { API_PROJECT } from 'apis/config/index';
 
 const IFund: NextPage = () => {
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const [fundItem, setFundItem] = React.useState();
+
+  React.useEffect(() => {
+    fetchData();
+  }, [router]);
+
+  const fetchData = async () => {
+    if (!router.query.id) return;
+    setLoading(true);
+    try {
+      const response = await axios.get(`${API_PROJECT}/fund/detail?fundId=${router.query.id}`);
+      setFundItem(response.data.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -17,7 +42,24 @@ const IFund: NextPage = () => {
 
       <main>
         <Header theme={'black'} />
-        <FunPage />
+        {
+          loading ?
+          (
+            <Container>
+              <Box sx={{ height: 500, pt: 0.5 }}>
+                <Skeleton width="50%" />
+                <Skeleton width="50%" animation="wave" />
+                <Skeleton width="50%" animation="wave" />
+                <Skeleton width="50%" animation={false} />
+              </Box>
+            </Container>
+          )
+          :
+            fundItem && (
+              <FunPage fundItem={fundItem} />
+            )
+        }
+        
         <Footer />
       </main>
 

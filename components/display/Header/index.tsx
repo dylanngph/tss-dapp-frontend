@@ -19,6 +19,7 @@ export default function Header({theme}: HeaderProps) {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
   const scrollPosition = useScrollHandler();
+  console.log('>> scrollPosition', scrollPosition);
   return (
     <WrapperNav className={`${theme} ${scrollPosition ? 'nav-sticky' : ''}`}>
       <Container maxWidth="lg">
@@ -60,7 +61,6 @@ const WrapperNav = styled.nav`
     background-color: transparent;
     &.nav-sticky {
       background: linear-gradient(286.23deg,#2A2AFF -70.7%,#000696 78.49%);
-      // background-color: #ffffff;
     }
   }
   &.black {
@@ -76,9 +76,6 @@ const WrapperNav = styled.nav`
       cursor: pointer;
       font-family: 'Inter-Bold';
       color: #ffffff;
-      // &.active {
-      //   color: var(--color-neutral-gray-1);
-      // }
     }
   }
   .btn-nav {

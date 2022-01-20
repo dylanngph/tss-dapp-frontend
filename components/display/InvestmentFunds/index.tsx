@@ -1,24 +1,51 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import TableInvestmentFunds from 'components/custom/TableInvestmentFunds';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import axios from 'axios';
+import { API_PROJECT } from 'apis/config/index';
 
-function createData(id: string, name: string, type: string, foundedYear: string, projects: {image: string, 
-  name: string,
-  date: string}[]) {
-  return { id, name, type, foundedYear, projects };
+export interface TableInvestmentFundsProps {
 }
 
-const investmentFundsInit = [
-  createData('1', 'Dreamboat Capital', 'Đầu tư blockchain', '16/01/2022', [{image: '/assets/images/IOTA1-small.png', name: 'Project Name', date: '2/3/2833'}, {image: '/assets/images/IOTA1-small.png', name: 'Project Name', date: '2/3/2833'}]),
-  createData('2', 'Cupcake', 'Đầu tư blockchain', '16/01/2022', [{image: '/assets/images/IOTA1-small.png', name: 'The Nothing of the Streams', date: '2/3/2833'}, {image: '/assets/images/IOTA1-small.png', name: 'Project Name', date: '2/3/2833'}, {image: '/assets/images/IOTA1-small.png', name: 'Project Name', date: '2/3/2833'}]),
-  createData('3', 'The Names is Dragon', 'Đầu tư blockchain', '16/01/2022', [{image: '/assets/images/IOTA1-small.png', name: 'Misty Mist', date: '2/3/2833'}, {image: '/assets/images/IOTA1-small.png', name: 'Servants in the Storms', date: '2/3/2833'}, {image: '/assets/images/IOTA1-small.png', name: 'Tales of Flowers', date: '2/3/2833'}]),
-];
-
 export default function InvestmentFundsPage () {
+  const [loading, setLoading] = React.useState(false);
+  const [investmentFunds, setInvestmentFunds] = React.useState();
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${API_PROJECT}/fund/all`);
+      setInvestmentFunds(res.data.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
     <Container sx={{ paddingTop: '24px' }}>
       <h3 className="title-sec">Quỹ đầu tư</h3>
-      <TableInvestmentFunds investmentFunds={investmentFundsInit}/>
+      {
+        loading ?
+        (
+          <Box sx={{ height: 500, pt: 0.5 }}>
+            <Skeleton width="50%" />
+            <Skeleton width="50%" animation="wave" />
+            <Skeleton width="50%" animation="wave" />
+            <Skeleton width="50%" animation={false} />
+          </Box>
+        )
+        :
+          investmentFunds && (
+            <TableInvestmentFunds investmentFunds={investmentFunds}/>
+          )          
+      }
     </Container>
   );
 }

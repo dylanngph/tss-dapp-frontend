@@ -9,7 +9,7 @@ export interface BoxDetailProps {
 
 export default function BoxDetail ({title, content}: BoxDetailProps) {
   return (
-    <Grid item xs={6} sm={3}>
+    <Grid item xs={6} sm={4}>
       <BoxConainer>
         <BoxTitle>{title}</BoxTitle>
         <BoxContent>{content}</BoxContent>

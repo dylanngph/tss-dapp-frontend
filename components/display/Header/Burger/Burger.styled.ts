@@ -10,7 +10,7 @@ export const StyledBurger = styled.button<BurgerProps>`
   height: 2rem;
   position: relative;
   top: 0;
-  right: 25px;
+  right: 5px;
   z-index: 20;
   display: none;
   border: none;

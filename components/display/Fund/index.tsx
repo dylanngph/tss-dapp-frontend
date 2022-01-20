@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -8,57 +7,27 @@ import Introduce from 'components/custom/Fund/Introduce';
 import Projects from 'components/custom/Fund/Projects';
 import styled from 'styled-components';
 
-const FundItemInit = {
-  image: '/assets/images/IOTA.png',
-  name: 'Dreamboat Capital',
-  type: 'Đầu tư blockchain',
-  foundedYear: '2021',
-  dateInvestLastest: '12/12/2021',
-  state: 'Hoạt động',
-  description: 'Dreamboat Capital has made 28 investments. Their most recent investment was on Dec. 5, 2021, when raised $2.7M Dreamboat Capital has made 28 investments. Their most recent investment was on Dec. 5, 2021, when raised $2.7M Dreamboat Capital has made 28 investments. Their most recent investment was on Dec. 5, 2021, when raised $2.7M Dreamboat Capital has made 28 investments. Their most recent investment was on Dec. 5, 2021, when raised $2.7M ',
-  projects: [
-    {
-      image: '/assets/images/IOTA2-small.png',
-      name: 'NINNEKO',
-      type: 'Private',
-      totalAmount: 1.1,
-      dateCallCapital: '22/12/2020',
-    },
-    {
-      image: '/assets/images/IOTA2-small.png',
-      name: 'NINNEKO',
-      type: 'Private',
-      totalAmount: 1.1,
-      dateCallCapital: '22/12/2020',
-    },
-    {
-      image: '/assets/images/IOTA2-small.png',
-      name: 'NINNEKO',
-      type: 'Private',
-      totalAmount: 1.1,
-      dateCallCapital: '22/12/2020',
-    },
-    {
-      image: '/assets/images/IOTA2-small.png',
-      name: 'NINNEKO',
-      type: 'Private',
-      totalAmount: 1.1,
-      dateCallCapital: '22/12/2020',
-    }
-  ],
-  socialWebs: [
-    {
-      name: 'Instagram',
-      link: 'instagram.com',
-    },
-    {
-      name: 'Facebook',
-      link: 'facebook.com',
-    }
-  ]
-}
-
 export interface FunPageProps {
+  fundItem: {
+    logo: string,
+    name: string,
+    areas: string[],
+    establishedDate: string,
+    state: string,
+    description: string,
+    socialWebs: {
+      name: string,
+      link: string,
+    }[]
+    projects: {
+      logo: string,
+      name: string,
+      round: string,
+      totalCap: number,
+      fundedDate: string,
+      website: string,
+    }[]
+  }
 }
 
 const verifyWebsite = (link: string) => {
@@ -68,41 +37,41 @@ const verifyWebsite = (link: string) => {
   return link;
 }
 
-export default function FunPage(props: FunPageProps) {
-  const [FundItem, setFundItem] = React.useState(FundItemInit);
+export default function FunPage({fundItem}: FunPageProps) {
   return (
     <Container sx={{ paddingTop: '24px', paddingBottom: '24px' }}>
       <Grid container>
-        <Grid item xs={12} sm={12} md={4} lg={4}>
+        <Grid item xs={12} sm={12} md={5} lg={5}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={3} lg={3}>
-              <Image src={FundItem?.image} alt={FundItem?.name} width={86} height={86} />
+            <Grid item xs={12} sm={12} md={2} lg={2}>
+              <Box sx={{ maxWidth: 86, '& img': { maxWidth: '100%', height: 'auto' } }}>
+                <img src={fundItem?.logo} alt={fundItem?.name} />
+              </Box>
             </Grid>
-            <Grid item xs={12} sm={12} md={9} lg={9}>
-              <TitleProject>{FundItem?.name}</TitleProject>
+            <Grid item xs={12} sm={12} md={10} lg={10}>
+              <TitleProject>{fundItem?.name}</TitleProject>
               <Grid container>
-                { FundItem?.socialWebs.map(({name, link}, index) => (
+                {/* { fundItem?.socialWebs.map(({name, link}, index) => (
                   <BoxSocial key={index}>
                     <a href={verifyWebsite(link)} target="_blank" rel="noopener noreferrer">
                       <ImgSocial src={`/assets/icons/socials-white/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
                     </a>
                   </BoxSocial>
-                ))}
+                )) } */}
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item container xs={12} sm={12} md={8} lg={8} spacing={2}>
-          <BoxDetail title="Dạng đầu tư" content={FundItem?.type} />
-          <BoxDetail title="Năm thành lập" content={FundItem?.foundedYear} />
-          <BoxDetail title="Lần cuối đầu tư" content={FundItem?.dateInvestLastest} />
-          <BoxDetail title="Trạng thái" content={FundItem?.state} />
+        <Grid item container xs={12} sm={12} md={7} lg={7} spacing={2}>
+          <BoxDetail title="Dạng đầu tư" content={fundItem?.areas.join(',')} />
+          <BoxDetail title="Năm thành lập" content={new Date(fundItem?.establishedDate).getFullYear().toString()} />
+          <BoxDetail title="Trạng thái" content={fundItem?.state} />
         </Grid>
       </Grid>
 
-      <Introduce description={FundItem?.description} />
+      <Introduce description={fundItem?.description} />
 
-      <Projects data={FundItem?.projects} />
+      <Projects data={fundItem?.projects} />
     </Container>
   );
 }

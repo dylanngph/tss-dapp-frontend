@@ -22,10 +22,10 @@ export default function ProjectDetail() {
     if (!router.query.id) return;
     try {
       const response = await axios.get(`${API_PROJECT}/project?projectId=${router.query.id}`);
-      // console.log('>> response.data.data ', response.data.data);
       setprojectDetail(response.data.data);
     } catch (error) {}
   };
+
   return (
     <div>
       <Head>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -15,13 +14,14 @@ import styled from 'styled-components';
 export interface TableInvestmentFundsProps {
   investmentFunds: {
     id: string,
+    logo: string,
     name: string,
-    type: string,
-    foundedYear: string,
+    areas: string[],
+    establishedDate: string,
     projects: {
-      image: string, 
+      logo: string, 
       name: string,
-      date: string,
+      fundedDate: string,
     }[],
   }[]
 }
@@ -31,6 +31,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
   const [rows, setRows] = React.useState(investmentFunds);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPageSelect, setRowsPerPageSelect] = React.useState('10');
   const [inputSearch, setInputSearch] = React.useState('');
 
   const handleInputSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,11 +53,13 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
   };
 
   const handleChangeRowsPerPage = ( event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,) => {
+    setRowsPerPageSelect(event.target.value as string);
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleMuiSelectOnChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: SelectChangeEvent) => {
+    setRowsPerPageSelect(event.target.value as string);
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -89,16 +92,18 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
         <Grid item container xs={12} sm={6}>
           <Grid container justifyContent="flex-end" alignItems="center">
             <LabelSpan>Hiển thị</LabelSpan>
-            <CustomSelect
-              labelId="simple-select-show-label"
-              id="simple-select-show"
-              value={rowsPerPage}
-              onChange={handleMuiSelectOnChange}
-            >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={30}>30</MenuItem>
-            </CustomSelect>
+            <BoxCustomSelect>
+              <Select
+                labelId="simple-select-show-label"
+                id="simple-select-show"
+                value={rowsPerPageSelect}
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={20}>20</MenuItem>
+                <MenuItem value={30}>30</MenuItem>
+              </Select>
+            </BoxCustomSelect>
           </Grid>
         </Grid>
       </Grid>
@@ -121,17 +126,24 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
               <tr key={row.id} onClick={() => { router.push(`/investment-funds/${row.id}`) }}>
                 <td>{index + 1}</td>
                 <td>
-                  <Box sx={{ fontWeight: 'bold' }}>{row.name}</Box>
+                  <Grid container alignItems="center">
+                    <Box sx={{ width: 20, height: 20, '& img': { objectFit: 'contain', width: '100%', height: '100%' } }}>
+                      <img src={row?.logo} alt={row?.name} />
+                    </Box>
+                    <Box sx={{ fontWeight: 'bold', marginLeft: '5px' }}>{row?.name}</Box>
+                  </Grid>
                 </td>
-                <td>{row.type}</td>
-                <td style={{ textAlign: "center" }}>{row.foundedYear}</td>
+                <td>{row?.areas.join(',')}</td>
+                <td style={{ textAlign: "center" }}>{row?.establishedDate && new Date(row?.establishedDate).toLocaleDateString('vi-VI')}</td>
                 <td>
                   <Grid container justifyContent="center" spacing={1}>
-                    { row.projects.map(({image, name, date}, index) => (
+                    { row?.projects.map(({logo, name, fundedDate}, index) => (
                       <Grid key={index} item container direction="column" justifyContent="center" alignItems="center" xs={4}>
-                        <Image src={image} alt={name} width={32} height={32}/>
+                        <Box sx={{ width: 32, height: 32, '& img': { objectFit: 'contain', width: '100%', height: '100%' } }}>
+                          <img src={logo} alt={name} />
+                        </Box>
                         <Box sx={{ textAlign: 'center' }}>{name}</Box>
-                        <Box sx={{ color: '#58667E' }}>{date}</Box>
+                        <Box sx={{ color: '#58667E' }}>{ fundedDate && new Date(fundedDate).toLocaleDateString('vi-VI') }</Box>
                       </Grid>
                     )) }
                   </Grid>
@@ -180,20 +192,22 @@ const LabelSpan = styled.span`
   color: #A6B0C3;
 `;
 
-const CustomSelect = styled(Select)({
-  backgroundColor: '#EFF2F5',
-  borderRadius: '8px',
-  borderColor: '#EFF2F5',
-  color: '#58667E',
-  fontFamily: 'Inter-Medium',
+const BoxCustomSelect = styled(Box)({
+  '& .MuiOutlinedInput-root': {
+    backgroundColor: '#EFF2F5',
+    borderRadius: '8px',
+    borderColor: '#EFF2F5',
+    color: '#58667E',
+    fontFamily: 'Inter-Medium',
+  },
   '& .MuiOutlinedInput-notchedOutline': {
     borderColor: '#EFF2F5',
   },
-  '& > div': {
+  '& .MuiSelect-select': {
     padding: '13px 32px 9px 24px',
     lineHeight: '22px',
   },
-  'div': {
+  '& div': {
     fontFamily: 'Inter-Medium',
   }
 });

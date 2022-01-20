@@ -5,9 +5,11 @@ const getPosition = () => isWindowAvailable ? window.pageYOffset : undefined
 
 const useWindowScrollPosition = () => {
 
-  const [scrollPosition, setScrollPosition] = useState(getPosition())
+  const [scrollPosition, setScrollPosition] = useState(getPosition());
+
 
   useEffect(() => {
+    console.log('>> scrollPosition', scrollPosition);
     if (!isWindowAvailable) {
       return false
     }
