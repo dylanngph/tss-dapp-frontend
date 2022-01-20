@@ -58,7 +58,7 @@ export const COMMUN_REPU_PROP_COLOR: tplotOptions = {
   '4': 'yellow',
 };
 
-export const listBoxIOTA = [
+export const LIST_BOX_IOTA = [
   {
     id: 1,
     img: '/assets/images/IOTA1.png',
@@ -82,7 +82,7 @@ export const listBoxIOTA = [
   // }
 ]
 
-export const listAuthSection = [
+export const LIST_AUTH_SECTION = [
   {
     id: 1,
     img_path: '/assets/images/logo-tss-black.png',
@@ -124,3 +124,11 @@ export const PASSPORT_BLOCKCHAIN = {
   Contract_ID: '0xc1346f105791ff91578737377b65f98de1025fa4',
   TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
 }
+
+export const LIST_IMG_NFT = [
+  {
+    id: 1,
+    image: '/assets/images/IOTA1-small.png',
+    name: 'IOTA'
+  }
+]

@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
-import { listAuthSection } from 'constants/data/nft';
+import { LIST_AUTH_SECTION } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
 export default function AuthSection () {
@@ -12,7 +12,7 @@ export default function AuthSection () {
       <Container maxWidth="lg">
         <TitleSec title="Đơn vị xác thực" />
         <Grid container>
-          { listAuthSection.map(({id, img_path, name}) => {
+          { LIST_AUTH_SECTION.map(({id, img_path, name}) => {
               return (
                 <Grid key={id} item container direction="row" alignItems="center" justifyContent="center" xs={4} p={2}>
                   <img src={img_path} alt={name} />

@@ -119,13 +119,11 @@ export default function Information ({project}: BlockChainProps) {
       <Grid item container direction="column" lg={5}>
         <TitleSec title="QR code" />
         <WrapperQRCode>
-          {
-            typeof window !== "undefined" && (
-              <BoxQrCode>
-                <QRCode title="qr-code" value={window?.location.href} />
-              </BoxQrCode>
-            )
-          }
+          { typeof window !== "undefined" && (
+            <BoxQrCode>
+              <QRCode title="qr-code" value={window?.location.href} />
+            </BoxQrCode>
+          )}
         </WrapperQRCode>
       </Grid>
     </Grid>
