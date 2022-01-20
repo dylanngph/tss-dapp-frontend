@@ -11,7 +11,7 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import { formatDateVI, minimizeAddressSmartContract } from 'utils/helper';
-import { LegalProp, TechLevelProp, SocialValueProp, CommunRepuProp, LegalPropColor, TechLevelPropColor, SocialValuePropColor, CommunRepuPropColor } from 'constants/data/nft';
+import { LEGAL_PROP, TECH_LEVEL_PROP, SOCIAL_VALUE_PROP, COMMUN_REPU_PROP, LEGAL_PROP_COLOR, TECH_LEVEL_PROP_COLOR, SOCIAL_VALUE_PROP_COLOR, COMMUN_REPU_PROP_COLOR, PASSPORT_BLOCKCHAIN } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
 export interface InformationProps {
@@ -29,33 +29,7 @@ export interface InformationProps {
   }
 }
 
-const PASSPORT_BLOCKCHAIN = {
-  logo: '/assets/images/IOTA.png',
-  supplyDate: '24/12/2020',
-  listImg: [
-    {
-      id: 1,
-      imgPath: '/assets/images/logo-tss-black.png',
-      name: 'logo-tss',
-    },
-    {
-      id: 2,
-      imgPath: '/assets/images/logo-bas.png',
-      name: 'logo-bas',
-    },
-    {
-      id: 3,
-      imgPath: '/assets/images/logo-vcb.png',
-      name: 'logo-vcb',
-    }
-  ],
-  NFT_ID: '153979',
-  Contract_ID: '0xc1346f105791ff91578737377b65f98de1025fa4',
-  TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
-}
-
 export default function BlockChain ({nft}: InformationProps) {
-
   return (
     <Grid container>
       <WrapperTabsUnstyled defaultValue={0}>
@@ -108,25 +82,25 @@ export default function BlockChain ({nft}: InformationProps) {
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Pháp lý</h5>
-                      <span className={LegalPropColor[nft.legalId]}>{ LegalProp[nft.legalId] }</span>
+                      <span className={LEGAL_PROP_COLOR[nft.legalId]}>{ LEGAL_PROP[nft.legalId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Công nghệ</h5>
-                      <span className={TechLevelPropColor[nft.techLevelId]}>{ TechLevelProp[nft.techLevelId] }</span>
+                      <span className={TECH_LEVEL_PROP_COLOR[nft.techLevelId]}>{ TECH_LEVEL_PROP[nft.techLevelId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Giá trị xã hội </h5>
-                      <span className={SocialValuePropColor[nft.socialValueId]}>{ SocialValueProp[nft.socialValueId] }</span>
+                      <span className={SOCIAL_VALUE_PROP_COLOR[nft.socialValueId]}>{ SOCIAL_VALUE_PROP[nft.socialValueId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Uy tín cộng đồng</h5>
-                      <span className={CommunRepuPropColor[nft.communRepuId]}>{ CommunRepuProp[nft.communRepuId] }</span>
+                      <span className={COMMUN_REPU_PROP_COLOR[nft.communRepuId]}>{ COMMUN_REPU_PROP[nft.communRepuId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                 </Grid>

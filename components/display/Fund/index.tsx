@@ -14,7 +14,7 @@ export interface FunPageProps {
     name: string,
     area: string,
     establishedDate: string,
-    state: string,
+    status: string,
     description: string,
     socialWebs: {
       name: string,
@@ -45,13 +45,13 @@ export default function FunPage({fundItem}: FunPageProps) {
             <Grid item xs={12} sm={12} md={10} lg={10}>
               <TitleProject>{fundItem?.name}</TitleProject>
               <Grid container>
-                {/* { fundItem?.socialWebs.map(({name, link}, index) => (
+                { fundItem.socialWebs && fundItem.socialWebs.map(({name, link}, index) => (
                   <BoxSocial key={index}>
                     <a href={verifyWebsite(link)} target="_blank" rel="noopener noreferrer">
                       <ImgSocial src={`/assets/icons/socials-white/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
                     </a>
                   </BoxSocial>
-                )) } */}
+                )) }
               </Grid>
             </Grid>
           </Grid>
@@ -59,7 +59,7 @@ export default function FunPage({fundItem}: FunPageProps) {
         <Grid item container xs={12} sm={12} md={7} lg={7} spacing={2}>
           <BoxDetail title="Dạng đầu tư" content={fundItem?.area} />
           <BoxDetail title="Năm thành lập" content={new Date(fundItem?.establishedDate).getFullYear().toString()} />
-          <BoxDetail title="Trạng thái" content={fundItem?.state} />
+          <BoxDetail title="Trạng thái" content={fundItem?.status} />
         </Grid>
       </Grid>
 
