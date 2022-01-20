@@ -12,7 +12,7 @@ import ProjectItem from 'components/custom/Home/ProjectItem';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
 import axios from 'axios';
-import { API_PROJECT } from 'apis/config/index';
+import { API_URL } from 'constants/api/apiConfigs';
 
 export interface ListProjectSection {
 }
@@ -28,7 +28,7 @@ export default function ListProjectSection (props: ListProjectSection) {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${API_PROJECT}/project/active/all`);
+      const response = await axios.get(API_URL.PROJECT_ALL);
       setProjectList(response.data.data);
     } catch (error) {}
   };

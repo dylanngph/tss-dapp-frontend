@@ -9,6 +9,7 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import styled from 'styled-components';
+import { formatDateVI } from 'utils/helper';
 import { LegalProp, TechLevelProp, SocialValueProp, CommunRepuProp, LegalPropColor, TechLevelPropColor, SocialValuePropColor, CommunRepuPropColor } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
@@ -72,7 +73,7 @@ export default function BlockChain ({nft}: InformationProps) {
                 <div className="box-passport-content">
                   <h3>SEAL NFT</h3>
                   <h4>Passport of Blockchain</h4>
-                  <div className="date">Ngày cấp: { new Date(nft?.issuedAt).toLocaleDateString('vi-VI') }</div>
+                  <div className="date">Ngày cấp: {formatDateVI(nft?.issuedAt)}</div>
                 </div>
               </CardBoxPassport>
             </Grid>

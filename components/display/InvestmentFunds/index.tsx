@@ -4,7 +4,7 @@ import TableInvestmentFunds from 'components/custom/TableInvestmentFunds';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import axios from 'axios';
-import { API_PROJECT } from 'apis/config/index';
+import { API_URL } from 'constants/api/apiConfigs';
 
 export interface TableInvestmentFundsProps {
 }
@@ -20,7 +20,7 @@ export default function InvestmentFundsPage () {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${API_PROJECT}/fund/all`);
+      const res = await axios.get(API_URL.FUND_ALL);
       setInvestmentFunds(res.data.data);
       setLoading(false);
     } catch (error) {

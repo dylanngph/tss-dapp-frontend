@@ -19,7 +19,7 @@ export default function Header({theme}: HeaderProps) {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
   const scrollPosition = useScrollHandler();
-  console.log('>> scrollPosition', scrollPosition);
+
   return (
     <WrapperNav className={`${theme} ${scrollPosition ? 'nav-sticky' : ''}`}>
       <Container maxWidth="lg">

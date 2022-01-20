@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { API_PROJECT } from 'apis/config/index';
+import { API_URL } from 'constants/api/apiConfigs';
 
 const IFund: NextPage = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const IFund: NextPage = () => {
     if (!router.query.id) return;
     setLoading(true);
     try {
-      const response = await axios.get(`${API_PROJECT}/fund/detail?fundId=${router.query.id}`);
+      const response = await axios.get(`${API_URL.FUND_DETAIL_ALL}${router.query.id}`);
       setFundItem(response.data.data);
       setLoading(false);
     } catch (error) {
@@ -59,7 +59,6 @@ const IFund: NextPage = () => {
               <FunPage fundItem={fundItem} />
             )
         }
-        
         <Footer />
       </main>
 

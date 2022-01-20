@@ -5,13 +5,14 @@ import Container from '@mui/material/Container';
 import BoxDetail from 'components/custom/Fund/BoxDetail';
 import Introduce from 'components/custom/Fund/Introduce';
 import Projects from 'components/custom/Fund/Projects';
+import { verifyWebsite } from 'utils/helper';
 import styled from 'styled-components';
 
 export interface FunPageProps {
   fundItem: {
     logo: string,
     name: string,
-    areas: string[],
+    area: string,
     establishedDate: string,
     state: string,
     description: string,
@@ -28,13 +29,6 @@ export interface FunPageProps {
       website: string,
     }[]
   }
-}
-
-const verifyWebsite = (link: string) => {
-  if (link.indexOf('http') === -1) {
-    return `https://${link}`;
-  }
-  return link;
 }
 
 export default function FunPage({fundItem}: FunPageProps) {
@@ -63,7 +57,7 @@ export default function FunPage({fundItem}: FunPageProps) {
           </Grid>
         </Grid>
         <Grid item container xs={12} sm={12} md={7} lg={7} spacing={2}>
-          <BoxDetail title="Dạng đầu tư" content={fundItem?.areas.join(',')} />
+          <BoxDetail title="Dạng đầu tư" content={fundItem?.area} />
           <BoxDetail title="Năm thành lập" content={new Date(fundItem?.establishedDate).getFullYear().toString()} />
           <BoxDetail title="Trạng thái" content={fundItem?.state} />
         </Grid>

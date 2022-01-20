@@ -2,6 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import styled from 'styled-components';
+import { verifyWebsite, formatDateVI } from 'utils/helper';
 
 export interface ProjectsProps {
   data: {
@@ -18,14 +19,6 @@ const convertTotalCap = (totalCap: number) => {
   if (!totalCap || (typeof totalCap !== 'number')) return;
   const oneM = 1000000;
   return '$' + (totalCap / oneM) + 'm';
-}
-
-const verifyWebsite = (link: string) => {
-  if (!link) return '#';
-  if (link.indexOf('http') === -1) {
-    return `https://${link}`;
-  }
-  return link;
 }
 
 export default function Projects ({data}: ProjectsProps) {
@@ -57,7 +50,7 @@ export default function Projects ({data}: ProjectsProps) {
                 </Grid>
                 <Grid item container justifyContent="center" alignItems="center" xs={6}>
                   <BoxCapitalTitle>Ngày gọi vốn</BoxCapitalTitle>
-                  <BoxCapitalContent>{fundedDate && new Date(fundedDate).toLocaleDateString('vi-VI')}</BoxCapitalContent>
+                  <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
                 </Grid>
               </Grid>
             </BoxProject>

@@ -9,7 +9,6 @@ const useWindowScrollPosition = () => {
 
 
   useEffect(() => {
-    console.log('>> scrollPosition', scrollPosition);
     if (!isWindowAvailable) {
       return false
     }

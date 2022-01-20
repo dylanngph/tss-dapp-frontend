@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from '@mui/icons-material/Search';
 import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+import { formatDateVI } from 'utils/helper';
 import { device } from 'styles/media-device';
 import styled from 'styled-components';
 
@@ -16,7 +17,7 @@ export interface TableInvestmentFundsProps {
     id: string,
     logo: string,
     name: string,
-    areas: string[],
+    area: string,
     establishedDate: string,
     projects: {
       logo: string, 
@@ -133,8 +134,8 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
                     <Box sx={{ fontWeight: 'bold', marginLeft: '5px' }}>{row?.name}</Box>
                   </Grid>
                 </td>
-                <td>{row?.areas.join(',')}</td>
-                <td style={{ textAlign: "center" }}>{row?.establishedDate && new Date(row?.establishedDate).toLocaleDateString('vi-VI')}</td>
+                <td>{row?.area}</td>
+                <td style={{ textAlign: "center" }}>{formatDateVI(row?.establishedDate)}</td>
                 <td>
                   <Grid container justifyContent="center" spacing={1}>
                     { row?.projects.map(({logo, name, fundedDate}, index) => (
@@ -143,7 +144,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
                           <img src={logo} alt={name} />
                         </Box>
                         <Box sx={{ textAlign: 'center' }}>{name}</Box>
-                        <Box sx={{ color: '#58667E' }}>{ fundedDate && new Date(fundedDate).toLocaleDateString('vi-VI') }</Box>
+                        <Box sx={{ color: '#58667E' }}>{formatDateVI(fundedDate)}</Box>
                       </Grid>
                     )) }
                   </Grid>
