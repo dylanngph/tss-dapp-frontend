@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Link from "next/link";
-import { NavMenu } from '../config';
+import { NavMenu } from 'constants/data/menu';
 import { useRouter } from "next/router";
 import styled from 'styled-components';
 
@@ -14,13 +13,11 @@ const Menu: React.FC<MenuProps> = ({ open, theme }) => {
   const router = useRouter();
   return (
     <StyledMenu open={open}>
-      {
-        NavMenu.map(({title, href}) => (
-          <li key={title} className={router.pathname == "/" ? "active" : ""}>
-            <Link href={href} passHref>{title}</Link>
-          </li>
-        ))
-      }
+      { NavMenu.map(({title, href}) => (
+        <li key={title} className={router.pathname == "/" ? "active" : ""}>
+          <Link href={href} passHref>{title}</Link>
+        </li>
+      )) }
     </StyledMenu>
   );
 };

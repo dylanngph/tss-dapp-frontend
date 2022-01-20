@@ -2,8 +2,10 @@ import * as React from 'react';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import QRCode from "react-qr-code";
+import { verifyWebsite, minimizeAddressSmartContract } from 'utils/helper';
 import { device } from 'styles/media-device';
 
 export interface BlockChainProps {
@@ -25,23 +27,11 @@ export interface BlockChainProps {
   }
 }
 
-export default function Information ({project}: BlockChainProps) {
-  const verifyWebsite = (link: string) => {
-    if (link.indexOf('http') === -1) {
-      return `https://${link}`;
-    }
-    return link;
-  }
-  const verifySmartContract = (str: string) => {
-    if (str.length > 25) {
-      return str.substring(0, 8) + "..." + str.substring(str.length - 4, str.length);
-    }
-    return str;
-  }
+export default function Information ({project}: BlockChainProps) {  
   return (
     <Grid container spacing={3} mb={4}>
       <Grid item container direction="column" lg={7}>
-        <h3 className="title-sec">Thông tin dự án</h3>
+        <TitleSec title="Thông tin dự án" />
         <WrapperInfoProject>
           <li>
             <Grid container justifyContent="space-between">
@@ -82,7 +72,7 @@ export default function Information ({project}: BlockChainProps) {
           <li>
             <Grid container justifyContent="space-between">
               <Grid item>Địa chỉ Smart Contract</Grid>
-              <Grid item>{verifySmartContract(project.smartContractAddress)}</Grid>
+              <Grid item>{minimizeAddressSmartContract(project.smartContractAddress)}</Grid>
             </Grid>
           </li>
           <li>
@@ -127,15 +117,13 @@ export default function Information ({project}: BlockChainProps) {
         </WrapperInfoProject>
       </Grid>
       <Grid item container direction="column" lg={5}>
-        <h3 className="title-sec">QR code</h3>
+        <TitleSec title="QR code" />
         <WrapperQRCode>
-          {
-            typeof window !== "undefined" && (
-              <BoxQrCode>
-                <QRCode title="qr-code" value={window?.location.href} />
-              </BoxQrCode>
-            )
-          }
+          { typeof window !== "undefined" && (
+            <BoxQrCode>
+              <QRCode title="qr-code" value={window?.location.href} />
+            </BoxQrCode>
+          )}
         </WrapperQRCode>
       </Grid>
     </Grid>

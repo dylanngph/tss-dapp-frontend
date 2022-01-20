@@ -8,8 +8,11 @@ import TabUnstyled from '@mui/base/TabUnstyled';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
-import { LegalProp, TechLevelProp, SocialValueProp, CommunRepuProp, LegalPropColor, TechLevelPropColor, SocialValuePropColor, CommunRepuPropColor } from 'constants/data/nft';
+import { formatDateVI, minimizeAddressSmartContract } from 'utils/helper';
+import { LEGAL_PROP, TECH_LEVEL_PROP, SOCIAL_VALUE_PROP, COMMUN_REPU_PROP, LEGAL_PROP_COLOR, TECH_LEVEL_PROP_COLOR, SOCIAL_VALUE_PROP_COLOR, COMMUN_REPU_PROP_COLOR, PASSPORT_BLOCKCHAIN } from 'constants/data/nft';
+import { LINK_BS_SCAN } from 'constants/data/bscan';
 import { device } from 'styles/media-device';
 
 export interface InformationProps {
@@ -27,33 +30,7 @@ export interface InformationProps {
   }
 }
 
-const PASSPORT_BLOCKCHAIN = {
-  logo: '/assets/images/IOTA.png',
-  supplyDate: '24/12/2020',
-  listImg: [
-    {
-      id: 1,
-      imgPath: '/assets/images/logo-tss-black.png',
-      name: 'logo-tss',
-    },
-    {
-      id: 2,
-      imgPath: '/assets/images/logo-bas.png',
-      name: 'logo-bas',
-    },
-    {
-      id: 3,
-      imgPath: '/assets/images/logo-vcb.png',
-      name: 'logo-vcb',
-    }
-  ],
-  NFT_ID: '153979',
-  Contract_ID: '0xc1346f105791ff91578737377b65f98de1025fa4',
-  TX_Hash: '0xE1D7CB5791FF9157873DW3F377B65647278',
-}
-
 export default function BlockChain ({nft}: InformationProps) {
-
   return (
     <Grid container>
       <WrapperTabsUnstyled defaultValue={0}>
@@ -72,14 +49,14 @@ export default function BlockChain ({nft}: InformationProps) {
                 <div className="box-passport-content">
                   <h3>SEAL NFT</h3>
                   <h4>Passport of Blockchain</h4>
-                  <div className="date">Ngày cấp: { new Date(nft?.issuedAt).toLocaleDateString('vi-VI') }</div>
+                  <div className="date">Ngày cấp: {formatDateVI(nft?.issuedAt)}</div>
                 </div>
               </CardBoxPassport>
             </Grid>
             <Grid item container lg={9} justifyContent="center">
               <NFTCardBoxPassport>
                 <Grid container>
-                  <h3 className="title-sec">NFT Passport of Blockchain</h3>
+                  <TitleSec title="NFT Passport of Blockchain" />
                 </Grid>
                 <Grid container>
                   {
@@ -95,36 +72,36 @@ export default function BlockChain ({nft}: InformationProps) {
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
-                    <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank" rel="noopener noreferrer">{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</a></span>
+                    <span><a href={LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(PASSPORT_BLOCKCHAIN.Contract_ID)}</a></span>
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>
                     <span className="block-copy">TX Hash</span>
-                    <span>{nft.txHash.substring(0, 8) + "..." + nft.txHash.substring(nft.txHash.length - 4, nft.txHash.length)}</span>
+                    <span>{minimizeAddressSmartContract(nft.txHash)}</span>
                   </BoxMoreInfo>
                 </Grid>
                 <Grid container mt={0} spacing={2}>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Pháp lý</h5>
-                      <span className={LegalPropColor[nft.legalId]}>{ LegalProp[nft.legalId] }</span>
+                      <span className={LEGAL_PROP_COLOR[nft.legalId]}>{ LEGAL_PROP[nft.legalId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Công nghệ</h5>
-                      <span className={TechLevelPropColor[nft.techLevelId]}>{ TechLevelProp[nft.techLevelId] }</span>
+                      <span className={TECH_LEVEL_PROP_COLOR[nft.techLevelId]}>{ TECH_LEVEL_PROP[nft.techLevelId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Giá trị xã hội </h5>
-                      <span className={SocialValuePropColor[nft.socialValueId]}>{ SocialValueProp[nft.socialValueId] }</span>
+                      <span className={SOCIAL_VALUE_PROP_COLOR[nft.socialValueId]}>{ SOCIAL_VALUE_PROP[nft.socialValueId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <BoxMoreAnalytic>
                       <h5>Uy tín cộng đồng</h5>
-                      <span className={CommunRepuPropColor[nft.communRepuId]}>{ CommunRepuProp[nft.communRepuId] }</span>
+                      <span className={COMMUN_REPU_PROP_COLOR[nft.communRepuId]}>{ COMMUN_REPU_PROP[nft.communRepuId] }</span>
                     </BoxMoreAnalytic>
                   </Grid>
                 </Grid>

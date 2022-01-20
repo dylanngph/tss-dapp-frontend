@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import BoxIOTA from 'components/custom/Home/BoxIOTA';
 import styled from 'styled-components';
-import { listBoxIOTA } from 'constants/data/nft';
+import { LIST_BOX_IOTA } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
 export default function Banner () {
@@ -22,11 +22,9 @@ export default function Banner () {
       <WrapperListIOTA>
         <Container>
           <Grid container justifyContent="center">
-            {
-              listBoxIOTA.map((item) => {
-                return <BoxIOTA key={item.id} IOTA={item}></BoxIOTA>
-              })
-            }
+            { LIST_BOX_IOTA.map((item) => {
+              return <BoxIOTA key={item.id} IOTA={item}></BoxIOTA>
+            }) }
           </Grid>
         </Container>
       </WrapperListIOTA>

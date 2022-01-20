@@ -4,6 +4,7 @@ import 'chart.js/auto';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import TitleSec from 'components/custom/TitleSec';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Doughnut } from "react-chartjs-2";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -57,7 +58,7 @@ export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTok
   };
   return (
     <Grid container pt={2} pb={2}>
-      <h3 className="title-sec">Tokenomics</h3>
+      <TitleSec title="Tokenomics" />
       <Grid container justifyContent="flex-end">
         <CustomButtonDetail variant="outlined" onClick={handleOpen} startIcon={<VisibilityIcon />}>
           Chi tiết

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface BurgerProps {
   open: boolean,
   theme: string,
+  scrollPosition: boolean,
 }
 
 export const StyledBurger = styled.button<BurgerProps>`
@@ -10,7 +11,7 @@ export const StyledBurger = styled.button<BurgerProps>`
   height: 2rem;
   position: relative;
   top: 0;
-  right: 25px;
+  right: 5px;
   z-index: 20;
   display: none;
   border: none;
@@ -27,7 +28,7 @@ export const StyledBurger = styled.button<BurgerProps>`
   div {
     width: 1.8rem;
     height: 0.1rem;
-    background-color: ${({ open, theme }) => (open || theme == 'black') ? '#030303' : '#ffffff'};
+    background-color: ${({ open, theme, scrollPosition }) => (open || theme == 'black' || scrollPosition) ? '#030303' : '#ffffff'};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;

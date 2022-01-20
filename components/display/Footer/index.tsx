@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { FooterData } from './config';
+import { FooterData } from 'constants/data/footer';
 import styled from 'styled-components';
 export interface FooterProps {
 }
@@ -17,26 +17,27 @@ export default function Footer(props: FooterProps) {
           <Grid item container lg={4} sm={12}>
             <Box sx={{ width: 150, height: 71, }}>
               <Link href="/">
-                <img src={FooterData.img_footer_path} alt="LOGO TSS" />
+                <img src={FooterData.logoFooter} alt="LOGO TSS" />
               </Link>
             </Box>
           </Grid>
           <Grid item container direction="column" lg={4} sm={6} dangerouslySetInnerHTML={{__html: FooterData.about}} />
           <Grid item container direction="column" lg={4} sm={6}>
             <div dangerouslySetInnerHTML={{__html: FooterData.headquarters}}></div>
-            <Grid container style={{ marginTop: '20px' }}>
-              {
-                FooterData.list_social.map(({id, link, icon_path}) => {
+            <Grid container mt={4} mb={4}>
+              { FooterData.listSocial.map(({id, link, iconPath}) => {
                   return (
                     <Grid item key={id} mr={2}>
                       <a href={link} target="_blank" rel="noreferrer">
-                        <Image src={icon_path} alt="social" width={24} height={24} />
+                        <Image src={iconPath} alt="social" width={24} height={24} />
                       </a>
                     </Grid>
                   )
-                })
-              }
+                }) }
             </Grid>
+            <Box sx={{ fontWeight: 'bold' }}>
+              <Link href="/criteria">Tiêu chí xét duyệt dự án</Link>
+            </Box>
           </Grid>
         </Grid>
       </Container>

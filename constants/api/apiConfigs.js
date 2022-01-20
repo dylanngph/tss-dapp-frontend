@@ -12,7 +12,9 @@ export const REQUEST_STATUS = {
     UNKNOWN_ERROR: 2000,
 }
 
-export const API_APP = {
+export const API_URL = {
     PROJECT_ALL: `${API_PROJECT}/project/active/all`,
     PROJECT_DETAIL: `${API_PROJECT}/project?projectId=`,
+    FUND_ALL: `${API_PROJECT}/fund/all`,
+    FUND_DETAIL_ALL: `${API_PROJECT}/fund/detail?fundId=`,
 }
