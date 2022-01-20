@@ -2,6 +2,7 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import TableInvestmentFunds from 'components/custom/TableInvestmentFunds';
 import Box from '@mui/material/Box';
+import TitleSec from 'components/custom/TitleSec';
 import Skeleton from '@mui/material/Skeleton';
 import axios from 'axios';
 import { API_URL } from 'constants/api/apiConfigs';
@@ -30,7 +31,7 @@ export default function InvestmentFundsPage () {
 
   return (
     <Container sx={{ paddingTop: '24px' }}>
-      <h3 className="title-sec">Quỹ đầu tư</h3>
+      <TitleSec title="Quỹ đầu tư" />
       {
         loading ?
         (

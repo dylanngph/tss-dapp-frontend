@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import { listAuthSection } from 'constants/data/nft';
 import { device } from 'styles/media-device';
@@ -9,7 +10,7 @@ export default function AuthSection () {
   return (
     <WrapperSection>
       <Container maxWidth="lg">
-        <h3 className="title-sec">Đơn vị xác thực</h3>
+        <TitleSec title="Đơn vị xác thực" />
         <Grid container>
           { listAuthSection.map(({id, img_path, name}) => {
               return (

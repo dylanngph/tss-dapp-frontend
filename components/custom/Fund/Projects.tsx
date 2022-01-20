@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import { verifyWebsite, formatDateVI } from 'utils/helper';
 
@@ -24,7 +25,7 @@ const convertTotalCap = (totalCap: number) => {
 export default function Projects ({data}: ProjectsProps) {
   return (
     <Box pt={2} pb={2}>
-      <h3 className="title-sec">Danh mục đầu tư ({data.length})</h3>
+      <TitleSec title={`Danh mục đầu tư (${data.length})`} />
       <Grid container spacing={2}>
         {data.map(({logo, name, round, totalCap, fundedDate, website}, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>

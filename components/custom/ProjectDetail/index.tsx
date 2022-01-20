@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import TitleSec from 'components/custom/TitleSec';
 import HeaderBox from 'components/custom/ProjectDetail/HeaderBox';
 import Information from 'components/custom/ProjectDetail/Information';
 import BlockChain from 'components/custom/ProjectDetail/BlockChain';
@@ -122,12 +123,12 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
       <ChartTokenomics tokenAllocations={project.tokenAllocations} dataChart={getDataChartDefault()} />
 
       <Grid container>
-        <h3 className="title-sec">{`Đối tác của ${project.projectName}`}</h3>
+        <TitleSec title={`Đối tác của ${project.projectName}`} />
         <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project}/>
       </Grid>
 
       <Grid container mt={2} mb={8} id="boxSlideTeam">
-        <h3 className="title-sec">{`Đội ngũ của ${project.projectName}`}</h3>
+        <TitleSec title={`Đội ngũ của ${project.projectName}`} />
         <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project}/>
       </Grid>
 

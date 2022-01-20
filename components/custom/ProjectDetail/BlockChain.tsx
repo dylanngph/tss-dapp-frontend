@@ -8,6 +8,7 @@ import TabUnstyled from '@mui/base/TabUnstyled';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import { formatDateVI, minimizeAddressSmartContract } from 'utils/helper';
 import { LegalProp, TechLevelProp, SocialValueProp, CommunRepuProp, LegalPropColor, TechLevelPropColor, SocialValuePropColor, CommunRepuPropColor } from 'constants/data/nft';
@@ -80,7 +81,7 @@ export default function BlockChain ({nft}: InformationProps) {
             <Grid item container lg={9} justifyContent="center">
               <NFTCardBoxPassport>
                 <Grid container>
-                  <h3 className="title-sec">NFT Passport of Blockchain</h3>
+                  <TitleSec title="NFT Passport of Blockchain" />
                 </Grid>
                 <Grid container>
                   {

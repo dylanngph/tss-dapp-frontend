@@ -2,6 +2,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import QRCode from "react-qr-code";
 import { verifyWebsite, minimizeAddressSmartContract } from 'utils/helper';
@@ -30,7 +31,7 @@ export default function Information ({project}: BlockChainProps) {
   return (
     <Grid container spacing={3} mb={4}>
       <Grid item container direction="column" lg={7}>
-        <h3 className="title-sec">Thông tin dự án</h3>
+        <TitleSec title="Thông tin dự án" />
         <WrapperInfoProject>
           <li>
             <Grid container justifyContent="space-between">
@@ -116,7 +117,7 @@ export default function Information ({project}: BlockChainProps) {
         </WrapperInfoProject>
       </Grid>
       <Grid item container direction="column" lg={5}>
-        <h3 className="title-sec">QR code</h3>
+        <TitleSec title="QR code" />
         <WrapperQRCode>
           {
             typeof window !== "undefined" && (

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
+import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 
 export interface IntroduceProps {
@@ -9,7 +10,7 @@ export interface IntroduceProps {
 export default function Introduce ({description}: IntroduceProps) {
   return (
     <Grid container pt={4} pb={2}>
-      <h3 className="title-sec">Giới thiệu</h3>
+      <TitleSec title="Giới thiệu" />
       <PSection>{description}</PSection>
     </Grid>
   );
