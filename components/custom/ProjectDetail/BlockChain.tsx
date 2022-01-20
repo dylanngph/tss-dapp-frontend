@@ -9,7 +9,7 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import styled from 'styled-components';
-import { formatDateVI } from 'utils/helper';
+import { formatDateVI, minimizeAddressSmartContract } from 'utils/helper';
 import { LegalProp, TechLevelProp, SocialValueProp, CommunRepuProp, LegalPropColor, TechLevelPropColor, SocialValuePropColor, CommunRepuPropColor } from 'constants/data/nft';
 import { device } from 'styles/media-device';
 
@@ -96,11 +96,11 @@ export default function BlockChain ({nft}: InformationProps) {
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
-                    <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank" rel="noopener noreferrer">{PASSPORT_BLOCKCHAIN.Contract_ID.substring(0, 8) + "..." + PASSPORT_BLOCKCHAIN.Contract_ID.substring(PASSPORT_BLOCKCHAIN.Contract_ID.length - 4, PASSPORT_BLOCKCHAIN.Contract_ID.length)}</a></span>
+                    <span><a href="https://testnet.bscscan.com/token/0xc1346f105791ff91578737377b65f98de1025fa4" target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(PASSPORT_BLOCKCHAIN.Contract_ID)}</a></span>
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>
                     <span className="block-copy">TX Hash</span>
-                    <span>{nft.txHash.substring(0, 8) + "..." + nft.txHash.substring(nft.txHash.length - 4, nft.txHash.length)}</span>
+                    <span>{minimizeAddressSmartContract(nft.txHash)}</span>
                   </BoxMoreInfo>
                 </Grid>
                 <Grid container mt={0} spacing={2}>

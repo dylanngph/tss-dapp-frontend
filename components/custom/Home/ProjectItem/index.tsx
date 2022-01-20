@@ -2,6 +2,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { minimizeAddressSmartContract } from 'utils/helper';
 import { useRouter } from 'next/router';
 export interface ProjectItemProps {
   project: {
@@ -18,9 +19,6 @@ export interface ProjectItemProps {
 
 export default function ProjectItem ({project, index}: ProjectItemProps) {
   const router = useRouter();
-  const minimizeAddress = (smartContractAddress: string) => {
-    return smartContractAddress.substring(0, 8) + "..." + smartContractAddress.substring(smartContractAddress.length - 4, smartContractAddress.length);
-  };
   return (
     <tr onClick={() => { router.push(`/project/${project._id}`) }}>
       <td>{index + 1}</td>
@@ -49,7 +47,7 @@ export default function ProjectItem ({project, index}: ProjectItemProps) {
       </td>
       <td>{project.standards.join(", ")}</td>
       <td>{project.communications.join(", ")}</td>
-      <td>{minimizeAddress(project.smartContractAddress)}</td>
+      <td>{minimizeAddressSmartContract(project.smartContractAddress)}</td>
     </tr>
   );
 }

@@ -11,15 +11,13 @@ export default function AuthSection () {
       <Container maxWidth="lg">
         <h3 className="title-sec">Đơn vị xác thực</h3>
         <Grid container>
-          {
-            listAuthSection.map(({id, img_path, name}) => {
+          { listAuthSection.map(({id, img_path, name}) => {
               return (
                 <Grid key={id} item container direction="row" alignItems="center" justifyContent="center" xs={4} p={2}>
                   <img src={img_path} alt={name} />
                 </Grid>
               )
-            })
-          }
+            }) }
         </Grid>
       </Container>
     </WrapperSection>
