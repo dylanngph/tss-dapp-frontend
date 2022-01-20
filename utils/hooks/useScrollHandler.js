@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react"
-const isWindowAvailable = typeof window !== "undefined"
+import { useState, useEffect } from "react";
 
+const isWindowAvailable = typeof window !== "undefined"
 const getPosition = () => isWindowAvailable ? window.pageYOffset : undefined
 
 const useWindowScrollPosition = () => {
 
   const [scrollPosition, setScrollPosition] = useState(getPosition());
-
 
   useEffect(() => {
     if (!isWindowAvailable) {
@@ -14,15 +13,15 @@ const useWindowScrollPosition = () => {
     }
 
     const handleScroll = () => {
-      setScrollPosition(getPosition())
+      setScrollPosition(getPosition());
     }
 
     window.addEventListener("scroll", handleScroll)
 
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, []);
 
-  return scrollPosition > 100
+  return scrollPosition > 100;
 }
 
 export default useWindowScrollPosition
