@@ -39,7 +39,7 @@ export default function ListProjectSection (props: ListProjectSection) {
   const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputSearch(newValue);
-    const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch) !== -1 || item.symbol.toLowerCase().search(inputSearch) !== -1));
+    const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch.toLowerCase()) !== -1 || item.symbol.toLowerCase().search(inputSearch.toLowerCase()) !== -1));
     setProjectListSearch(tpm);
   };
 
