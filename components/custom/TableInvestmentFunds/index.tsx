@@ -39,7 +39,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
     const newValue = event.target.value;
     setInputSearch(newValue);
     if (event.target.value) {
-      const tpm = investmentFunds.filter((item: {name: string}) => (item.name.toLowerCase().search(inputSearch) !== -1));
+      const tpm = investmentFunds.filter((item: {name: string}) => (item.name.toLowerCase().search(inputSearch.toLowerCase()) !== -1));
       setRows(tpm);
     } else {
       setRows(investmentFunds);

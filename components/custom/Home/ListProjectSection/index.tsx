@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ProjectItem from 'components/custom/Home/ProjectItem';
 import styled from 'styled-components';
 import { device } from 'styles/media-device';
@@ -19,6 +19,9 @@ export interface ListProjectSection {
 
 export default function ListProjectSection (props: ListProjectSection) {
   const [projectList, setProjectList] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPageSelect, setRowsPerPageSelect] = React.useState('10');
   const [inputSearch, setInputSearch] = React.useState('');
   const [projectListSearch, setProjectListSearch] = React.useState([]);
 
@@ -36,8 +39,24 @@ export default function ListProjectSection (props: ListProjectSection) {
   const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputSearch(newValue);
-    const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch) !== -1 || item.symbol.toLowerCase().search(inputSearch) !== -1));
+    const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch.toLowerCase()) !== -1 || item.symbol.toLowerCase().search(inputSearch.toLowerCase()) !== -1));
     setProjectListSearch(tpm);
+  };
+
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - projectList?.length) : 0;
+
+  const handlePrevPage = () => {
+    if (page > 0) setPage(page - 1);
+  };
+
+  const handleNextPage = () => {
+    if (projectList?.length > rowsPerPage && (projectList?.length / rowsPerPage) > (page + 1)) setPage(page + 1);
+  };
+
+  const handleChangeSelect = (event: SelectChangeEvent) => {
+    setRowsPerPageSelect(event.target.value as string);
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
   return (
@@ -73,16 +92,21 @@ export default function ListProjectSection (props: ListProjectSection) {
             <CustomButton variant="contained">Tài sản nền</CustomButton> */}
           </Grid>
           <Grid item mt={2}>
-            <LabelSpan>Hiển thị</LabelSpan>
-            <CustomSelect
-              labelId="simple-select-show-label"
-              id="simple-select-show"
-              value={10}
-            >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={30}>30</MenuItem>
-            </CustomSelect>
+            <Grid container justifyContent="flex-end" alignItems="center">
+              <LabelSpan>Hiển thị</LabelSpan>
+              <BoxCustomSelect>
+                <Select
+                  labelId="simple-select-show-label"
+                  id="simple-select-show"
+                  value={rowsPerPageSelect}
+                  onChange={handleChangeSelect}
+                >
+                  <MenuItem value={10}>10</MenuItem>
+                  <MenuItem value={20}>20</MenuItem>
+                  <MenuItem value={30}>30</MenuItem>
+                </Select>
+              </BoxCustomSelect>
+            </Grid>
           </Grid>
         </Grid>
         <Box sx={{ width: '100%', height: 'auto', overflowX: 'auto'}}>
@@ -101,29 +125,44 @@ export default function ListProjectSection (props: ListProjectSection) {
             <tbody>
               {
                 !inputSearch ?
-                  projectList.map((item, index) => {
-                    return <ProjectItem key={index} project={item} index={index}></ProjectItem>
-                  })
+                  (rowsPerPage > 0
+                    ? projectList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    : projectList
+                  ).map((item, index) => {
+                      return <ProjectItem key={index} project={item} index={index}></ProjectItem>
+                    })
                 :
-                  projectListSearch.map((item, index) => {
-                    return <ProjectItem key={index} project={item} index={index}></ProjectItem>
-                  })
+                  (rowsPerPage > 0
+                    ? projectListSearch.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    : projectListSearch
+                  ).map((item, index) => {
+                      return <ProjectItem key={index} project={item} index={index}></ProjectItem>
+                    })
               }
+              {emptyRows > 0 && (
+                <tr style={{ height: 79 * emptyRows }}>
+                  <td colSpan={7} />
+                </tr>
+              )}
             </tbody>
             <tfoot>
               <tr>
                 {
                   !inputSearch ?
-                    <td colSpan={5}>Đang hiển thị {projectList.length} / {projectList.length}</td>
+                    <td colSpan={5}>Đang hiển thị {`${(page * rowsPerPage) === 0 ? (page * rowsPerPage) + 1 : (page * rowsPerPage)}-${(page * rowsPerPage + rowsPerPage) > projectList.length ? projectList.length : (page * rowsPerPage + rowsPerPage)}`} / {projectList.length}</td>
                   :
                     <td colSpan={5}>Đang hiển thị {projectListSearch.length} / {projectListSearch.length}</td>
                 }
                 
                 <td colSpan={2}>
                   <Grid container direction="row" justifyContent="flex-end" alignItems="center">
-                    <ButtonArrowNext/>
-                    <BoxContentNumberPag>01</BoxContentNumberPag>
-                    <ButtonArrowPrev/>
+                    { page > 0 && (
+                      <ButtonArrowPrev onClick={handlePrevPage}/>
+                    ) }
+                    <BoxContentNumberPag>{('0' + (page + 1)).slice(-2)}</BoxContentNumberPag>
+                    { (projectList?.length > rowsPerPage && (projectList?.length / rowsPerPage) > (page + 1)) && (
+                      <ButtonArrowNext onClick={handleNextPage}/>
+                    ) }
                   </Grid>
                 </td>
               </tr>
@@ -208,22 +247,26 @@ const LabelSpan = styled.span`
   color: #A6B0C3;
 `;
 
-const ButtonArrowNext = styled.span`
+const ButtonArrowNext = styled.button`
   display: inline-block;
   width: 24px;
   height: 24px;
   cursor: pointer;
-  background-image: url('/assets/icons/ico-table-arrow-left.svg');
+  border: 0;
+  background-color: transparent;
+  background-image: url('/assets/icons/ico-table-arrow-right.svg');
   background-repeat: no-repeat;
   background-size: cover;
 `;
 
-const ButtonArrowPrev = styled.span`
+const ButtonArrowPrev = styled.button`
   display: inline-block;
   width: 24px;
   height: 24px;
   cursor: pointer;
-  background-image: url('/assets/icons/ico-table-arrow-right.svg');
+  border: 0;
+  background-color: transparent;
+  background-image: url('/assets/icons/ico-table-arrow-left.svg');
   background-repeat: no-repeat;
   background-size: cover;
 `;
@@ -243,20 +286,22 @@ const CustomInputSearch = styled(TextField)({
   },
 });
 
-const CustomSelect = styled(Select)({
-  backgroundColor: '#EFF2F5',
-  borderRadius: '8px',
-  borderColor: '#EFF2F5',
-  color: '#58667E',
-  fontFamily: 'Inter-Medium',
+const BoxCustomSelect = styled(Box)({
+  '& .MuiOutlinedInput-root': {
+    backgroundColor: '#EFF2F5',
+    borderRadius: '8px',
+    borderColor: '#EFF2F5',
+    color: '#58667E',
+    fontFamily: 'Inter-Medium',
+  },
   '& .MuiOutlinedInput-notchedOutline': {
     borderColor: '#EFF2F5',
   },
-  '& > div': {
-    padding: '11px 32px 12px 24px',
+  '& .MuiSelect-select': {
+    padding: '13px 32px 9px 24px',
     lineHeight: '22px',
   },
-  'div': {
+  '& div': {
     fontFamily: 'Inter-Medium',
   }
 });

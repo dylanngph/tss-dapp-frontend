@@ -30,14 +30,13 @@ export default function Projects ({data}: ProjectsProps) {
         {data.map(({logo, name, round, totalCap, fundedDate, website}, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
             <BoxProject>
-              <Grid container justifyContent="space-between">
+            <a href={verifyWebsite(website)} target="_blank" rel="noopener noreferrer">
+              <Grid container direction="row" justifyContent="space-between">
                 <Grid item>
                   <Box sx={{ maxWidth: 40, '& img': { maxWidth: '100%', height: 'auto' } }}>
                     <img src={logo} alt={name} />
                   </Box>
-                  <TitleBox>
-                    <a href={verifyWebsite(website)} target="_blank" rel="noopener noreferrer">{name}</a>
-                  </TitleBox>
+                  <TitleBox>{name}</TitleBox>
                 </Grid>
                 <Grid item>
                   <LabelBox>{round}</LabelBox>
@@ -54,6 +53,7 @@ export default function Projects ({data}: ProjectsProps) {
                   <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
                 </Grid>
               </Grid>
+              </a>
             </BoxProject>
           </Grid>
         ))}
