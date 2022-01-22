@@ -31,26 +31,28 @@ export default function Projects ({data}: ProjectsProps) {
           <Grid key={index} item xs={12} sm={6} md={3}>
             <BoxProject>
             <a href={verifyWebsite(website)} target="_blank" rel="noopener noreferrer">
-              <Grid container direction="row" justifyContent="space-between" sx={{ flexWrap: 'nowrap'}}>
-                <Grid item>
-                  <Box sx={{ maxWidth: 40, '& img': { maxWidth: '100%', height: 'auto' } }}>
-                    <img src={logo} alt={name} />
-                  </Box>
-                  <TitleBox>{name}</TitleBox>
+              <Grid container direction="column" justifyContent="space-between" sx={{ height: '100%' }}>
+                <Grid item container direction="row" justifyContent="space-between" sx={{ flexWrap: 'nowrap', height: '40px'}}>
+                  <Grid item>
+                    <Box sx={{ maxWidth: 40, '& img': { maxWidth: '100%', height: 'auto' } }}>
+                      <img src={logo} alt={name} />
+                    </Box>
+                  </Grid>
+                  <Grid item>
+                    <LabelBox>{round}</LabelBox>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <LabelBox>{round}</LabelBox>
-                </Grid>
-              </Grid>
-              <Box sx={{ borderBottom: '1px solid #EFF2F5', margin: '16px 0' }}></Box>
-              <Grid container spacing={1}>
-                <Grid item container justifyContent="center" alignItems="center" xs={6}>
-                  <BoxCapitalTitle>Tổng số vốn gọi</BoxCapitalTitle>
-                  <BoxCapitalContent>{convertTotalCap(totalCap)}</BoxCapitalContent>
-                </Grid>
-                <Grid item container justifyContent="center" alignItems="center" xs={6}>
-                  <BoxCapitalTitle>Ngày gọi vốn</BoxCapitalTitle>
-                  <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
+                <TitleBox>{name}</TitleBox>
+                {/* <Box sx={{ borderBottom: '1px solid #EFF2F5', margin: '16px 0' }}></Box> */}
+                <Grid item container spacing={1} sx={{ borderTop: '1px solid #EFF2F5', marginTop: '16px', paddingTop: '16px' }}>
+                  <Grid item container justifyContent="center" alignItems="center" xs={6}>
+                    <BoxCapitalTitle>Tổng số vốn gọi</BoxCapitalTitle>
+                    <BoxCapitalContent>{convertTotalCap(totalCap)}</BoxCapitalContent>
+                  </Grid>
+                  <Grid item container justifyContent="center" alignItems="center" xs={6}>
+                    <BoxCapitalTitle>Ngày gọi vốn</BoxCapitalTitle>
+                    <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
+                  </Grid>
                 </Grid>
               </Grid>
               </a>
@@ -67,6 +69,7 @@ const BoxProject = styled(Box)`
   box-sizing: border-box;
   border-radius: 12px;
   padding: 16px;
+  height: 100%;
 `;
 
 const TitleBox = styled.h4`
