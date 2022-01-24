@@ -28,7 +28,7 @@ export default function SliderSlick ({ settings, typeSettings, project }: Slider
       {
         typeSettings === TYPE_SLICK ?
           project.developmentPartner.length > 0 && (
-            <CustomSlider {...settings}>
+            <CustomSlider className='quang-huy' {...settings}>
               {
                 project.developmentPartner.map(({id, image, name, website}, index) => {
                   return (
@@ -83,6 +83,11 @@ const CustomSlider = styled(Slider)`
   }
   .slick-prev:before, .slick-next:before {
     color: #A6B0C3;
+  }
+
+  .slick-track {
+    display: flex;
+    align-items: center;
   }
 `;
 

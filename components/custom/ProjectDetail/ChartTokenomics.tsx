@@ -73,7 +73,7 @@ export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTok
         <Grid item container md={6} pt={2}>
           {dataChart.labels.map((label: string, index) => {
             return (
-              <Grid key={index} item container alignItems="center" mb={3} xs={6} sm={12}>
+              <Grid className='quanghuy' key={index} item container justifyContent="center" alignItems="center" mb={3} xs={6} sm={12}>
                 <Box sx={{
                   width: '15px',
                   height: '10px',
