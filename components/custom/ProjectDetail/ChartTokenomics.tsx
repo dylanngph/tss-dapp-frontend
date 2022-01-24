@@ -65,15 +65,15 @@ export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTok
         </CustomButtonDetail>
       </Grid>
       <Grid container mb={4}>
-        <Grid item container md={6} justifyContent="center" alignItems="center">
+        <Grid item container md={8} justifyContent="center" alignItems="center">
           <Box sx={{ width: '350px', height: 'auto', maxWidth: '70vw' }}>
             <Doughnut data={dataChart} plugins={[ChartDataLabels]} options={options} />
           </Box>
         </Grid>
-        <Grid item container md={6} pt={2}>
+        <Grid item container md={4} pt={2}>
           {dataChart.labels.map((label: string, index) => {
             return (
-              <Grid className='quanghuy' key={index} item container justifyContent="center" alignItems="center" mb={3} xs={6} sm={12}>
+              <Grid key={index} item container alignItems="center" mb={3} xs={6} sm={12}>
                 <Box sx={{
                   width: '15px',
                   height: '10px',
