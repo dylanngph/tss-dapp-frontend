@@ -14,7 +14,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
   return (
     <WrapperSection>
       <Container maxWidth="lg">
-        <TitleSection>Quy trình cấp NFT</TitleSection>
+        <TitleSection>Quy trình phát hành NFT</TitleSection>
         <DesSection>Cùng chung tay tạo nên một cộng đồng blockchain Việt Nam minh bạch.</DesSection>
         <Grid container pt={8} mb={6}>
           <Grid item container justifyContent="center" md={3}>
@@ -41,13 +41,13 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
                 <Image src="/assets/icons/ico-bubble.svg" alt="ico-bubble" width={64} height={64}/>
-                <p>Cấp NFT </p>
+                <p>Phát hành NFT </p>
               </BoxItem>
               <BoxBg></BoxBg>
             </Box>
           </Grid>
         </Grid>
-        <ButtonLink title={"Xác thực ngay"} href={'http://dev-gov.tss.org.vn/'} />
+        <ButtonLink title={"Xác nhận ngay"} href={'http://dev-gov.tss.org.vn/'} />
       </Container>
     </WrapperSection>
   );

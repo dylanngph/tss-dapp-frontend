@@ -12,7 +12,7 @@ const Home: NextPage = () => {
     <div>
       <Head>
         <title>TSS - D App</title>
-        <meta name="description" content="TSS - Cấp NFT xác thực dự án Blockchain của bạn" />
+        <meta name="description" content="TSS - Phát hành NFT xác nhận thông tin dự án Blockchain của bạn" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <AuthenticationSection />
         <ListProjectSection />
         <ProcessNFTSection />
-        <Footer />
+        <Footer criteriaShown={true} />
       </main>
 
     </div>

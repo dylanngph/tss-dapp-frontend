@@ -31,7 +31,7 @@ export default function InvestmentFundsPage () {
 
   return (
     <Container sx={{ paddingTop: '24px' }}>
-      <TitleSec title="Quỹ đầu tư" />
+      <TitleSec title="Đơn vị/Tổ chức đầu tư" />
       {
         loading ?
         (

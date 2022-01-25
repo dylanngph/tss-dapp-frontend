@@ -18,7 +18,7 @@ export default function NotFound(props: NotFoundProps) {
           <h1>Trang không tồn tại</h1>
           <p>Có thể liên kết đã hỏng hoặc trang đã bị gỡ. Hãy kiểm tra xem liên kết mà bạn đang cố mở có chính xác không.</p>
           <BoxLink>
-            <Link href="/" passHref>Trở về trang chủ</Link>
+            <Link href="/" passHref>Trở về hệ thống TSS</Link>
           </BoxLink>
         </Box>
       </Grid>

@@ -10,7 +10,7 @@ export default function AuthSection () {
   return (
     <WrapperSection>
       <Container maxWidth="lg">
-        <TitleSec title="Đơn vị xác thực" />
+        <TitleSec title="Đơn vị xác nhận" />
         <Grid container>
           { LIST_AUTH_SECTION.map(({id, img_path, name}) => {
               return (

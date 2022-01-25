@@ -37,7 +37,7 @@ export default function ProjectDetail() {
       <main>
         <Header theme={'black'} />
         <BoxProjectDetail project={projectDetail} />
-        <Footer />
+        <Footer criteriaShown={true} />
       </main>
 
     </div>

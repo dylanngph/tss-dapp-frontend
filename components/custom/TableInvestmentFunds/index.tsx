@@ -72,7 +72,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
           <CustomInputSearch
             fullWidth
             id="input-search"
-            placeholder="Tìm kiếm quỹ đầu tư"
+            placeholder="Tìm kiếm đơn vị/tổ chức đầu tư"
             InputProps={{
               style: {
                 backgroundColor: '#EFF2F5',
@@ -113,7 +113,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
           <thead>
             <tr>
               <th>#</th>
-              <th>Quỹ đầu tư</th>
+              <th>Đơn vị/Tổ chức đầu tư</th>
               <th>Dạng đầu tư</th>
               <th style={{ textAlign: "center" }}>Năm thành lập</th>
               <th style={{ textAlign: "center", minWidth: '300px' }}>Dự án đầu tư tiêu biểu</th>

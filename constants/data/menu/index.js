@@ -1,10 +1,10 @@
 export const NavMenu = [
   {
-    title: 'Trang chủ',
+    title: 'Hệ thống TSS',
     href: '/',
   },
   {
-    title: 'Quỹ đầu tư',
+    title: 'Đơn vị/Tổ chức đầu tư',
     href: '/investment-funds',
   }
 ]

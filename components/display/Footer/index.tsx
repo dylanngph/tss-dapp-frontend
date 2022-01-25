@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import { FooterData } from 'constants/data/footer';
 import styled from 'styled-components';
 export interface FooterProps {
+  criteriaShown: boolean;
 }
 
 export default function Footer(props: FooterProps) {
@@ -36,7 +37,14 @@ export default function Footer(props: FooterProps) {
                 }) }
             </Grid>
             <Box sx={{ fontWeight: 'bold' }}>
-              <Link href="/criteria">Tiêu chí xét duyệt dự án</Link>
+              {
+                props.criteriaShown
+                ?
+                <Link href="/criteria">Tiêu chí đánh giá thông tin dự án</Link>
+                :
+                null
+              }
+              
             </Box>
           </Grid>
         </Grid>
