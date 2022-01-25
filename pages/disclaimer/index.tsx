@@ -2,20 +2,20 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Header from 'components/display/Header';
 import Footer from "components/display/Footer";
-import CriteriaPage from "components/display/Criteria";
+import DisclaimerPage from "components/display/Disclaimer";
 
-const Criteria: NextPage = () => {
+const Disclaimer: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>TSS - Tiêu chí đánh giá thông tin dự án</title>
-        <meta name="description" content="TSS - Tiêu chí đánh giá thông tin dự án" />
+        <title>TSS - Tuyên bố miễn trừ trách nhiệm</title>
+        <meta name="description" content="TSS - Tuyên bố miễn trừ trách nhiệm" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <Header theme={'black'}/>
-        <CriteriaPage />
+        <DisclaimerPage />
         <Footer criteriaShown={true} disclaimerShown={false} />
       </main>
 
@@ -23,4 +23,4 @@ const Criteria: NextPage = () => {
   );
 };
 
-export default Criteria;
+export default Disclaimer;

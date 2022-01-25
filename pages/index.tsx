@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <AuthenticationSection />
         <ListProjectSection />
         <ProcessNFTSection />
-        <Footer criteriaShown={true} />
+        <Footer criteriaShown={true} disclaimerShown={true} />
       </main>
 
     </div>

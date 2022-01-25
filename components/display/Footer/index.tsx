@@ -8,6 +8,7 @@ import { FooterData } from 'constants/data/footer';
 import styled from 'styled-components';
 export interface FooterProps {
   criteriaShown: boolean;
+  disclaimerShown: boolean;
 }
 
 export default function Footer(props: FooterProps) {
@@ -36,11 +37,20 @@ export default function Footer(props: FooterProps) {
                   )
                 }) }
             </Grid>
-            <Box sx={{ fontWeight: 'bold' }}>
+            <Box mb={1} sx={{ fontWeight: 'bold' }}>
               {
                 props.criteriaShown
                 ?
                 <Link href="/criteria">Tiêu chí đánh giá thông tin dự án</Link>
+                :
+                null
+              }
+            </Box>
+            <Box sx={{ fontWeight: 'bold' }}>
+              {
+                props.disclaimerShown
+                ?
+                <Link href="/disclaimer">Miễn trừ trách nhiệm</Link>
                 :
                 null
               }
