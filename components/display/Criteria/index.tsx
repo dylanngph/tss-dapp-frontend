@@ -12,7 +12,7 @@ export default function CriteriaPage () {
           <TitlePage>Tiêu chí đánh giá thông tin dự án</TitlePage>
         </Grid>
         <Grid item md={6}>
-          <Image src="/assets/images/criteria/NFT Decentralize.png" alt="NFT Decentralize" width={577} height={564}/>
+          <Image src="/assets/images/criteria/NFTDecentralize.png" alt="NFT Decentralize" width={577} height={564}/>
         </Grid>
       </Grid>
       <BoxContent pt={4} pb={4}>
