@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export interface ButtonLinkProps {
   title: string,
-  href: string,
+  href: any,
 }
 
 export default function ButtonLink ({title, href}: ButtonLinkProps) {
