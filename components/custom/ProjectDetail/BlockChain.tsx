@@ -12,7 +12,6 @@ import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import { formatDateVI, minimizeAddressSmartContract } from 'utils/helper';
 import { LEGAL_PROP, TECH_LEVEL_PROP, SOCIAL_VALUE_PROP, COMMUN_REPU_PROP, LEGAL_PROP_COLOR, TECH_LEVEL_PROP_COLOR, SOCIAL_VALUE_PROP_COLOR, COMMUN_REPU_PROP_COLOR, PASSPORT_BLOCKCHAIN } from 'constants/data/nft';
-import { LINK_BS_SCAN } from 'constants/data/bscan';
 import { device } from 'styles/media-device';
 
 export interface InformationProps {
@@ -72,7 +71,7 @@ export default function BlockChain ({nft}: InformationProps) {
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
-                    <span><a href={LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(PASSPORT_BLOCKCHAIN.Contract_ID)}</a></span>
+                    <span><a href={process.env.NEXT_PUBLIC_LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(PASSPORT_BLOCKCHAIN.Contract_ID)}</a></span>
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>
                     <span className="block-copy">TX Hash</span>
