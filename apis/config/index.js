@@ -7,5 +7,5 @@ const tssProject = {
     beta: 'https://dev-api.tss.org.vn',
     production: 'https://api.tss.org.vn'
 }
-export const API_PROJECT = tssProject[envRelease]
+export const API_PROJECT = tssProject[process.env.NEXT_PUBLIC_ENV_RELEASE]
 export const API_PROJECT_VERSION = vesionApi;
