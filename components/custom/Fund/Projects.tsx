@@ -49,7 +49,7 @@ export default function Projects ({data}: ProjectsProps) {
                   <BoxCapitalContent>{convertTotalCap(totalCap)}</BoxCapitalContent>
                 </Grid>
                 <Grid item container justifyContent="center" alignItems="center" xs={6}>
-                  <BoxCapitalTitle>Ngày gọi vốn</BoxCapitalTitle>
+                  <BoxCapitalTitle>Thời gian gọi vốn</BoxCapitalTitle>
                   <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
                 </Grid>
               </Grid>
