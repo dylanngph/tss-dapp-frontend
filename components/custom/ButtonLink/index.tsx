@@ -22,7 +22,7 @@ const BoxLink = styled.div`
     padding: 12px 24px;
     line-height: 19px;
     font-weight: 600;
-    background-color: #446DFF;
+    background-color: #0047b0;
     border: 1px solid transparent;
     border-radius: 8px;
     color: #ffffff;
@@ -30,8 +30,8 @@ const BoxLink = styled.div`
     display: inline-block;
     &:hover {
       background-color: #ffffff;
-      color: #446DFF;
-      border-color: #446DFF;
+      color: #0047b0;
+      border-color: #0047b0;
     }
   }
 `;
