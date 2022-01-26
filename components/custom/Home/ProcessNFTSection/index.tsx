@@ -47,7 +47,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
             </Box>
           </Grid>
         </Grid>
-        <ButtonLink title={"Xác nhận ngay"} href={'http://dev-gov.tss.org.vn/'} />
+        <ButtonLink title={"Xác nhận ngay"} href={'http://gov.tss.org.vn/'} />
       </Container>
     </WrapperSection>
   );
