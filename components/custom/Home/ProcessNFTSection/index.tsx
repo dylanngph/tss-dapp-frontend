@@ -95,7 +95,7 @@ const BoxItem = styled.div`
     font-weight: 600;
     font-size: 24px;
     line-height: 29px;
-    color: var(--color-blue);
+    color: var(--color-blue-2);
   }
 `;
 

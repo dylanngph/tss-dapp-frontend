@@ -34,9 +34,10 @@ export default function Banner () {
 
 const WrapperBanner = styled.div`
   position: relative;
-  background-image: url('/assets/images/hero-img-banner.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-image: url('/assets/images/hero-img-banner.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  background: #01001b;
   min-height: inherit;
   margin-bottom: 200px;
   padding-top: 80px;

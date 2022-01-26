@@ -70,7 +70,8 @@ export default function Footer(props: FooterProps) {
 
 const WrapperNav = styled.footer`
   color: #ffffff;
-  background: linear-gradient(286.23deg, #2A2AFF -70.7%, #000696 78.49%);
+  // background: linear-gradient(286.23deg, #2A2AFF -70.7%, #000696 78.49%);
+  background: #01001b;
   h4 {
     font-size: 24px;
     margin: 0 0 10px;
