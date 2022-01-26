@@ -1,7 +1,6 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Image from 'next/image';
 import styled from 'styled-components';
 
 export default function CriteriaPage () {
@@ -143,3 +142,6 @@ const BoxContent = styled(Box)`
     }
   }
 `;
+
+const Image = styled.img`
+`
