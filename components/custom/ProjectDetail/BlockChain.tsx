@@ -71,7 +71,7 @@ export default function BlockChain ({nft}: InformationProps) {
                   </BoxMoreInfo>
                   <BoxMoreInfo>
                     <span onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}} className="block-copy">Contract ID</span>
-                    <span><a href={process.env.NEXT_PUBLIC_LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(PASSPORT_BLOCKCHAIN.Contract_ID)}</a></span>
+                    <span><a href={process.env.NEXT_PUBLIC_LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(process.env.NEXT_PUBLIC_BS_SCAN_CODE)}</a></span>
                   </BoxMoreInfo>
                   <BoxMoreInfo onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>
                     <span className="block-copy">TX Hash</span>
