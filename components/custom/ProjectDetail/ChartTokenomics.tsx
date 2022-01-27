@@ -124,7 +124,7 @@ export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTok
                     >
                       <TableCell component="th" scope="row">{index + 1}</TableCell>
                       <TableCell>{row.allocationName}</TableCell>
-                      <TableCell align="right">{(row.rate).toFixed()}&#37;</TableCell>
+                      <TableCell align="right">{(row.rate)}&#37;</TableCell>
                       <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.price)}</TableCell>
                       <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.amount)}</TableCell>
                       <TableCell>{row.vesting}</TableCell>
