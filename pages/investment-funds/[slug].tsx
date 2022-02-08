@@ -21,10 +21,10 @@ const IFund: NextPage = () => {
   }, [router]);
 
   const fetchData = async () => {
-    if (!router.query.id) return;
+    if (!router.query.slug) return;
     setLoading(true);
     try {
-      const response = await axios.get(`${API_URL.FUND_DETAIL_ALL}${router.query.id}`);
+      const response = await axios.get(`${API_URL.FUND_DETAIL_ALL}`, {params: {fundSlug: `${router.query.slug}`}});
       setFundItem(response.data.data);
       setLoading(false);
     } catch (error) {

@@ -15,6 +15,7 @@ import styled from 'styled-components';
 export interface TableInvestmentFundsProps {
   investmentFunds: {
     id: string,
+    slug: string,
     logo: string,
     name: string,
     area: string,
@@ -124,7 +125,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
               ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : rows
             ).map((row, index) => (
-              <tr key={row.id} onClick={() => { router.push(`/investment-funds/${row.id}`) }}>
+              <tr key={row.id} onClick={() => { router.push(`/investment-funds/${row.slug}`) }}>
                 <td>{index + 1}</td>
                 <td>
                   <Grid container alignItems="center">
