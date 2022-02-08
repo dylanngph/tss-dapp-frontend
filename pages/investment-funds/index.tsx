@@ -16,7 +16,7 @@ const InvestmentFunds: NextPage = () => {
       <main>
         <Header theme={'black'}/>
         <InvestmentFundsPage />
-        <Footer criteriaShown={false} disclaimerShown={true} />
+        <Footer criteriaShown={true} disclaimerShown={true} />
       </main>
 
     </div>

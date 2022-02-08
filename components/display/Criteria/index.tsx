@@ -144,4 +144,6 @@ const BoxContent = styled(Box)`
 `;
 
 const Image = styled.img`
+  width: 100%;
+  height: auto;
 `

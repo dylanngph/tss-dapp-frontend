@@ -16,7 +16,7 @@ const Criteria: NextPage = () => {
       <main>
         <Header theme={'black'}/>
         <CriteriaPage />
-        <Footer criteriaShown={true} disclaimerShown={false} />
+        <Footer criteriaShown={false} disclaimerShown={true} />
       </main>
 
     </div>

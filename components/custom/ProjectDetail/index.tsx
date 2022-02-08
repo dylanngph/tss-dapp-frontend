@@ -57,7 +57,14 @@ export interface ProjectDetailProps {
   }
 }
 
-export default function ProjectDetail ({project}: ProjectDetailProps) {
+export default function ProjectDetail({ project }: ProjectDetailProps) {
+  var dynamicColors = function () {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+
   const dataChartDefault = {
     labels: [
       "Public sale",
@@ -71,16 +78,7 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
     ],
     datasets: [
       {
-        backgroundColor: [
-          "#483168",
-          "#00B919",
-          "#685BF4",
-          "#344DA3",
-          "#15DAAE",
-          "#AB5BF4",
-          "#11B3D3",
-          "#2424F4",
-        ],
+        backgroundColor: [],
         data: [3, 12, 14, 27, 3, 5, 31, 5]
       }
     ]
@@ -96,12 +94,17 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
         data: number[],
       }[]
     } = dataChartDefault;
-    project.tokenAllocations.map(({allocationName, rate}) => {
+    project.tokenAllocations.map(({ allocationName, rate }) => {
       tpmArrAllocationName.push(allocationName);
       tpmArrRate.push(rate);
     });
     dataTpm.labels = tpmArrAllocationName;
     dataTpm.datasets[0].data = tpmArrRate;
+
+    project.tokenAllocations.map((item, index) => {
+      dataTpm.datasets[0].backgroundColor[index] = dynamicColors();
+    });
+
     return dataTpm;
   };
 
@@ -122,15 +125,27 @@ export default function ProjectDetail ({project}: ProjectDetailProps) {
 
       <ChartTokenomics tokenAllocations={project.tokenAllocations} dataChart={getDataChartDefault()} />
 
-      <Grid container>
-        <TitleSec title={`Đối tác của ${project.projectName}`} />
-        <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project}/>
-      </Grid>
+      {
+        project.developmentPartner.length
+          ?
+          <Grid container>
+            <TitleSec title={`Đối tác của ${project.projectName}`} />
+            <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project} />
+          </Grid>
+          :
+          null
+      }
 
-      <Grid container mt={2} mb={8} id="boxSlideTeam">
-        <TitleSec title={`Đội ngũ của ${project.projectName}`} />
-        <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project}/>
-      </Grid>
+      {
+        project.developmentTeam.length
+          ?
+          <Grid container mt={2} mb={8} id="boxSlideTeam">
+            <TitleSec title={`Đội ngũ của ${project.projectName}`} />
+            <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project} />
+          </Grid>
+          :
+          null
+      }
 
     </Container>
   );

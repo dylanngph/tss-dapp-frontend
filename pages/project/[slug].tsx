@@ -19,9 +19,9 @@ export default function ProjectDetail() {
   }, [router]);
 
   const fetchData = async () => {
-    if (!router.query.id) return;
+    if (!router.query.slug) return;
     try {
-      const response = await axios.get(`${API_URL.PROJECT_DETAIL}${router.query.id}`);
+      const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, {params: {projectSlug: `${router.query.slug}`}});
       setprojectDetail(response.data.data);
     } catch (error) {}
   };

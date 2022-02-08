@@ -13,7 +13,7 @@ export interface ProjectItemProps {
     communications: string[],
     standards: string[],
     smartContractAddress: string,
-    _id: string,
+    slug: string,
   },
   index: number,
 }
@@ -21,7 +21,7 @@ export interface ProjectItemProps {
 export default function ProjectItem ({project, index}: ProjectItemProps) {
   const router = useRouter();
   return (
-    <tr onClick={() => { router.push(`/project/${project?._id}`) }}>
+    <tr onClick={() => { router.push(`/project/${project?.slug}`) }}>
       <td>{index + 1}</td>
       <td>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
