@@ -14,6 +14,7 @@ import { NextSeo } from 'next-seo';
 export default function ProjectDetail() {
   const router = useRouter();
   const [projectDetail, setprojectDetail] = React.useState(projectDetailItem);
+  const bdf = { projectName: '', description: '' }
 
   React.useEffect(() => {
     fetchData();
@@ -22,18 +23,23 @@ export default function ProjectDetail() {
   const fetchData = async () => {
     if (!router.query.slug) return;
     try {
-      const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, {params: {projectSlug: `${router.query.slug}`}});
-      setprojectDetail(response.data.data);
+      // let abc = projectDetailItem;
+      const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${router.query.slug}`);
+      const bdf = await abc.json();
+      console.log('bdf===>', bdf.data);
+      setprojectDetail(bdf.data)
+      // const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, {params: {projectSlug: `${router.query.slug}`}});
+      // setprojectDetail(response.data.data);
     } catch (error) {}
   };
 
   return (
     <div>
-      <NextSeo
+      {/* <NextSeo
           title={ projectDetail &&  `Dự án - ${projectDetail.projectName}` }
           description={ projectDetail &&  `Dự án - ${projectDetail.description}` }
-      />
-      {/* <Head>
+      /> */}
+      <Head>
         <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}` }</title>
         <meta name="description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
 
@@ -47,7 +53,7 @@ export default function ProjectDetail() {
         <meta name="twitter:card" content="summary_large_image" />
 
         <link rel="icon" href="/favicon.ico" />
-      </Head> */}
+      </Head>
 
       <main>
         <Header theme={'black'} />
