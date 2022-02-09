@@ -27,7 +27,7 @@ export default function ProjectDetail() {
     console.log(projectMeta);
   };
 
-  getStaticProps();
+  // getStaticProps();
 
   const fetchData = async () => {
     if (!router.query.slug) return;
