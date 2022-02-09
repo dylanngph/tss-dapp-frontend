@@ -14,22 +14,31 @@ import { NextSeo } from 'next-seo';
 export default function ProjectDetail() {
   const router = useRouter();
   const [projectDetail, setprojectDetail] = React.useState(projectDetailItem);
-  const bdf = { projectName: '', description: '' }
+  const [projectMeta, setprojectMeta] = React.useState(projectDetailItem);
 
   React.useEffect(() => {
     fetchData();
   }, [router]);
 
+  const getStaticProps = async () => {
+    const response = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${router.query.slug}`); // Fetch your data
+    const showDataRes = await response.json();
+    setprojectMeta(showDataRes);
+    console.log(projectMeta);
+  };
+
+  getStaticProps();
+
   const fetchData = async () => {
     if (!router.query.slug) return;
     try {
       // let abc = projectDetailItem;
-      const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${router.query.slug}`);
-      const bdf = await abc.json();
-      console.log('bdf===>', bdf.data);
-      setprojectDetail(bdf.data)
-      // const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, {params: {projectSlug: `${router.query.slug}`}});
-      // setprojectDetail(response.data.data);
+      // const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${router.query.slug}`);
+      // const bdf = await abc.json();
+      // console.log('bdf===>', bdf.data);
+      // setprojectDetail(bdf.data);
+      const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, {params: {projectSlug: `${router.query.slug}`}});
+      setprojectDetail(response.data.data);
     } catch (error) {}
   };
 
@@ -40,16 +49,16 @@ export default function ProjectDetail() {
           description={ projectDetail &&  `Dự án - ${projectDetail.description}` }
       /> */}
       <Head>
-        <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}` }</title>
-        <meta name="description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
+        <title>{ projectMeta &&  `Dự án - ${projectMeta.projectName}` }</title>
+        <meta name="description" content={ projectMeta &&  `Dự án - ${projectMeta.description}` } />
 
-        <meta property="og:title" content={ projectDetail &&  `Dự án - ${projectDetail.projectName}` } />
+        <meta property="og:title" content={ projectMeta &&  `Dự án - ${projectMeta.projectName}` } />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={ projectDetail &&  `${projectDetail.logo}` } />
+        <meta property="og:image" content={ projectMeta &&  `${projectMeta.logo}` } />
 
-        <meta name="twitter:title" content={ projectDetail &&  `Dự án - ${projectDetail.projectName}` } />
-        <meta name="twitter:description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
-        <meta name="twitter:image" content={ projectDetail &&  `${projectDetail.logo}` } />
+        <meta name="twitter:title" content={ projectMeta &&  `Dự án - ${projectMeta.projectName}` } />
+        <meta name="twitter:description" content={ projectMeta &&  `Dự án - ${projectMeta.description}` } />
+        <meta name="twitter:image" content={ projectMeta &&  `${projectMeta.logo}` } />
         <meta name="twitter:card" content="summary_large_image" />
 
         <link rel="icon" href="/favicon.ico" />
