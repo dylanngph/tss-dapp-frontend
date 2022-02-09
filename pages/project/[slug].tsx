@@ -34,47 +34,51 @@ interface MetaTag {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerSidePropsContext) => {
-  const { url = '' } = req;
-  const urlSlug = url.split('project/')[1];
-  // const router = useRouter();
-
-  console.log('url==>', url);
-
-  let eInfo;
-
-  if (urlSlug) {
-    eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
-  }
+  try {
+    const { url = '' } = req;
+    const urlSlug = url.split('project/')[1];
+    // const router = useRouter();
   
-  const data = eInfo?.data.data;
-
-  console.log('data', data);
-
-  const metaTagTitle = data && `Dự án - ${data.projectName}`;
-
-  const metaTagDescription = data && data.description;
-
-  const metaTagsList: MetaTag[] = [
-    // <meta property="title ... /> has the same property as the <title name="title>...</title>, but still needs a unique key.
-    // we handle this logic while mapping over the metaTagsList prop.
-    { property: MetaTagKeys.TITLE, key: MetaTagKeys.META_TITLE, content: metaTagTitle },
-    { property: MetaTagKeys.DESCRIPTION, content: metaTagDescription },
-    // <!-- Open Graph / Facebook -->
-    { property: MetaTagKeys.OG_URL, content: url },
-    { property: MetaTagKeys.OG_TITLE, content: metaTagTitle },
-    { property: MetaTagKeys.OG_DESC, content: metaTagDescription },
-    { property: MetaTagKeys.OG_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" },
-    // <!-- Twitter -->
-    { property: MetaTagKeys.TWITTER_CARD, content: 'summary_large_image' },
-    { property: MetaTagKeys.TWITTER_URL, content: url },
-    { property: MetaTagKeys.TWITTER_TITLE, content: metaTagTitle },
-    { property: MetaTagKeys.TWITTER_DESC, content: metaTagDescription },
-    { property: MetaTagKeys.TWITTER_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" }
-  ];
-  return {
-    props: {
-      metaTagsList,
-      metaTagTitle
+    console.log('url==>', url);
+  
+    const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
+    
+    const data = eInfo?.data.data;
+  
+    console.log('data', data);
+  
+    const metaTagTitle = data && `Dự án - ${data.projectName}`;
+  
+    const metaTagDescription = data && data.description;
+  
+    const metaTagsList: MetaTag[] = [
+      // <meta property="title ... /> has the same property as the <title name="title>...</title>, but still needs a unique key.
+      // we handle this logic while mapping over the metaTagsList prop.
+      { property: MetaTagKeys.TITLE, key: MetaTagKeys.META_TITLE, content: metaTagTitle },
+      { property: MetaTagKeys.DESCRIPTION, content: metaTagDescription },
+      // <!-- Open Graph / Facebook -->
+      { property: MetaTagKeys.OG_URL, content: url },
+      { property: MetaTagKeys.OG_TITLE, content: metaTagTitle },
+      { property: MetaTagKeys.OG_DESC, content: metaTagDescription },
+      { property: MetaTagKeys.OG_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" },
+      // <!-- Twitter -->
+      { property: MetaTagKeys.TWITTER_CARD, content: 'summary_large_image' },
+      { property: MetaTagKeys.TWITTER_URL, content: url },
+      { property: MetaTagKeys.TWITTER_TITLE, content: metaTagTitle },
+      { property: MetaTagKeys.TWITTER_DESC, content: metaTagDescription },
+      { property: MetaTagKeys.TWITTER_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" }
+    ];
+    return {
+      props: {
+        metaTagsList,
+        metaTagTitle
+      }
+    }
+  } catch (error) {
+    return {
+      props: {
+        error
+      }
     }
   }
 }
