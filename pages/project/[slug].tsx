@@ -29,8 +29,18 @@ export default function ProjectDetail() {
   return (
     <div>
       <Head>
-        <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}`}</title>
-        <meta name="description" content={projectDetail &&  `Dự án - ${projectDetail.description}`} />
+        <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}` }</title>
+        <meta name="description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
+
+        <meta property="og:title" content={ projectDetail &&  `Dự án - ${projectDetail.projectName}` } />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={ projectDetail &&  `${projectDetail.logo}` } />
+
+        <meta name="twitter:title" content={ projectDetail &&  `Dự án - ${projectDetail.projectName}` } />
+        <meta name="twitter:description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
+        <meta name="twitter:image" content={ projectDetail &&  `${projectDetail.logo}` } />
+        <meta name="twitter:card" content="summary_large_image" />
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
