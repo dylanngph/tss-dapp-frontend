@@ -9,6 +9,7 @@ import { API_URL } from 'constants/api/apiConfigs';
 import { useRouter } from 'next/router';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { NextSeo } from 'next-seo';
 
 export default function ProjectDetail() {
   const router = useRouter();
@@ -31,6 +32,11 @@ export default function ProjectDetail() {
       <Head>
         <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}` }</title>
         <meta name="description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
+
+        <NextSeo
+          title={ projectDetail &&  `Dự án - ${projectDetail.projectName}` }
+          description={ projectDetail &&  `Dự án - ${projectDetail.description}` }
+        />
 
         <meta property="og:title" content={ projectDetail &&  `Dự án - ${projectDetail.projectName}` } />
         <meta property="og:type" content="article" />
