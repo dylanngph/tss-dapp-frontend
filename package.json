@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:local": "env-cmd -f .env.development next build",
     "build:dev": "GENERATE_SOURCEMAP=false env-cmd -f .env.development next build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production next build",
     "start": "next start",

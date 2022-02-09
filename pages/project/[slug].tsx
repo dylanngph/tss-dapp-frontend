@@ -38,9 +38,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerS
   const urlSlug = url.split('project/')[1];
   // const router = useRouter();
 
-  const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
+  console.log('url==>', url);
 
-  const data = eInfo.data.data;
+  let eInfo;
+
+  if (urlSlug) {
+    eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
+  }
+  
+  const data = eInfo?.data.data;
 
   console.log('data', data);
 
