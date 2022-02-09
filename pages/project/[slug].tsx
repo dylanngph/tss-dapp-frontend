@@ -29,14 +29,13 @@ export default function ProjectDetail() {
 
   return (
     <div>
-      <Head>
-        <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}` }</title>
-        <meta name="description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
-
-        <NextSeo
+      <NextSeo
           title={ projectDetail &&  `Dự án - ${projectDetail.projectName}` }
           description={ projectDetail &&  `Dự án - ${projectDetail.description}` }
-        />
+      />
+      {/* <Head>
+        <title>{ projectDetail &&  `Dự án - ${projectDetail.projectName}` }</title>
+        <meta name="description" content={ projectDetail &&  `Dự án - ${projectDetail.description}` } />
 
         <meta property="og:title" content={ projectDetail &&  `Dự án - ${projectDetail.projectName}` } />
         <meta property="og:type" content="article" />
@@ -48,7 +47,7 @@ export default function ProjectDetail() {
         <meta name="twitter:card" content="summary_large_image" />
 
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
 
       <main>
         <Header theme={'black'} />
