@@ -17,6 +17,7 @@ export default function ProjectDetail() {
   const [projectMeta, setprojectMeta] = React.useState(projectDetailItem);
 
   React.useEffect(() => {
+    getStaticProps();
     fetchData();
   }, [router]);
 
@@ -26,8 +27,6 @@ export default function ProjectDetail() {
     setprojectMeta(showDataRes);
     console.log(projectMeta);
   };
-
-  // getStaticProps();
 
   const fetchData = async () => {
     if (!router.query.slug) return;
