@@ -37,15 +37,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerS
   try {
     const { url = '' } = req;
     const urlSlug = url.split('project/')[1];
-    // const router = useRouter();
+
+    const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${urlSlug}`);
+    const eInfo = await abc.json();
   
-    console.log('url==>', url);
-  
-    const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
+    // const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
     
-    const data = eInfo?.data.data;
-  
-    console.log('data', data);
+    // const data = eInfo?.data.data;
+
+    const data = eInfo?.data;
   
     const metaTagTitle = data && `Dự án - ${data.projectName}`;
   
@@ -83,7 +83,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerS
   }
 }
 
-export default function ProjectDetail({ metaTagsList, metaTagTitle }: any) {
+export default function ProjectDetail({ metaTagsList, metaTagTitle, error }: any) {
   const router = useRouter();
   const [projectDetail, setprojectDetail] = React.useState(projectDetailItem);
   const [projectMeta, setprojectMeta] = React.useState(projectDetailItem);
@@ -148,8 +148,6 @@ export default function ProjectDetail({ metaTagsList, metaTagTitle }: any) {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-
 
       <main>
         <Header theme={'black'} />
