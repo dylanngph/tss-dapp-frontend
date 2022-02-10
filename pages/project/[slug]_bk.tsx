@@ -33,67 +33,56 @@ interface MetaTag {
   content: string,
 }
 
-// export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerSidePropsContext) => {
-//   try {
-//     const { url = '' } = req;
-//     const urlSlug = url.split('project/')[1];
+export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerSidePropsContext) => {
+  try {
+    const { url = '' } = req;
+    const urlSlug = url.split('project/')[1];
 
-//     const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${urlSlug}`);
-//     const eInfo = await abc.json();
+    const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${urlSlug}`);
+    const eInfo = await abc.json();
   
-//     // const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
-//     // const data = eInfo?.data.data;
+    // const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
+    // const data = eInfo?.data.data;
 
-//     const data = eInfo?.data;
+    const data = eInfo?.data;
   
-//     const metaTagTitle = data && `Dự án - ${data.projectName}`;
+    const metaTagTitle = data && `Dự án - ${data.projectName}`;
   
-//     const metaTagDescription = data && data.description;
+    const metaTagDescription = data && data.description;
   
-//     const metaTagsList: MetaTag[] = [
-//       // <meta property="title ... /> has the same property as the <title name="title>...</title>, but still needs a unique key.
-//       // we handle this logic while mapping over the metaTagsList prop.
-//       { property: MetaTagKeys.TITLE, key: MetaTagKeys.META_TITLE, content: metaTagTitle },
-//       { property: MetaTagKeys.DESCRIPTION, content: metaTagDescription },
-//       // <!-- Open Graph / Facebook -->
-//       { property: MetaTagKeys.OG_URL, content: url },
-//       { property: MetaTagKeys.OG_TITLE, content: metaTagTitle },
-//       { property: MetaTagKeys.OG_DESC, content: metaTagDescription },
-//       { property: MetaTagKeys.OG_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" },
-//       // <!-- Twitter -->
-//       { property: MetaTagKeys.TWITTER_CARD, content: 'summary_large_image' },
-//       { property: MetaTagKeys.TWITTER_URL, content: url },
-//       { property: MetaTagKeys.TWITTER_TITLE, content: metaTagTitle },
-//       { property: MetaTagKeys.TWITTER_DESC, content: metaTagDescription },
-//       { property: MetaTagKeys.TWITTER_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" }
-//     ];
-//     return {
-//       props: {
-//         metaTagsList,
-//         metaTagTitle
-//       },
-//     }
-//   } catch (error) {
-//     return {
-//       props: {
-//         error
-//       }
-//     }
-//   }
-// }
-
-export async function getServerSideProps({ params }: any) {
-  const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
-  const data = await response.data.data;
-
-  console.log('data==>', data);
-
-  return {
-      props: { metaTagsList: data },
+    const metaTagsList: MetaTag[] = [
+      // <meta property="title ... /> has the same property as the <title name="title>...</title>, but still needs a unique key.
+      // we handle this logic while mapping over the metaTagsList prop.
+      { property: MetaTagKeys.TITLE, key: MetaTagKeys.META_TITLE, content: metaTagTitle },
+      { property: MetaTagKeys.DESCRIPTION, content: metaTagDescription },
+      // <!-- Open Graph / Facebook -->
+      { property: MetaTagKeys.OG_URL, content: url },
+      { property: MetaTagKeys.OG_TITLE, content: metaTagTitle },
+      { property: MetaTagKeys.OG_DESC, content: metaTagDescription },
+      { property: MetaTagKeys.OG_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" },
+      // <!-- Twitter -->
+      { property: MetaTagKeys.TWITTER_CARD, content: 'summary_large_image' },
+      { property: MetaTagKeys.TWITTER_URL, content: url },
+      { property: MetaTagKeys.TWITTER_TITLE, content: metaTagTitle },
+      { property: MetaTagKeys.TWITTER_DESC, content: metaTagDescription },
+      { property: MetaTagKeys.TWITTER_IMG, content: "https://jpt-ugc.s3.ap-southeast-1.amazonaws.com/metaTag.png" }
+    ];
+    return {
+      props: {
+        metaTagsList,
+        metaTagTitle
+      },
+    }
+  } catch (error) {
+    return {
+      props: {
+        error
+      }
+    }
   }
 }
 
-export default function ProjectDetail({ metaTagsList }: any) {
+export default function ProjectDetail({ metaTagsList, metaTagTitle, error }: any) {
   const router = useRouter();
   const [projectDetail, setprojectDetail] = React.useState(projectDetailItem);
   const [projectMeta, setprojectMeta] = React.useState(projectDetailItem);
@@ -131,8 +120,8 @@ export default function ProjectDetail({ metaTagsList }: any) {
           description={ projectDetail &&  `Dự án - ${projectDetail.description}` }
       /> */}
       <Head>
-        <title>{ metaTagsList &&  `Dự án - ${metaTagsList.projectName}` }</title>
-        {/* <meta name="description" content={ projectMeta &&  `Dự án - ${projectMeta.description}` } />
+        {/* <title>{ metaTagsList &&  `Dự án - ${metaTagsList.TITLE}` }</title>
+        <meta name="description" content={ projectMeta &&  `Dự án - ${projectMeta.description}` } />
 
         <meta property="og:title" content={ projectMeta &&  `Dự án - ${projectMeta.projectName}` } />
         <meta property="og:type" content="article" />
@@ -143,7 +132,7 @@ export default function ProjectDetail({ metaTagsList }: any) {
         <meta name="twitter:image" content={ projectMeta &&  `${projectMeta.logo}` } />
         <meta name="twitter:card" content="summary_large_image" /> */}
 
-        {/* <title
+        <title
           key={MetaTagKeys.TITLE}>
           {metaTagTitle}
         </title>
@@ -154,7 +143,7 @@ export default function ProjectDetail({ metaTagsList }: any) {
               key={entry.key ? entry.key : entry.property}
               content={entry.content}
             />
-          ))} */}
+          ))}
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
