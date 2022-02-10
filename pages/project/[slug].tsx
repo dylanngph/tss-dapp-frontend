@@ -88,7 +88,7 @@ export async function getServerSideProps({ params }: any) {
     // const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
     // const data = response.data.data;
 
-    const res = await await fetch(`https://dev-api.tss.org.vn/project?projectId=&projectSlug=calo-metaverse-gm4G`)
+    const res = await fetch(`https://dev-api.tss.org.vn/project?projectId=&projectSlug=calo-metaverse-gm4G`)
     const data = await res.json()
 
     console.log('data===>', data.data);
@@ -98,10 +98,6 @@ export async function getServerSideProps({ params }: any) {
     }
   } catch (error) {}
 }
-
-// export async function getServerSideProps({ params }) { 
-//   const res_category = await fetch(http://localhost:1337/categories/?      slug=${encodeURI(slug)}) 
-// const CategoryData = await res_category.json() const category = CategoryData[0] return { props: {category }, } } 
 
 export default function ProjectDetail({ metaTagsList }: any) {
   const router = useRouter();
