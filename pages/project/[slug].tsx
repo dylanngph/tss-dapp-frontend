@@ -84,16 +84,24 @@ interface MetaTag {
 
 export async function getServerSideProps({ params }: any) {
   try {
-    const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
-    const data = await response.data.data;
-  
-    console.log('data==>', data);
+    console.log('params==>', params);
+    // const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
+    // const data = response.data.data;
+
+    const res = await await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${params.slug}`)
+    const data = await res.json()
+
+    console.log('data===>', data.data);
   
     return {
-        props: { metaTagsList: data },
+        props: { metaTagsList: data.data },
     }
   } catch (error) {}
 }
+
+// export async function getServerSideProps({ params }) { 
+//   const res_category = await fetch(http://localhost:1337/categories/?      slug=${encodeURI(slug)}) 
+// const CategoryData = await res_category.json() const category = CategoryData[0] return { props: {category }, } } 
 
 export default function ProjectDetail({ metaTagsList }: any) {
   const router = useRouter();
