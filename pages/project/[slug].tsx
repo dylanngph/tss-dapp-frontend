@@ -88,7 +88,7 @@ export async function getServerSideProps({ params }: any) {
     // const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
     // const data = response.data.data;
 
-    const res = await await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${params.slug}`)
+    const res = await await fetch(`https://dev-api.tss.org.vn/project?projectId=&projectSlug=calo-metaverse-gm4G`)
     const data = await res.json()
 
     console.log('data===>', data.data);
