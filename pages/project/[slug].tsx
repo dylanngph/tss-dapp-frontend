@@ -38,14 +38,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerS
     const { url = '' } = req;
     const urlSlug = url.split('project/')[1];
 
-    const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${urlSlug}`);
-    const eInfo = await abc.json();
+    // const abc = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${urlSlug}`);
+    // const eInfo = await abc.json();
   
-    // const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
-    
-    // const data = eInfo?.data.data;
+    const eInfo = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${urlSlug}` } });
+    const data = eInfo?.data.data;
 
-    const data = eInfo?.data;
+    // const data = eInfo?.data;
   
     const metaTagTitle = data && `Dự án - ${data.projectName}`;
   
