@@ -82,16 +82,18 @@ interface MetaTag {
 //   }
 // }
 
-// export async function getServerSideProps({ params }: any) {
-//   const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
-//   const data = await response.data.data;
-
-//   console.log('data==>', data);
-
-//   return {
-//       props: { metaTagsList: data },
-//   }
-// }
+export async function getServerSideProps({ params }: any) {
+  try {
+    const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
+    const data = await response.data.data;
+  
+    console.log('data==>', data);
+  
+    return {
+        props: { metaTagsList: data },
+    }
+  } catch (error) {}
+}
 
 export default function ProjectDetail({ metaTagsList }: any) {
   const router = useRouter();
