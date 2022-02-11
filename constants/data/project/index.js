@@ -8,7 +8,7 @@ export const projectDetailItem = {
   },
   nfts: [],
   projectName: 'TSS',
-  symbol: 'JAD',
+  symbol: 'TSS',
   standards: [
     'ERC20',
     'BEP20',
