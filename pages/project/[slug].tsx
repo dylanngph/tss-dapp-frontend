@@ -15,8 +15,6 @@ export async function getServerSideProps({ params }: any) {
     const response = await axios.get(`${API_URL.PROJECT_DETAIL}`, { params: { projectSlug: `${params.slug}` } });
     const data = response.data.data;
 
-    console.log('data===>', data);
-  
     return {
         props: { metaTagsList: data },
     }
@@ -37,7 +35,6 @@ export default function ProjectDetail({ metaTagsList }: any) {
     const response = await fetch(`${API_URL.PROJECT_DETAIL}&projectSlug=${router.query.slug}`); // Fetch your data
     const showDataRes = await response.json();
     setprojectMeta(showDataRes);
-    console.log(projectMeta);
   };
 
   const fetchData = async () => {
