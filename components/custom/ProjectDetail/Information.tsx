@@ -105,7 +105,7 @@ export default function Information ({project}: BlockChainProps) {
                       padding: '3px',
                     }}>
                       <a href={link} target="_blank" rel="noopener noreferrer">
-                        <ImgSocial src={`/assets/icons/socials/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
+                        <ImgSocial src={`/assets/icons/socials/${name?.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
                       </a>
                     </Box>
                   )
