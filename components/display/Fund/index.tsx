@@ -48,7 +48,7 @@ export default function FunPage({fundItem}: FunPageProps) {
                 { fundItem.socialWebs && fundItem.socialWebs.map(({name, link}, index) => (
                   <BoxSocial key={index}>
                     <a href={verifyWebsite(link)} target="_blank" rel="noopener noreferrer">
-                      <ImgSocial src={`/assets/icons/socials-white/${name?.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
+                      <ImgSocial src={`/assets/icons/socials-white/${name && name?.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
                     </a>
                   </BoxSocial>
                 )) }
