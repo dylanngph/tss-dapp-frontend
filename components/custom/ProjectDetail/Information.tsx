@@ -89,7 +89,7 @@ export default function Information ({project}: BlockChainProps) {
             </Grid>
           </li>
           <li>
-            {/* <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between">
               <Grid item>Mạng xã hội</Grid>
               <Grid item>
               {
@@ -112,7 +112,7 @@ export default function Information ({project}: BlockChainProps) {
                 })
               }
               </Grid>
-            </Grid> */}
+            </Grid>
           </li>
         </WrapperInfoProject>
       </Grid>
