@@ -42,7 +42,7 @@ export default function FunPage({fundItem}: FunPageProps) {
                 <img src={fundItem?.logo} alt={fundItem?.name} />
               </Box>
             </Grid>
-            {/* <Grid item xs={12} sm={12} md={10} lg={10}>
+            <Grid item xs={12} sm={12} md={10} lg={10}>
               <TitleProject>{fundItem?.name}</TitleProject>
               <Grid container>
                 { fundItem.socialWebs && fundItem.socialWebs.map(({name, link}, index) => (
@@ -53,7 +53,7 @@ export default function FunPage({fundItem}: FunPageProps) {
                   </BoxSocial>
                 )) }
               </Grid>
-            </Grid> */}
+            </Grid>
           </Grid>
         </Grid>
         <Grid item container xs={12} sm={12} md={7} lg={7} spacing={2}>

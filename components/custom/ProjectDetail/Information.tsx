@@ -27,7 +27,7 @@ export interface BlockChainProps {
   }
 }
 
-export default function Information ({project}: BlockChainProps) {  
+export default function Information({ project }: BlockChainProps) {
   return (
     <Grid container spacing={3} mb={4}>
       <Grid item container direction="column" lg={7}>
@@ -82,7 +82,7 @@ export default function Information ({project}: BlockChainProps) {
                 {
                   project.websites.map((web) => {
                     return (
-                      <a key={web} style={{display: 'block'}} href={verifyWebsite(web)} target="_blank" rel="noopener noreferrer">{web}</a>
+                      <a key={web} style={{ display: 'block' }} href={verifyWebsite(web)} target="_blank" rel="noopener noreferrer">{web}</a>
                     )
                   })
                 }</Grid>
@@ -92,25 +92,26 @@ export default function Information ({project}: BlockChainProps) {
             <Grid container justifyContent="space-between">
               <Grid item>Mạng xã hội</Grid>
               <Grid item>
-              {
-                project.socialWebs.map(({name, link}) => {
-                  return (
-                    <Box key={name} sx={{
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '50%',
-                      backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                      marginLeft: '10px',
-                      display: 'inline-block',
-                      padding: '3px',
-                    }}>
-                      <a href={link} target="_blank" rel="noopener noreferrer">
-                        <ImgSocial src={`/assets/icons/socials/${name && name?.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
-                      </a>
-                    </Box>
-                  )
-                })
-              }
+                {
+                  project?.socialWebs?.map(({ name, link }) => {
+                    return (
+                      <Box key={name} sx={{
+                        width: '24px',
+                        height: '24px',
+                        borderRadius: '50%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                        marginLeft: '10px',
+                        display: 'inline-block',
+                        padding: '3px',
+                      }}>
+                        <a href={link} target="_blank" rel="noopener noreferrer">
+                          <ImgSocial src={`/assets/icons/socials/${name && name?.replace(" ", "").toLowerCase()}.svg`} alt="social" />
+                        </a>
+                      </Box>
+                    )
+
+                  })
+                }
               </Grid>
             </Grid>
           </li>
@@ -119,7 +120,7 @@ export default function Information ({project}: BlockChainProps) {
       <Grid item container direction="column" lg={5}>
         <TitleSec title="QR code" />
         <WrapperQRCode>
-          { typeof window !== "undefined" && (
+          {typeof window !== "undefined" && (
             <BoxQrCode>
               <QRCode title="qr-code" value={window?.location.href} />
             </BoxQrCode>
