@@ -42,17 +42,19 @@ export default function Projects ({data}: ProjectsProps) {
                     <LabelBox>{round}</LabelBox>
                   </Grid>
                 </Grid>
-                <TitleBox>{name}</TitleBox>
-                {/* <Box sx={{ borderBottom: '1px solid #EFF2F5', margin: '16px 0' }}></Box> */}
-                <Grid item container spacing={1} sx={{ borderTop: '1px solid #EFF2F5', marginTop: '16px', paddingTop: '16px' }}>
-                  <Grid item container justifyContent="center" alignItems="center" xs={6}>
-                    <BoxCapitalTitle>Tổng số vốn gọi</BoxCapitalTitle>
-                    <BoxCapitalContent>{convertTotalCap(totalCap)}</BoxCapitalContent>
-                  </Grid>
-                  <Grid item container justifyContent="center" alignItems="center" xs={6}>
-                    <BoxCapitalTitle>Ngày gọi vốn</BoxCapitalTitle>
-                    <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
-                  </Grid>
+                <Grid item>
+                  <LabelBox>{round}</LabelBox>
+                </Grid>
+              </Grid>
+              <Box sx={{ borderBottom: '1px solid #EFF2F5', margin: '16px 0' }}></Box>
+              <Grid container spacing={1}>
+                <Grid item container justifyContent="center" alignItems="center" xs={6}>
+                  <BoxCapitalTitle>Tổng số vốn gọi</BoxCapitalTitle>
+                  <BoxCapitalContent>{convertTotalCap(totalCap)}</BoxCapitalContent>
+                </Grid>
+                <Grid item container justifyContent="center" alignItems="center" xs={6}>
+                  <BoxCapitalTitle>Thời gian gọi vốn</BoxCapitalTitle>
+                  <BoxCapitalContent>{formatDateVI(fundedDate)}</BoxCapitalContent>
                 </Grid>
               </Grid>
               </a>

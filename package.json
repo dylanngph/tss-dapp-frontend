@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:local": "env-cmd -f .env.development next build",
+    "build:dev": "GENERATE_SOURCEMAP=false env-cmd -f .env.development next build",
+    "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,8 +23,10 @@
     "axios": "^0.24.0",
     "chart.js": "^3.6.0",
     "chartjs-plugin-datalabels": "^2.0.0",
+    "env-cmd": "^10.1.0",
     "http-proxy": "^1.18.1",
     "next": "^12.0.4",
+    "next-seo": "^5.1.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.0",
     "react-dom": "^17.0.2",

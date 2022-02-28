@@ -2,13 +2,13 @@ export const projectDetailItem = {
   id: '1',
   logo: '/assets/images/logo-img-project-detail.png',
   detail: {
-    incorporationName: 'Jadelabs',
+    incorporationName: 'TSS',
     incorporationAddress: '138 Robinson Road #02-50 Singapore',
     acceptDate: '10/10/2020',
   },
   nfts: [],
-  projectName: 'Jadelabs',
-  symbol: 'JAD',
+  projectName: 'TSS',
+  symbol: 'TSS',
   standards: [
     'ERC20',
     'BEP20',
@@ -25,7 +25,7 @@ export const projectDetailItem = {
       link: 'zing.me/abc',
     },
   ],
-  description: 'Jade Labs là một công ty nghiên cứu & phát triển blockchain tập trung vào việc tạo ra sản phẩm khác biệt nhất để đáp ứng sự hài lòng của khách hàng trong thị trường tiền điện tử. Chúng tôi có đội ngũ trẻ trung, năng động và các thành viên nòng cốt có nhiều kinh nghiệm phát triển các dự án blockchain, chúng tôi cam kết mang đến cho khách hàng những giá trị thiết thực, sự hài lòng của bạn là thành công của chúng tôi',
+  description: 'TSS - Đơn vị/Tổ chức đầu tư',
   tokenAllocations: [
     {
       allocationName: "Public sale",

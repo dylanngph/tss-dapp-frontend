@@ -1,7 +1,6 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Image from 'next/image';
 import styled from 'styled-components';
 
 export default function CriteriaPage () {
@@ -9,10 +8,10 @@ export default function CriteriaPage () {
     <Container>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item md={6}>
-          <TitlePage>Tiêu chí xét duyệt dự án</TitlePage>
+          <TitlePage>Tiêu chí đánh giá thông tin dự án</TitlePage>
         </Grid>
         <Grid item md={6}>
-          <Image src="/assets/images/criteria/NFT Decentralize.png" alt="NFT Decentralize" width={577} height={564}/>
+          <Image src="/assets/images/criteria/NFTDecentralize.png" alt="NFT Decentralize" width={577} height={564}/>
         </Grid>
       </Grid>
       <BoxContent pt={4} pb={4}>
@@ -143,3 +142,8 @@ const BoxContent = styled(Box)`
     }
   }
 `;
+
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+`

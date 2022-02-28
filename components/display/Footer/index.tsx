@@ -7,6 +7,8 @@ import Grid from '@mui/material/Grid';
 import { FooterData } from 'constants/data/footer';
 import styled from 'styled-components';
 export interface FooterProps {
+  criteriaShown: boolean;
+  disclaimerShown: boolean;
 }
 
 export default function Footer(props: FooterProps) {
@@ -35,8 +37,24 @@ export default function Footer(props: FooterProps) {
                   )
                 }) }
             </Grid>
+            <Box mb={1} sx={{ fontWeight: 'bold' }}>
+              {
+                props.criteriaShown
+                ?
+                <Link href="/criteria">Tiêu chí đánh giá thông tin dự án</Link>
+                :
+                null
+              }
+            </Box>
             <Box sx={{ fontWeight: 'bold' }}>
-              <Link href="/criteria">Tiêu chí xét duyệt dự án</Link>
+              {
+                props.disclaimerShown
+                ?
+                <Link href="/disclaimer">Miễn trừ trách nhiệm</Link>
+                :
+                null
+              }
+              
             </Box>
           </Grid>
         </Grid>
@@ -52,7 +70,8 @@ export default function Footer(props: FooterProps) {
 
 const WrapperNav = styled.footer`
   color: #ffffff;
-  background: linear-gradient(286.23deg, #2A2AFF -70.7%, #000696 78.49%);
+  // background: linear-gradient(286.23deg, #2A2AFF -70.7%, #000696 78.49%);
+  background: #01001b;
   h4 {
     font-size: 24px;
     margin: 0 0 10px;

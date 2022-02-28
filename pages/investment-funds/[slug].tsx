@@ -21,10 +21,10 @@ const IFund: NextPage = () => {
   }, [router]);
 
   const fetchData = async () => {
-    if (!router.query.id) return;
+    if (!router.query.slug) return;
     setLoading(true);
     try {
-      const response = await axios.get(`${API_URL.FUND_DETAIL_ALL}${router.query.id}`);
+      const response = await axios.get(`${API_URL.FUND_DETAIL_ALL}`, {params: {fundSlug: `${router.query.slug}`}});
       setFundItem(response.data.data);
       setLoading(false);
     } catch (error) {
@@ -35,8 +35,8 @@ const IFund: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>TSS - Quỹ đầu tư</title>
-        <meta name="description" content="TSS - Quỹ đầu tư" />
+        <title>TSS - Đơn vị/Tổ chức đầu tư</title>
+        <meta name="description" content="TSS - Đơn vị/Tổ chức đầu tư" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -59,7 +59,7 @@ const IFund: NextPage = () => {
               <FunPage fundItem={fundItem} />
             )
         }
-        <Footer />
+        <Footer criteriaShown={true} disclaimerShown={false} />
       </main>
 
     </div>

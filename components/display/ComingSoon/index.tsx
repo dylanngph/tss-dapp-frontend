@@ -23,7 +23,7 @@ export default function ComingSoon(props: ComingSoonProps) {
           <h1>Chức năng đang phát triển</h1>
           <p>Chức năng đang phát triển, hay quay lại sau nhé.</p>
           <BoxLink>
-            <Link href="/" passHref>Trở về trang chủ</Link>
+            <Link href="/" passHref>Trở về hệ thống TSS</Link>
           </BoxLink>
         </Box>
       </Grid>

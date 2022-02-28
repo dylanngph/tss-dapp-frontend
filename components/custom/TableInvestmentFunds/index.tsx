@@ -15,6 +15,7 @@ import styled from 'styled-components';
 export interface TableInvestmentFundsProps {
   investmentFunds: {
     id: string,
+    slug: string,
     logo: string,
     name: string,
     area: string,
@@ -72,7 +73,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
           <CustomInputSearch
             fullWidth
             id="input-search"
-            placeholder="Tìm kiếm quỹ đầu tư"
+            placeholder="Tìm kiếm đơn vị/tổ chức đầu tư"
             InputProps={{
               style: {
                 backgroundColor: '#EFF2F5',
@@ -113,7 +114,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
           <thead>
             <tr>
               <th>#</th>
-              <th>Quỹ đầu tư</th>
+              <th>Đơn vị/Tổ chức đầu tư</th>
               <th>Dạng đầu tư</th>
               <th style={{ textAlign: "center" }}>Năm thành lập</th>
               <th style={{ textAlign: "center", minWidth: '300px' }}>Dự án đầu tư tiêu biểu</th>
@@ -124,7 +125,7 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
               ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : rows
             ).map((row, index) => (
-              <tr key={row.id} onClick={() => { router.push(`/investment-funds/${row.id}`) }}>
+              <tr key={row.id} onClick={() => { router.push(`/investment-funds/${row.slug}`) }}>
                 <td>{index + 1}</td>
                 <td>
                   <Grid container alignItems="center">

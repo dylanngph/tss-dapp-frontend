@@ -12,7 +12,7 @@ export default function Banner () {
       <Container>
         <Grid container>
           <Grid item container alignItems="center" md={6}>
-            <TitleSection>Cấp NFT xác thực dự án Blockchain của bạn</TitleSection>
+            <TitleSection>Phát hành NFT xác nhận thông tin dự án Blockchain của bạn</TitleSection>
           </Grid>
           <Grid item md={6}>
             <Image src="/assets/images/sec-banner-image.png" alt="banner image" width={640} height={507}/>
@@ -34,9 +34,10 @@ export default function Banner () {
 
 const WrapperBanner = styled.div`
   position: relative;
-  background-image: url('/assets/images/hero-img-banner.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-image: url('/assets/images/hero-img-banner.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  background: #01001b;
   min-height: inherit;
   margin-bottom: 200px;
   padding-top: 80px;

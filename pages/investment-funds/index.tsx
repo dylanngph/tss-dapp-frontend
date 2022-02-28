@@ -8,15 +8,15 @@ const InvestmentFunds: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>TSS - Quỹ đầu tư</title>
-        <meta name="description" content="TSS - Quỹ đầu tư" />
+        <title>TSS - Đơn vị/Tổ chức đầu tư</title>
+        <meta name="description" content="TSS - Đơn vị/Tổ chức đầu tư" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <Header theme={'black'}/>
         <InvestmentFundsPage />
-        <Footer />
+        <Footer criteriaShown={true} disclaimerShown={true} />
       </main>
 
     </div>

@@ -7,6 +7,7 @@ import Introduce from 'components/custom/Fund/Introduce';
 import Projects from 'components/custom/Fund/Projects';
 import { verifyWebsite } from 'utils/helper';
 import styled from 'styled-components';
+import QRCode from "react-qr-code";
 
 export interface FunPageProps {
   fundItem: {
@@ -34,8 +35,8 @@ export interface FunPageProps {
 export default function FunPage({fundItem}: FunPageProps) {
   return (
     <Container sx={{ paddingTop: '24px', paddingBottom: '24px' }}>
-      <Grid container>
-        <Grid item xs={12} sm={12} md={5} lg={5}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={4} lg={4}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={2} lg={2}>
               <Box sx={{ maxWidth: 86, '& img': { maxWidth: '100%', height: 'auto' } }}>
@@ -48,18 +49,29 @@ export default function FunPage({fundItem}: FunPageProps) {
                 { fundItem.socialWebs && fundItem.socialWebs.map(({name, link}, index) => (
                   <BoxSocial key={index}>
                     <a href={verifyWebsite(link)} target="_blank" rel="noopener noreferrer">
-                      <ImgSocial src={`/assets/icons/socials-white/${name.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
+                      <ImgSocial src={`/assets/icons/socials-white/${name && name?.replaceAll(" ", "").toLowerCase()}.svg`} alt="social" />
                     </a>
                   </BoxSocial>
                 )) }
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> 
         </Grid>
-        <Grid item container xs={12} sm={12} md={7} lg={7} spacing={2}>
+        <Grid item container xs={12} sm={12} md={5} lg={5} spacing={2}>
           <BoxDetail title="Dạng đầu tư" content={fundItem?.area} />
           <BoxDetail title="Năm thành lập" content={new Date(fundItem?.establishedDate).getFullYear().toString()} />
           <BoxDetail title="Trạng thái" content={fundItem?.status} />
+        </Grid>
+        <Grid item container xs={12} sm={12} md={3} lg={3} spacing={2}>
+          <Box sx={{width: '100%', paddingLeft: '16px'}}>
+            <WrapperQRCode>
+              {typeof window !== "undefined" && (
+                <BoxQrCode>
+                  <QRCode title="qr-code" value={window?.location.href} size={100} />
+                </BoxQrCode>
+              )}
+            </WrapperQRCode>
+          </Box>
         </Grid>
       </Grid>
 
@@ -90,6 +102,22 @@ const BoxSocial = styled(Box)`
   &:not(:first-child) {
     margin-left: 10px;
   }
+`;
+
+const WrapperQRCode = styled.div`
+  width: 100%;
+  background: #EFF2F5;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`;
+
+const BoxQrCode = styled.div`
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #ffffff;
 `;
 
 const ImgSocial = styled.img`

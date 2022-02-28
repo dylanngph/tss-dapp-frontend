@@ -65,12 +65,12 @@ export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTok
         </CustomButtonDetail>
       </Grid>
       <Grid container mb={4}>
-        <Grid item container md={6} justifyContent="center" alignItems="center">
+        <Grid item container md={8} justifyContent="center" alignItems="center">
           <Box sx={{ width: '350px', height: 'auto', maxWidth: '70vw' }}>
             <Doughnut data={dataChart} plugins={[ChartDataLabels]} options={options} />
           </Box>
         </Grid>
-        <Grid item container md={6} pt={2}>
+        <Grid item container md={4} pt={2}>
           {dataChart.labels.map((label: string, index) => {
             return (
               <Grid key={index} item container alignItems="center" mb={3} xs={6} sm={12}>
@@ -124,7 +124,7 @@ export default function ChartTokenomics ({tokenAllocations, dataChart}: ChartTok
                     >
                       <TableCell component="th" scope="row">{index + 1}</TableCell>
                       <TableCell>{row.allocationName}</TableCell>
-                      <TableCell align="right">{(row.rate).toFixed()}&#37;</TableCell>
+                      <TableCell align="right">{(row.rate)}&#37;</TableCell>
                       <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.price)}</TableCell>
                       <TableCell align="right">{new Intl.NumberFormat('de-DE').format(row.amount)}</TableCell>
                       <TableCell>{row.vesting}</TableCell>

@@ -16,5 +16,5 @@ export const API_URL = {
     PROJECT_ALL: `${API_PROJECT}/project/active/all`,
     PROJECT_DETAIL: `${API_PROJECT}/project?projectId=`,
     FUND_ALL: `${API_PROJECT}/fund/all`,
-    FUND_DETAIL_ALL: `${API_PROJECT}/fund/detail?fundId=`,
+    FUND_DETAIL_ALL: `${API_PROJECT}/fund/detail?`,
 }
