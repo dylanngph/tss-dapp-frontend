@@ -102,14 +102,27 @@ export default function BlockChain ({nft}: InformationProps) {
       { blockTitle === 'Passport of Blockchain' ? (
           <CardStamp>
           <Box sx={{
+            position: 'relative',
             width: '100%',
             padding: '20px',
             borderTopRightRadius: '12px',
             borderTopLeftRadius: '12px',
             display: 'flex',
             justifyContent: 'center',
-            backgroundImage: 'url("/assets/images/bg-stamp.png")' }}>
+            backgroundImage: 'url("/assets/images/bg-stamp.png")', }}>
             <Image src={PASSPORT_BLOCKCHAIN.logo} alt="PASSPORT IMG" width={140} height={140} />
+            <Box sx={{
+              position: 'absolute',
+              top: '15px',
+              left: '20px',
+              color: '#446DFF',
+              textTransform: 'uppercase',
+              background: '#F0F6FF',
+              borderRadius: '4px',
+              fontSize: '14px',
+              padding: '6px',
+              fontWeight: 'bold'
+            }}>SEAL NFT</Box>
           </Box>
           <Box sx={{
             padding: '10px 20px'
@@ -140,7 +153,8 @@ export default function BlockChain ({nft}: InformationProps) {
       ) : (
         <Box sx={{
           boxShadow: '0px 4px 17px rgba(0, 0, 0, 0.05)',
-          borderRadius: '12px'
+          borderRadius: '12px',
+          border: '1px solid #EFF2F5'
         }}>
           <Grid container direction="column" justifyContent="center" alignItems="center" p={6}>
             <Image src="/assets/images/updating.png" alt="updating.png" width={231} height={222}/>
@@ -160,6 +174,7 @@ const CardStamp = styled(Box)`
   background-repeat: no-repeat;
   background-size: 70%;
   background-position: right bottom;
+  border: 1px solid #EFF2F5;
 `
 
 const BoxCopy = styled(Box)`
