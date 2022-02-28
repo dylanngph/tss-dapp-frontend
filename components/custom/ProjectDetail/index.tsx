@@ -2,9 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import TitleSec from 'components/custom/TitleSec';
-import HeaderBox from 'components/custom/ProjectDetail/HeaderBox';
 import Information from 'components/custom/ProjectDetail/Information';
-import BlockChain from 'components/custom/ProjectDetail/BlockChain';
 import Introduce from 'components/custom/ProjectDetail/Introduce';
 import ChartTokenomics from 'components/custom/ProjectDetail/ChartTokenomics';
 import SliderSlick from 'components/custom/Slider';
@@ -111,15 +109,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <Container>
 
-      <HeaderBox project={project} />
-
       <Information project={project} />
-
-      {
-        project?.nfts.map((nft, index) => (
-          <BlockChain key={index} nft={nft} />
-        ))
-      }
 
       <Introduce description={project.description} />
 

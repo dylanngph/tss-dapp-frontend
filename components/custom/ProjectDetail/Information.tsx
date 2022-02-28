@@ -2,16 +2,23 @@ import * as React from 'react';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import TitleSec from 'components/custom/TitleSec';
 import styled from 'styled-components';
 import QRCode from "react-qr-code";
+import TitleSec from 'components/custom/TitleSec';
+import BlockChain from 'components/custom/ProjectDetail/BlockChain';
 import { verifyWebsite, minimizeAddressSmartContract } from 'utils/helper';
 import { device } from 'styles/media-device';
 
 export interface BlockChainProps {
   project: {
+    logo: string,
     projectName: string,
+    socialWebs: {
+      name: string,
+      link: string,
+    }[],
     detail: {
+      acceptDate: string,
       incorporationName: string,
       incorporationAddress: string,
     },
@@ -20,120 +27,200 @@ export interface BlockChainProps {
     communications: string[],
     smartContractAddress: string,
     websites: string[],
-    socialWebs: {
-      name: string,
-      link: string,
+    nfts: {
+      id: string,
+      tokenId: string,
+      imageId: string,
+      txHash: string,
+      owner: string,
+      issuedAt: string,
+      legalId: string,
+      techLevelId: string,
+      socialValueId: string,
+      communRepuId: string,
     }[],
   }
 }
 
 export default function Information({ project }: BlockChainProps) {
-  return (
-    <Grid container spacing={3} mb={4}>
-      <Grid item container direction="column" lg={7}>
-        <TitleSec title="Thông tin dự án" />
-        <WrapperInfoProject>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Công ty chủ quản</Grid>
-              <Grid item>{project.detail.incorporationName}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Trụ sở</Grid>
-              <Grid item>{project.detail.incorporationAddress}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Tên gọi</Grid>
-              <Grid item>{project.projectName}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Ký hiệu token</Grid>
-              <Grid item>{project.symbol}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Tiêu chuẩn</Grid>
-              <Grid item>{project.standards.join(", ")}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Nền tảng</Grid>
-              <Grid item>{project.communications.join(", ")}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Địa chỉ Smart Contract</Grid>
-              <Grid item>{minimizeAddressSmartContract(project.smartContractAddress)}</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Website</Grid>
-              <Grid item>
-                {
-                  project.websites.map((web) => {
-                    return (
-                      <a key={web} style={{ display: 'block' }} href={verifyWebsite(web)} target="_blank" rel="noopener noreferrer">{web}</a>
-                    )
-                  })
-                }</Grid>
-            </Grid>
-          </li>
-          <li>
-            <Grid container justifyContent="space-between">
-              <Grid item>Mạng xã hội</Grid>
-              <Grid item>
-                {
-                  project?.socialWebs?.map(({ name, link }) => {
-                    return (
-                      <Box key={name} sx={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                        marginLeft: '10px',
-                        display: 'inline-block',
-                        padding: '3px',
-                      }}>
-                        <a href={link} target="_blank" rel="noopener noreferrer">
-                          <ImgSocial src={`/assets/icons/socials/${name && name?.replace(" ", "").toLowerCase()}.svg`} alt="social" />
-                        </a>
-                      </Box>
-                    )
+  const getImgSocial = (name: string) => {
+    if (!name) return;
+    return name.replace("/ /g", "").toLowerCase();
+  }
 
-                  })
-                }
-              </Grid>
-            </Grid>
-          </li>
-        </WrapperInfoProject>
+  return (
+    <Grid container pt={2}>
+      <Grid lg={project?.nfts.length ? 8 : 12}>
+        <Box height={60}><TitleSec title="Thông tin dự án" /></Box>
+        <Box sx={{ padding: '15px 20px', border: '1px solid #EFF2F5', borderRadius: '12px' }} >
+          <Box sx={{ display: {
+            lg: 'flex',
+            xs: 'inherit'
+          }, borderBottom: '1px solid #EFF2F5'}} pb={2} mb={3}>
+            <Box sx={{ display: {
+              sm: 'flex',
+              xs: 'inherit'
+            } }}>
+              <BoxWrapperImage>
+                <img src={project?.logo} alt={project?.projectName}/>
+                {/* <Image src={project?.logo} alt={project?.projectName} width={90} height={90}/> */}
+              </BoxWrapperImage>
+              <Box mr={2} mt={{sm: 0, xs: 2}}>
+                <TitleProject>{project?.projectName}</TitleProject>
+                <Grid container>
+                  { project?.websites.length && (
+                    <BoxSocial>
+                      <a href={verifyWebsite(project.websites[0])} target="_blank" rel="noopener noreferrer">
+                        <ImgSocial src="/assets/icons/socials-white/global.svg" alt="global" />
+                      </a>
+                    </BoxSocial>
+                  )}
+                  { project?.socialWebs.length && project?.socialWebs.map((entry, index) => (
+                    <BoxSocial key={index}>
+                      <a href={verifyWebsite(entry.link)} target="_blank" rel="noopener noreferrer">
+                        <ImgSocial src={`/assets/icons/socials-white/${getImgSocial(entry.name)}.svg`} alt="social" />
+                      </a>
+                    </BoxSocial>
+                  )) }
+                </Grid>
+              </Box>
+            </Box>
+            <Box sx={{
+              width: 'fit-content'
+            }}>
+              <BoxCertified>
+                <Box sx={{ width: 16, height: 16, marginRight: '6px', backgroundImage: 'url("/assets/icons/ico-shield-tick.svg")' }}/>
+                Chứng nhận
+              </BoxCertified>
+              <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0', display: 'flex', justifyContent: 'center' }}>
+                <Image src="/assets/images/logo-tss-black.png" alt="TSS" width={68} height={30}/>
+              </Box>
+            </Box>
+          </Box>
+
+          <Grid container spacing={2}>
+          <Grid item direction="column" xs={12} lg={5}>
+            {typeof window !== "undefined" && (
+              <BoxQrCode>
+                <QRCode title="qr-code" value={window?.location.href} />
+              </BoxQrCode>
+            )}
+          </Grid>
+          <Grid item direction="column" xs={12} lg={7}>
+            <WrapperInfoProject>
+              <li>
+                <Grid container justifyContent="space-between">
+                  <Grid item>Ký hiệu token</Grid>
+                  <Grid item>{project.symbol}</Grid>
+                </Grid>
+              </li>
+              <li>
+                <Grid container justifyContent="space-between">
+                  <Grid item>Tiêu chuẩn</Grid>
+                  <Grid item>{project.standards.join(", ")}</Grid>
+                </Grid>
+              </li>
+              <li>
+                <Grid container justifyContent="space-between">
+                  <Grid item>Nền tảng</Grid>
+                  <Grid item>{project.communications.join(", ")}</Grid>
+                </Grid>
+              </li>
+              <li>
+                <Grid container justifyContent="space-between">
+                  <Grid item>Trụ sở</Grid>
+                  <Grid item>{project.detail.incorporationAddress}</Grid>
+                </Grid>
+              </li>
+              <li>
+                <Grid container justifyContent="space-between">
+                  <Grid item>Địa chỉ Smart Contract</Grid>
+                  <Grid item>
+                    <BoxCopy onClick={() => {navigator.clipboard.writeText(project.smartContractAddress)}}>{minimizeAddressSmartContract(project.smartContractAddress)}</BoxCopy>
+                  </Grid>
+                </Grid>
+              </li>
+            </WrapperInfoProject>
+          </Grid>
+        </Grid>
+        </Box>
       </Grid>
-      <Grid item container direction="column" lg={5}>
-        <TitleSec title="QR code" />
-        <WrapperQRCode>
-          {typeof window !== "undefined" && (
-            <BoxQrCode>
-              <QRCode title="qr-code" value={window?.location.href} />
-            </BoxQrCode>
-          )}
-        </WrapperQRCode>
-      </Grid>
+
+      { project?.nfts && (
+        <Grid lg={4}>
+          { project?.nfts.map((nft, index) => (
+            <BlockChain key={index} nft={nft} />
+          )) }
+        </Grid>
+      )}
     </Grid>
   );
 }
 
+const TitleProject = styled.h2`
+  color: rgba(0, 0, 0, 0.85);
+  margin: 0;
+  font-size: 24px;
+  line-height: 29px;
+  font-family: 'Inter-Medium';
+  margin-right: 16px;
+`;
+
+const BoxWrapperImage = styled(Box)`
+  display: flex;
+  width: 90px;
+  height: 90px;
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+`;
+
+const ImgSocial = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+const BoxSocial = styled(Box)`
+  width: 36px;
+  height: 36px;
+  background: #446DFF;
+  border-radius: 50%;
+  padding: 8px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
+`;
+
+const BoxCertified = styled.div`
+  font-size: 12px;
+  line-height: 14px;
+  background: #EFF2F5;
+  border-radius: 4px;
+  padding: 6px;
+  color: #58667E;
+  display: flex;
+  max-height: 25px;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  width: fit-content;
+  @media screen and ${device.tabletL} {
+    font-size: 14px;
+    line-height: 17px;
+    padding: 8px;
+  }
+`;
+
 const WrapperInfoProject = styled.ul`
   list-style: none;
-  background: #EFF2F5;
+  background: #F6F8FA;
   border-radius: 12px;
   margin: 0;
   padding: 4px 15px;
@@ -144,36 +231,43 @@ const WrapperInfoProject = styled.ul`
     font-size: 16px;
     line-height: 19px;
     > div {
+      > div:first-child {
+        padding-right: 10px;
+      }
       > div:last-child {
         color: #11142D;
+        font-weight: 500;
       }
     }
     &:not(:last-child) {
       border-bottom: 1px solid #A6B0C3;
     }
   }
-  @media screen and ${device.laptopM} {
-    padding: 4px 15px 4px 40px;
-  }
-`;
-
-const WrapperQRCode = styled.div`
-  flex: 1;
-  background: #EFF2F5;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
 `;
 
 const BoxQrCode = styled.div`
-  padding: 30px;
-  border-radius: 20px;
-  background-color: #ffffff;
+  padding: 10px;
+  background-color: #F6F8FA;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
-const ImgSocial = styled.img`
-  width: 18px;
-  height: 18px;
+const BoxCopy = styled(Box)`
+  position: relative;
+  padding-right: 20px;
+  cursor: copy;
+  color: #11142D;
+  font-weight: 500;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url('/assets/icons/ico-copy.svg');
+    top: 3px;
+    right: 0;
+  }
 `;
