@@ -50,9 +50,9 @@ export default function Information({ project }: BlockChainProps) {
 
   return (
     <Grid container pt={2}>
-      <Grid lg={project?.nfts.length ? 8 : 12}>
+      <Grid xs={12} md={project?.nfts.length ? 8 : 12}>
         <Box height={60}><TitleSec title="Thông tin dự án" /></Box>
-        <Box sx={{ padding: '15px 20px', border: '1px solid #EFF2F5', borderRadius: '12px' }} >
+        <Box sx={{ padding: '15px 20px', border: '1px solid #EFF2F5', borderRadius: '12px', minHeight: '402px' }} >
           <Box sx={{ display: {
             lg: 'flex',
             xs: 'inherit'
@@ -99,14 +99,14 @@ export default function Information({ project }: BlockChainProps) {
           </Box>
 
           <Grid container spacing={2}>
-          <Grid item direction="column" xs={12} lg={5}>
+          <Grid item direction="column" xs={12} lg={4}>
             {typeof window !== "undefined" && (
               <BoxQrCode>
-                <QRCode title="qr-code" value={window?.location.href} />
+                <QRCode size={200} title="qr-code" value={window?.location.href} />
               </BoxQrCode>
             )}
           </Grid>
-          <Grid item direction="column" xs={12} lg={7}>
+          <Grid item direction="column" xs={12} lg={8}>
             <WrapperInfoProject>
               <li>
                 <Grid container justifyContent="space-between">
@@ -147,7 +147,7 @@ export default function Information({ project }: BlockChainProps) {
       </Grid>
 
       { project?.nfts && (
-        <Grid lg={4}>
+        <Grid xs={12} md={4}>
           { project?.nfts.map((nft, index) => (
             <BlockChain key={index} nft={nft} />
           )) }
@@ -224,8 +224,9 @@ const WrapperInfoProject = styled.ul`
   border-radius: 12px;
   margin: 0;
   padding: 4px 15px;
+  height: 100%;
   li {
-    padding: 20px 0;
+    padding: 12px 0;
     font-family: 'Inter-Medium';
     font-weight: 500;
     font-size: 16px;
@@ -238,9 +239,6 @@ const WrapperInfoProject = styled.ul`
         color: #11142D;
         font-weight: 500;
       }
-    }
-    &:not(:last-child) {
-      border-bottom: 1px solid #A6B0C3;
     }
   }
 `;

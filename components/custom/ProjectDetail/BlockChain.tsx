@@ -45,7 +45,7 @@ export default function BlockChain ({nft}: InformationProps) {
   };
 
   return (
-    <Grid container px={{lg: 2, xs: 0}}>
+    <Grid container px={{md: 2, xs: 0}}>
       <Button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
@@ -61,7 +61,7 @@ export default function BlockChain ({nft}: InformationProps) {
           marginBottom: '20px',
           marginTop: {
             xs: '20px',
-            lg: '0'
+            md: '0'
           }
         }}
       >
@@ -128,23 +128,23 @@ export default function BlockChain ({nft}: InformationProps) {
             padding: '10px 20px'
           }}>
             <TitleSec title="Passport of Blockchain" />
-            <Grid container justifyContent={'space-between'} mb={2}>
+            <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">TOKEN ID</span>
               <Box sx={{ color: '#11142D', fontWeight: '500'}}>{nft.tokenId}</Box>
             </Grid>
-            <Grid container justifyContent={'space-between'} mb={2}>
+            <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">Contract ID</span>
               <BoxCopy onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}}><a href={process.env.NEXT_PUBLIC_LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(process.env.NEXT_PUBLIC_BS_SCAN_CODE)}</a></BoxCopy>
             </Grid>
-            <Grid container justifyContent={'space-between'} mb={2}>
+            <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">TX Hash</span>
               <BoxCopy onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>{minimizeAddressSmartContract(nft.txHash)}</BoxCopy>
             </Grid>
-            <Grid container justifyContent={'space-between'} mb={2}>
-              <span className="block-copy">Ngày cấp</span>
+            <Grid container justifyContent={'space-between'} mb={1.5}>
+              <span className="block-copy">Ngày cấp:</span>
               <Box sx={{ color: '#11142D', fontWeight: '500'}}>{formatDateVI(nft?.issuedAt)}</Box>
             </Grid>
-            <Grid container justifyContent={'space-between'} mb={2}>
+            <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">Ngày hết hạn:</span>
               <Box sx={{ color: '#11142D', fontWeight: '500'}}>{formatDateVI(nft?.issuedAt)}</Box>
             </Grid>
