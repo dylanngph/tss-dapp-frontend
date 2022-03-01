@@ -38,6 +38,7 @@ export interface BlockChainProps {
       techLevelId: string,
       socialValueId: string,
       communRepuId: string,
+      expiredAt: string,
     }[],
   }
 }

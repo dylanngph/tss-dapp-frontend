@@ -26,6 +26,7 @@ export interface ProjectDetailProps {
       techLevelId: string,
       socialValueId: string,
       communRepuId: string,
+      expiredAt: string,
     }[],
     logo: string,
     projectName: string,

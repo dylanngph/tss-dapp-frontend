@@ -29,8 +29,9 @@ export interface InformationProps {
     techLevelId: string,
     socialValueId: string,
     communRepuId: string,
+    expiredAt: string,
   }
-}
+} 
 
 export default function BlockChain ({nft}: InformationProps) {
   const [blockTitle, setBlockTitle] = React.useState('Passport of Blockchain');
@@ -43,6 +44,17 @@ export default function BlockChain ({nft}: InformationProps) {
     // setBlockTitle()
     setAnchorEl(null);
   };
+
+  const checkExpired = (date: string) => { 
+    if (!date) return false;
+    var todayDate = new Date();
+    var dateOne = new Date(date);
+    if (todayDate >= dateOne) {    
+      return false;
+    } else {    
+      return true;
+    }    
+  }
 
   return (
     <Grid container px={{md: 2, xs: 0}}>
@@ -123,6 +135,20 @@ export default function BlockChain ({nft}: InformationProps) {
               padding: '6px',
               fontWeight: 'bold'
             }}>SEAL NFT</Box>
+            { checkExpired(nft?.expiredAt) && (
+              <Box sx={{
+                position: 'absolute',
+                top: '50px',
+                left: '20px',
+                color: '#FF4444',
+                textTransform: 'uppercase',
+                background: '#F0F6FF',
+                borderRadius: '4px',
+                fontSize: '14px',
+                padding: '6px',
+                fontWeight: 'bold'
+              }}>HẾT HẠN</Box>
+            )}
           </Box>
           <Box sx={{
             padding: '10px 20px'
@@ -146,7 +172,7 @@ export default function BlockChain ({nft}: InformationProps) {
             </Grid>
             <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">Ngày hết hạn:</span>
-              <Box sx={{ color: '#11142D', fontWeight: '500'}}>{formatDateVI(nft?.issuedAt)}</Box>
+              <Box sx={{ color: '#11142D', fontWeight: '500'}}>{formatDateVI(nft?.expiredAt)}</Box>
             </Grid>
           </Box>
         </CardStamp>
