@@ -160,7 +160,7 @@ export default function BlockChain ({nft}: InformationProps) {
             </Grid>
             <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">Contract ID</span>
-              <BoxCopy onClick={() => {navigator.clipboard.writeText(PASSPORT_BLOCKCHAIN.Contract_ID)}}><a href={process.env.NEXT_PUBLIC_LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(process.env.NEXT_PUBLIC_BS_SCAN_CODE)}</a></BoxCopy>
+              <BoxCopy onClick={() => {navigator.clipboard.writeText(process.env.NEXT_PUBLIC_BS_SCAN_CODE ? process.env.NEXT_PUBLIC_BS_SCAN_CODE : '')}}><a href={process.env.NEXT_PUBLIC_LINK_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(process.env.NEXT_PUBLIC_BS_SCAN_CODE)}</a></BoxCopy>
             </Grid>
             <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">TX Hash</span>
