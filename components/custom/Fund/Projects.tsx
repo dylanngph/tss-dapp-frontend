@@ -31,7 +31,7 @@ export default function Projects ({data}: ProjectsProps) {
           <Grid key={index} item xs={12} sm={6} md={3}>
             <BoxProject>
             <a href={verifyWebsite(website)} target="_blank" rel="noopener noreferrer">
-              <Grid container direction="column" justifyContent="space-between" sx={{ height: '100%' }}>
+              <Grid container direction="column" justifyContent="space-between">
                 <Grid item container direction="row" justifyContent="space-between" sx={{ flexWrap: 'nowrap', height: '40px'}}>
                   <Grid item>
                     <Box sx={{ maxWidth: 40, '& img': { maxWidth: '100%', height: 'auto' } }}>
@@ -43,7 +43,7 @@ export default function Projects ({data}: ProjectsProps) {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <LabelBox>{round}</LabelBox>
+                  <TitleBox>{name}</TitleBox>
                 </Grid>
               </Grid>
               <Box sx={{ borderBottom: '1px solid #EFF2F5', margin: '16px 0' }}></Box>
