@@ -37,10 +37,14 @@ export default function ListProjectSection (props: ListProjectSection) {
   };
 
   const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputSearch(newValue);
-    const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch.toLowerCase()) !== -1 || item.symbol.toLowerCase().search(inputSearch.toLowerCase()) !== -1));
-    setProjectListSearch(tpm);
+    setPage(0);
+    try {
+      const newValue = e.target.value;
+      setInputSearch(newValue);
+      const tpm = projectList.filter((item: {projectName: string, symbol: string }, index) => (item.projectName.toLowerCase().search(inputSearch.toLowerCase()) !== -1 || item.symbol.toLowerCase().search(inputSearch.toLowerCase()) !== -1));
+      setProjectListSearch(tpm);
+    } catch(e) {}
+    
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - projectList?.length) : 0;
@@ -50,7 +54,11 @@ export default function ListProjectSection (props: ListProjectSection) {
   };
 
   const handleNextPage = () => {
-    if (projectList?.length > rowsPerPage && (projectList?.length / rowsPerPage) > (page + 1)) setPage(page + 1);
+    if (inputSearch) {
+      if (projectListSearch?.length > rowsPerPage && (projectListSearch?.length / rowsPerPage) > (page + 1)) setPage(page + 1);
+    } else {
+      if (projectList?.length > rowsPerPage && (projectList?.length / rowsPerPage) > (page + 1)) setPage(page + 1);
+    }
   };
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
@@ -160,9 +168,21 @@ export default function ListProjectSection (props: ListProjectSection) {
                       <ButtonArrowPrev onClick={handlePrevPage}/>
                     ) }
                     <BoxContentNumberPag>{('0' + (page + 1)).slice(-2)}</BoxContentNumberPag>
-                    { (projectList?.length > rowsPerPage && (projectList?.length / rowsPerPage) > (page + 1)) && (
-                      <ButtonArrowNext onClick={handleNextPage}/>
-                    ) }
+                    { !inputSearch ? (
+                      <>
+                       {
+                         (projectList?.length > rowsPerPage && (projectList?.length / rowsPerPage) > (page + 1)) && (
+                          <ButtonArrowNext onClick={handleNextPage}/>
+                        )
+                       }
+                      </>
+                    ) : ( <>
+                      {
+                        (projectListSearch?.length > rowsPerPage && (projectListSearch?.length / rowsPerPage) > (page + 1)) && (
+                         <ButtonArrowNext onClick={handleNextPage}/>
+                       )
+                      }
+                     </> )}
                   </Grid>
                 </td>
               </tr>
