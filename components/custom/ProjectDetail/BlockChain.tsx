@@ -49,10 +49,10 @@ export default function BlockChain ({nft}: InformationProps) {
     if (!date) return false;
     var todayDate = new Date();
     var dateOne = new Date(date);
-    if (todayDate >= dateOne) {    
-      return false;
-    } else {    
+    if (todayDate > dateOne) {
       return true;
+    } else {  
+      return false;
     }    
   }
 
