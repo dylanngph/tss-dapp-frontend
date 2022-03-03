@@ -167,7 +167,7 @@ export default function BlockChain ({nft}: InformationProps) {
               <BoxCopy onClick={() => {navigator.clipboard.writeText(nft.txHash)}}>{minimizeAddressSmartContract(nft.txHash)}</BoxCopy>
             </Grid>
             <Grid container justifyContent={'space-between'} mb={1.5}>
-              <span className="block-copy">Ngày cấp:</span>
+              <span className="block-copy">Ngày phát hành:</span>
               <Box sx={{ color: '#11142D', fontWeight: '500'}}>{formatDateVI(nft?.issuedAt)}</Box>
             </Grid>
             <Grid container justifyContent={'space-between'} mb={1.5}>

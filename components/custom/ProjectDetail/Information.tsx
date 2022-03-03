@@ -91,7 +91,7 @@ export default function Information({ project }: BlockChainProps) {
             }}>
               <BoxCertified>
                 <Box sx={{ width: 16, height: 16, marginRight: '6px', backgroundImage: 'url("/assets/icons/ico-shield-tick.svg")' }}/>
-                Chứng nhận
+                Phát hành bởi
               </BoxCertified>
               <Box sx={{ background: '#EFF2F5', borderRadius: '10px', padding: '5px 10px', margin: '15px 15px 15px 0', display: 'flex', justifyContent: 'center' }}>
                 <Image src="/assets/images/logo-tss-black.png" alt="TSS" width={68} height={30}/>
