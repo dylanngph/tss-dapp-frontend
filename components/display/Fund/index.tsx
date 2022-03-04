@@ -120,7 +120,7 @@ export default function FunPage({ fundItem }: FunPageProps) {
                     <PassportInfoItem>
                       <h4>Contract ID</h4>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <p>{minimizeAddressSmartContract(process.env.NEXT_PUBLIC_CONTRACT_ID_VC ? process.env.NEXT_PUBLIC_CONTRACT_ID_VC : '0xE447b22B28905d3FF1E1486E9Ba156701606e70d')}</p>
+                        <p><a href={process.env.NEXT_PUBLIC_LINK_VC_BS_SCAN} target="_blank" rel="noopener noreferrer">{minimizeAddressSmartContract(process.env.NEXT_PUBLIC_CONTRACT_ID_VC)}</a></p>
                         <Image src='/assets/images/copy.svg' onClick={() => { navigator.clipboard.writeText(process.env.NEXT_PUBLIC_CONTRACT_ID_VC ? process.env.NEXT_PUBLIC_CONTRACT_ID_VC : '0xE447b22B28905d3FF1E1486E9Ba156701606e70d') }} alt='copy' width='16' height='16' />
                       </Box>
                     </PassportInfoItem>
