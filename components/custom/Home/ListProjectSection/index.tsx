@@ -195,10 +195,10 @@ export default function ListProjectSection (props: ListProjectSection) {
 }
 
 const WrapperSection = styled.div`
-  margin: 0 0 20px;
+  margin: 30px 0 20px;
   padding-top: 50px;
   @media screen and ${device.tabletL} {
-    margin: 0 0 90px;
+    margin: 50px 0 90px;
   }
 `;
 

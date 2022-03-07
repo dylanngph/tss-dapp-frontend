@@ -8,8 +8,8 @@ const Criteria: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>TSS - Tiêu chí đánh giá thông tin dự án</title>
-        <meta name="description" content="TSS - Tiêu chí đánh giá thông tin dự án" />
+        <title>TSS - Quy trình đăng ký thông tin dự án</title>
+        <meta name="description" content="TSS - Quy trình đăng ký thông tin dự án" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

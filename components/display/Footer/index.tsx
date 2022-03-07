@@ -41,7 +41,7 @@ export default function Footer(props: FooterProps) {
               {
                 props.criteriaShown
                 ?
-                <Link href="/criteria">Tiêu chí đánh giá thông tin dự án</Link>
+                <Link href="/criteria">Quy trình đăng ký thông tin dự án</Link>
                 :
                 null
               }

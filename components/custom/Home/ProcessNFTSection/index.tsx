@@ -31,7 +31,7 @@ export default function ProcessNFTSection (props: ProcessNFTSection) {
             <Box sx={{ width: 300, height: 200, position: 'relative' }}>
               <BoxItem>
                 <Image src="/assets/icons/ico-judge.svg" alt="ico-judge" width={64} height={64}/>
-                <p>Tư vấn & Thẩm định</p>
+                <p>Tư vấn & Xét duyệt</p>
               </BoxItem>
               <BoxBg></BoxBg>
             </Box>

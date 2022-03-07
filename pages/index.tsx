@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       <main>
         <Header theme={'white'}/>
         <Banner />
-        <AuthenticationSection />
+        {/* <AuthenticationSection /> */}
         <ListProjectSection />
         <ProcessNFTSection />
         <Footer criteriaShown={true} disclaimerShown={true} />
