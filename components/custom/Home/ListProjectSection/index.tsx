@@ -74,7 +74,7 @@ export default function ListProjectSection (props: ListProjectSection) {
           <CustomInputSearch
             fullWidth
             id="input-search"
-            placeholder="Tìm dự án blockchain, mã công ty, địa chỉ ví..."
+            placeholder="Tìm dự án blockchain, mã công ty"
             InputProps={{
               style: {
                 backgroundColor: '#EFF2F5',
@@ -198,7 +198,10 @@ const WrapperSection = styled.div`
   margin: 30px 0 20px;
   padding-top: 50px;
   @media screen and ${device.tabletL} {
-    margin: 50px 0 90px;
+    margin: 170px 0 90px;
+  }
+  @media screen and ${device.tablet} {
+    margin: 170px 0 90px;
   }
 `;
 

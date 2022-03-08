@@ -153,7 +153,7 @@ export default function BlockChain ({nft}: InformationProps) {
           <Box sx={{
             padding: '10px 20px'
           }}>
-            <TitleSec title="Passport of Blockchain" />
+            <TitleSec title="TSS Passport of Blockchain" />
             <Grid container justifyContent={'space-between'} mb={1.5}>
               <span className="block-copy">TOKEN ID</span>
               <Box sx={{ color: '#11142D', fontWeight: '500'}}>{nft.tokenId}</Box>

@@ -111,7 +111,7 @@ export default function FunPage({ fundItem }: FunPageProps) {
                   <SealNft>SEAL NFT</SealNft>
                 </Box>
                 <WrapPassportContent>
-                  <TitlePassport>TSS Passport Ventures</TitlePassport>
+                  <TitlePassport>TSS Passport of Investment</TitlePassport>
                   <Box>
                     <PassportInfoItem>
                       <h4>Token ID</h4>

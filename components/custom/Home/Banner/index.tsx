@@ -71,7 +71,6 @@ const WrapperListIOTA = styled.div`
   }
   @media screen and ${device.tabletL} {
     left: 0;
-    bottom: -40px;
     width: 100%;
     margin-top: 0;
   }

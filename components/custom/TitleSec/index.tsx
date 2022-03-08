@@ -11,7 +11,7 @@ export default function TitleSec ({title}: TitleSecProps) {
 }
 
 const Title = styled.h3`
-  font-size: 24px;
+  font-size: 23px;
   line-height: 29px;
   color: #11142D;
   margin: 0 0 15px;

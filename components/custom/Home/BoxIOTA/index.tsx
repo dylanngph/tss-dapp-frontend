@@ -26,10 +26,23 @@ export default function BoxIOTA ({IOTA}: BoxIOTAProps) {
             <p>{IOTA.description}</p>
           </Grid>
         </Grid>
+        <Grid container>
+          <Grid item style={{ width: '99px' }}></Grid>
+          <Grid item style={{ width: 'calc(100% - 99px)' }} container direction="column">
+            <h5>Đơn vị xác nhận</h5>
+            <ImageTss src='/assets/images/logo-tss-black.png' alt='logo-tss' />
+          </Grid>
+        </Grid>
       </BoxWrapper>
     </Grid>
   );
 }
+
+const ImageTss = styled.img`
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+`
 
 const BoxWrapper = styled.div`
   width: 100%;
