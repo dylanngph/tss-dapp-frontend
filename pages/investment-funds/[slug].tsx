@@ -59,7 +59,7 @@ const IFund: NextPage = () => {
               <FunPage fundItem={fundItem} />
             )
         }
-        <Footer criteriaShown={true} disclaimerShown={false} />
+        <Footer criteriaShown={false} disclaimerShown={false} />
       </main>
 
     </div>
