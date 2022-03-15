@@ -24,13 +24,15 @@ export default function Header({theme}: HeaderProps) {
         <Grid container>
           <Grid item container alignItems="center" xs={8}>
             <Box sx={{ width: 70, height: 32, cursor: 'pointer' }}>
-              <Link href="/">
-                <img src={(theme == 'white' && !scrollPosition) ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" />
+              <Link href="/" passHref>
+                <a>
+                  <img src={(theme == 'white' && !scrollPosition) ? '/logo-tss.svg' : '/logo-tss-black.svg'} alt="LOGO TSS" />
+                </a>
               </Link>
             </Box>
             <ul>
               { NavMenu.map(({title, href}) => (
-                <li key={title} className={router.pathname == "/" ? "active" : ""}>
+                <li key={title} className={router.pathname === href ? "active" : ""}>
                   <Link href={href} passHref>{title}</Link>
                 </li>
               ))}

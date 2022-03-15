@@ -21,7 +21,9 @@ export const WrapperNav = styled.nav<HeaderProps>`
       margin-left: 30px;
       cursor: pointer;
       font-family: 'Inter-Bold';
-      color: ${({ theme, scrollPosition }) => (theme === 'white' && !scrollPosition) ? '#ffffff' : 'var(--color-primary)'};
+      a {
+        color: ${({ theme, scrollPosition }) => (theme === 'white' && !scrollPosition) ? '#ffffff' : 'var(--color-primary)'};
+      }
     }
   }
   @media screen and ${device.tablet} {
