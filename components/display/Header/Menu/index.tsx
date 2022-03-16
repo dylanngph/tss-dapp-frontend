@@ -13,11 +13,16 @@ const Menu: React.FC<MenuProps> = ({ open, theme }) => {
   const router = useRouter();
   return (
     <StyledMenu open={open}>
-      { NavMenu.map(({title, href}) => (
+      {NavMenu.map(({ title, href }) => (
         <li key={title} className={router.pathname == "/" ? "active" : ""}>
           <Link href={href} passHref>{title}</Link>
         </li>
-      )) }
+      ))}
+      <li className="abc">
+        <Link href="https://tss.org.vn/" passHref>
+          Về TSS
+        </Link>
+      </li>
     </StyledMenu>
   );
 };
