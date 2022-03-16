@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>TSS - D App</title>
+        <title>TSS - D-App</title>
         <meta name="description" content="TSS - Phát hành NFT xác nhận thông tin dự án Blockchain của bạn" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
