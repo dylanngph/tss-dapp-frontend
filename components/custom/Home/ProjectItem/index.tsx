@@ -24,8 +24,8 @@ export default function ProjectItem ({project, index}: ProjectItemProps) {
     <tr onClick={() => { router.push(`/project/${project?.slug}`) }}>
       <td>{index + 1}</td>
       <td>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ width: 24, height: 24, marginRight: '5px', display: 'flex', justifyContent: 'center', alignItems: 'center', '& img': {maxWidth: '100%', height: 'auto'} }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <Box sx={{ width: 50, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', '& img': {maxWidth: '100%', height: 'auto'} }}>
             <img src={project?.logo} alt={project?.projectName}/>
           </Box>
           <span>{project?.projectName}</span>
