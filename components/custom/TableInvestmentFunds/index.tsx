@@ -128,8 +128,8 @@ export default function TableInvestmentFunds ({investmentFunds}: TableInvestment
               <tr key={row.id} onClick={() => { router.push(`/investment-funds/${row.slug}`) }}>
                 <td>{index + 1}</td>
                 <td>
-                  <Grid sx={{flexWrap: "nowrap"}} container alignItems="center">
-                    <Box sx={{ width: 20, height: 20, '& img': { objectFit: 'contain', width: '100%', height: '100%' } }}>
+                  <Grid sx={{flexWrap: "nowrap", gap: '20px'}} container alignItems="center">
+                    <Box sx={{ width: 50, height: 50, '& img': { objectFit: 'contain', width: '100%', height: '100%' } }}>
                       <img src={row?.logo} alt={row?.name} />
                     </Box>
                     <Box sx={{ fontWeight: 'bold', marginLeft: '5px' }}>{row?.name}</Box>

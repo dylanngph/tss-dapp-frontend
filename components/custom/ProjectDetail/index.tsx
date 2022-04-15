@@ -117,22 +117,22 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
       <ChartTokenomics tokenAllocations={project.tokenAllocations} dataChart={getDataChartDefault()} />
 
       {
-        project.developmentPartner.length
+        project.developmentTeam.length
           ?
-          <Grid container>
-            <TitleSec title={`Đối tác của ${project.projectName}`} />
-            <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project} />
+          <Grid container id="boxSlideTeam">
+            <TitleSec title={`Đội ngũ của ${project.projectName}`} />
+            <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project} />
           </Grid>
           :
           null
       }
 
       {
-        project.developmentTeam.length
+        project.developmentPartner.length
           ?
-          <Grid container mt={2} mb={8} id="boxSlideTeam">
-            <TitleSec title={`Đội ngũ của ${project.projectName}`} />
-            <SliderSlick settings={settingsTeam} typeSettings={'team'} project={project} />
+          <Grid mt={2} mb={8} container>
+            <TitleSec title={`Đối tác của ${project.projectName}`} />
+            <SliderSlick settings={settingsPartner} typeSettings={'img'} project={project} />
           </Grid>
           :
           null
