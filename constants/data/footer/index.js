@@ -6,17 +6,17 @@ export const FooterData = {
     {
       id: 1,
       iconPath: '/assets/icons/ico-fb.svg',
-      link: '#'
+      link: 'https://www.facebook.com/TSS.ORG.VN'
     },
     {
       id: 2,
       iconPath: '/assets/icons/ico-twitter.svg',
-      link: '#'
+      link: 'https://twitter.com/TssTai'
     },
     {
       id: 3,
       iconPath: '/assets/icons/ico-telegram.svg',
-      link: '#'
+      link: 'https://t.me/TTQLTSS'
     }
   ],
 }
